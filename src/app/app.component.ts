@@ -14,15 +14,30 @@ export class AppComponent {
     html2canvas(data as HTMLElement, { scale: 2 }).then((canvas) => {
       // Adjust scale for higher DPI
       const imgWidth = 208;
-      const pageHeight = 295;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      const heightLeft = imgHeight;
 
-      const contentDataURL = canvas.toDataURL('image/png');
       const pdf = new jspdf.jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
       const position = 0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-      pdf.save('new-file.pdf'); // Generated PDF
+
+      // Adjust the PDF page size based on the image dimensions
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgHeight * pdfWidth) / imgWidth;
+      pdf.addImage(
+        canvas.toDataURL('image/png', 0.7),
+        'PNG',
+        0,
+        position,
+        pdfWidth,
+        pdfHeight,
+        '',
+        'FAST'
+      ); // Adjust image compression quality
+
+      // Compress the PDF text content
+      pdf.setFontSize(10); // Adjust font size to reduce PDF size
+
+      // Save the PDF file
+      pdf.save('new-file.pdf');
     });
   }
 }
