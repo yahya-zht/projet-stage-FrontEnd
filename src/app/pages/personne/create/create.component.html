@@ -1,0 +1,126 @@
+<p>create works!</p>
+<div class="container">
+  <form [formGroup]="personneForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="Nom" class="form-label">CIN</label>
+      <input
+        type="email"
+        class="form-control"
+        id="CIN"
+        placeholder="Nom"
+        formControlName="CIN"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="Nom" class="form-label">Nom</label>
+      <input
+        type="email"
+        class="form-control"
+        id="Nom"
+        placeholder="Nom"
+        formControlName="nom"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="prenom" class="form-label">prenom</label>
+      <input
+        type="email"
+        class="form-control"
+        id="prenom"
+        placeholder="prenom"
+        formControlName="prenom"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="adresse" class="form-label">adresse</label>
+      <input
+        type="email"
+        class="form-control"
+        id="adresse"
+        placeholder="adresse"
+        formControlName="adresse"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="date_naissance" class="form-label">date naissance</label>
+      <input
+        type="date"
+        class="form-control"
+        id="date_naissance"
+        placeholder="date_naissance"
+        formControlName="date_naissance"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="telephone" class="form-label">telephone</label>
+      <input
+        type="email"
+        class="form-control"
+        id="telephone"
+        placeholder="telephone"
+        formControlName="telephone"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="role" class="form-label">role</label>
+      <input
+        type="email"
+        class="form-control"
+        id="role"
+        placeholder="role"
+        formControlName="role"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="Nom" class="form-label">chef id</label>
+      <input
+        type="email"
+        class="form-control"
+        id="chef"
+        placeholder="chef"
+        formControlName="chef_id"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="grade" class="form-label">grade id</label>
+      <input
+        type="email"
+        class="form-control"
+        id="grade"
+        placeholder="grade"
+        formControlName="grade_id"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="fonction" class="form-label">fonction id</label>
+      <input
+        type="email"
+        class="form-control"
+        id="fonction"
+        placeholder="fonction"
+        formControlName="fonction_id"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="echelle" class="form-label">echelle id</label>
+      <input
+        type="email"
+        class="form-control"
+        id="echelle"
+        placeholder="echelle"
+        formControlName="echelle_id"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="service" class="form-label">service id</label>
+      <input
+        type="email"
+        class="form-control"
+        id="service"
+        placeholder="service"
+        formControlName="service_id"
+      />
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>

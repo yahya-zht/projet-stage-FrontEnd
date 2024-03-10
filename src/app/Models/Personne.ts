@@ -3,7 +3,7 @@ export class Personne {
   CIN: string;
   nom: string;
   prenom: string;
-  dateNaissance: string;
+  date_naissance: string;
   adresse: string;
   telephone: string;
   role: string;
@@ -12,6 +12,38 @@ export class Personne {
   fonction_id: number;
   echelle_id: number;
   service_id: number;
+  grade!: {
+    // id: number;
+    libelle: string;
+    // salaire: number;
+    // created_at: string;
+    // updated_at: string;
+  };
+  fonction!: {
+    id: number;
+    libelle: string;
+    created_at: string;
+    updated_at: string;
+  };
+  echelle!: {
+    id: number;
+    libelle: string;
+    niveau: number;
+    created_at: string;
+    updated_at: string;
+  };
+  service!: {
+    id: number;
+    nom: string;
+    responsable_id: number | null;
+    nombre_employes: number;
+    created_at: string;
+    updated_at: string;
+  };
+  chef!: {
+    nom: string;
+  };
+  Personne: any;
   constructor(
     id: number,
     CIN: string,
@@ -31,7 +63,7 @@ export class Personne {
     this.CIN = CIN;
     this.nom = nom;
     this.prenom = prenom;
-    this.dateNaissance = dateNaissance;
+    this.date_naissance = dateNaissance;
     this.adresse = adresse;
     this.telephone = telephone;
     this.role = role;

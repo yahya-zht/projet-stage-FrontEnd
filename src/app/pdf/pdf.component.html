@@ -92,17 +92,16 @@
             <span class="text-decoration-underline">ARTICLE UNIQUE :</span> Un
             congé de cinq jours ouvrables (05 jrs.)
           </li>
-          <li>Est accordé à : M. KHAFFANE Abdesadek</li>
           <li>
-            Grade: Ingénieur d'état Grade Principal
+            Est accordé à : M. {{ Personne?.nom + " " + Personne?.prenom }}
+          </li>
+          <li>
+            Grade: {{ Personne?.grade.libelle }}
             <span class="ms-5">
-              <span class="fw-bold">P.P.R :</span> 1834358</span
+              <span class="fw-bold">P.P.R :</span>{{ Personne?.CIN }}</span
             >
           </li>
-          <li>
-            En fonction à : Direction Régionale de la Santé et de la Protection
-            Sociale.
-          </li>
+          <li>En fonction à :{{ Personne?.fonction.libelle }}</li>
           <li>Congé de : congé annuel 2023.</li>
           <li>Pour en bénéficier à compter du: 20/11/2023.</li>
         </ul>
