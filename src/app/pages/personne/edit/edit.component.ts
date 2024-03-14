@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PersonneService } from 'src/app/services/personne.service';
+import { PersonneService } from 'src/app/services/personne/personne.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Personne } from 'src/app/Models/Personne';
 @Component({

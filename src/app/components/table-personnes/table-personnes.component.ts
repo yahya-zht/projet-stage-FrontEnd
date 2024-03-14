@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
-import { PersonneService } from 'src/app/services/personne.service';
+import { PersonneService } from 'src/app/services/personne/personne.service';
 import { Personne } from 'src/app/Models/Personne';
 
 @Component({

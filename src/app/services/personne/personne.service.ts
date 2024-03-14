@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Personne } from '../Models/Personne';
+import { Personne } from '../../Models/Personne';
 import { Observable, catchError, map, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root',

@@ -20,7 +20,9 @@ import { EchelleComponent } from './pages/echelle/echelle.component';
 import { FonctionComponent } from './pages/fonction/fonction.component';
 import { GradeComponent } from './pages/grade/grade.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-
+import { TableEchelleComponent } from './components/table-echelle/table-echelle.component';
+import { TableFonctionComponent } from './components/table-fonction/table-fonction.component';
+import { TableGradeComponent } from './components/table-grade/table-grade.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     FonctionComponent,
     GradeComponent,
     NavBarComponent,
+    TableEchelleComponent,
+    TableFonctionComponent,
+    TableGradeComponent,
   ],
   imports: [
     BrowserModule,

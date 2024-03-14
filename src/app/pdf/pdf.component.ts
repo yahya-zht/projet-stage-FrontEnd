@@ -3,7 +3,7 @@ import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { PersonneService } from '../services/personne.service';
+import { PersonneService } from '../services/personne/personne.service';
 import { Personne } from '../Models/Personne';
 
 @Component({
@@ -30,7 +30,8 @@ export class PdfComponent implements OnInit {
         prenom: 'Abdesadek',
         grade: { libelle: "Ingénieur d'état Grade Principal" },
         fonction: {
-          libelle: 'Direction Régionale de la Santé et de la Protection Sociale',
+          libelle:
+            'Direction Régionale de la Santé et de la Protection Sociale',
         },
       };
     } else {
