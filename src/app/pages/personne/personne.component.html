@@ -37,13 +37,32 @@
         <td>{{ item.service.nom }}</td>
         <td>
           <div class="d-flex">
-            <a [routerLink]="['pdf/', item.id]" class="btn btn-info me-1"
-              >PDF</a
-            >
-            <a [routerLink]="['edit/', item.id]" class="btn btn-primary me-1"
-              >Edit</a
-            >
+            <a [routerLink]="['pdf/', item.id]" class="btn btn-info me-1">
+              <mat-icon
+                class="text-danger"
+                aria-hidden="false"
+                aria-label="picture_as_pdf"
+                fontIcon="picture_as_pdf"
+                >picture_as_pdf</mat-icon
+              >PDF
+            </a>
+            <a [routerLink]="['edit/', item.id]" class="btn btn-primary me-1">
+              <mat-icon
+                class="red"
+                aria-hidden="false"
+                aria-label="edit"
+                fontIcon="edit"
+                >edit</mat-icon
+              >Edit
+            </a>
             <button (click)="delete(item.id, i)" class="btn btn-danger">
+              <mat-icon
+                class="red"
+                aria-hidden="false"
+                aria-label="delete"
+                fontIcon="delete"
+                >delete</mat-icon
+              >
               Delete
             </button>
           </div>
