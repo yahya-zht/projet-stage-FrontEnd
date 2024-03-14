@@ -16,6 +16,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TablePersonnesComponent } from './components/table-personnes/table-personnes.component';
+import { EchelleComponent } from './pages/echelle/echelle.component';
+import { FonctionComponent } from './pages/fonction/fonction.component';
+import { GradeComponent } from './pages/grade/grade.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { TablePersonnesComponent } from './components/table-personnes/table-pers
     EditComponent,
     ShowComponent,
     TablePersonnesComponent,
+    EchelleComponent,
+    FonctionComponent,
+    GradeComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
