@@ -1,0 +1,113 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <ng-container matColumnDef="CIN">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>CIN</th>
+      <td mat-cell *matCellDef="let row">{{ row.CIN }}</td>
+    </ng-container>
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+      <td mat-cell *matCellDef="let row">{{ row.nom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Prenom</th>
+      <td mat-cell *matCellDef="let row">{{ row.prenom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateNaissance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Naissance</th>
+      <td mat-cell *matCellDef="let row">{{ row.date_naissance }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="adresse">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresse</th>
+      <td mat-cell *matCellDef="let row">{{ row.adresse }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telephone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Telephone</th>
+      <td mat-cell *matCellDef="let row">{{ row.telephone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+      <td mat-cell *matCellDef="let row">{{ row.role }}</td>
+    </ng-container>
+    <ng-container matColumnDef="chef_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Chef</th>
+      <td mat-cell *matCellDef="let row">
+        {{ (row.chef && row.chef.nom) || "null" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grade_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
+      <td mat-cell *matCellDef="let row">{{ row.grade.libelle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fonction_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fonction</th>
+      <td mat-cell *matCellDef="let row">{{ row.fonction.libelle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="echelle_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Echelle</th>
+      <td mat-cell *matCellDef="let row">{{ row.echelle.libelle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="service_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Service</th>
+      <td mat-cell *matCellDef="let row">{{ row.service.nom }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">
+        Action
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <div class="d-flex">
+          <a [routerLink]="['pdf/', row.id]" class="btn btn-info me-1">
+            <mat-icon
+              class="text-danger"
+              aria-hidden="false"
+              aria-label="picture_as_pdf"
+              fontIcon="picture_as_pdf"
+              >picture_as_pdf</mat-icon
+            >PDF
+          </a>
+          <a [routerLink]="['edit/', row.id]" class="btn btn-primary me-1">
+            <mat-icon
+              class="red"
+              aria-hidden="false"
+              aria-label="edit"
+              fontIcon="edit"
+              >edit</mat-icon
+            >Edit
+          </a>
+          <button (click)="delete(row.id, i)" class="btn btn-danger">
+            <mat-icon
+              class="red"
+              aria-hidden="false"
+              aria-label="delete"
+              fontIcon="delete"
+              >delete</mat-icon
+            >
+            Delete
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

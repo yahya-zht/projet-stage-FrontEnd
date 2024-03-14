@@ -12,6 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material/material.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { TablePersonnesComponent } from './components/table-personnes/table-personnes.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import { MaterialModule } from './material/material/material.module';
     CreateComponent,
     EditComponent,
     ShowComponent,
+    TablePersonnesComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,9 @@ import { MaterialModule } from './material/material/material.module';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
