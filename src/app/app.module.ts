@@ -25,6 +25,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { TableEchelleComponent } from './components/table-echelle/table-echelle.component';
 import { TableFonctionComponent } from './components/table-fonction/table-fonction.component';
 import { TableGradeComponent } from './components/table-grade/table-grade.component';
+import { ServiceComponent } from './pages/service/service.component';
+import { EtablissementComponent } from './pages/etablissement/etablissement.component';
+import { CreateComponent } from './pages/etablissement/create/create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +47,9 @@ import { TableGradeComponent } from './components/table-grade/table-grade.compon
     TableEchelleComponent,
     TableFonctionComponent,
     TableGradeComponent,
+    ServiceComponent,
+    EtablissementComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,
