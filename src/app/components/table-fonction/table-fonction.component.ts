@@ -16,7 +16,7 @@ export class TableFonctionComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Fonction>;
   dataSource = new MatTableDataSource<Fonction>();
 
-  displayedColumns = ['libelle'];
+  displayedColumns = ['libelle', 'Action'];
 
   constructor(private fonctionService: FonctionService) {}
 
@@ -37,9 +37,10 @@ export class TableFonctionComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   delete(id: any, i: any) {
-    if (confirm('delete fonction ')) {
-      this.fonctionService.deleteFonction(id).subscribe((fonction) => {
+    if (confirm('Etes-vous sûr de vouloir supprimer cette fonction ')) {
+      this.fonctionService.deleteFonction(id).subscribe(() => {
         this.dataSource.data.splice(i, 1);
+        this.dataSource._updateChangeSubscription();
       });
     }
   }

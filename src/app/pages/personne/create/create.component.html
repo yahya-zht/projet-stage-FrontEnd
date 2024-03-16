@@ -1,126 +1,181 @@
-<p>create works!</p>
-<div class="container">
-  <form [formGroup]="personneForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="Nom" class="form-label">CIN</label>
-      <input
-        type="email"
-        class="form-control"
-        id="CIN"
-        placeholder="Nom"
-        formControlName="CIN"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="Nom" class="form-label">Nom</label>
-      <input
-        type="email"
-        class="form-control"
-        id="Nom"
-        placeholder="Nom"
-        formControlName="nom"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="prenom" class="form-label">prenom</label>
-      <input
-        type="email"
-        class="form-control"
-        id="prenom"
-        placeholder="prenom"
-        formControlName="prenom"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="adresse" class="form-label">adresse</label>
-      <input
-        type="email"
-        class="form-control"
-        id="adresse"
-        placeholder="adresse"
-        formControlName="adresse"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="date_naissance" class="form-label">date naissance</label>
-      <input
-        type="date"
-        class="form-control"
-        id="date_naissance"
-        placeholder="date_naissance"
-        formControlName="date_naissance"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="telephone" class="form-label">telephone</label>
-      <input
-        type="email"
-        class="form-control"
-        id="telephone"
-        placeholder="telephone"
-        formControlName="telephone"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="role" class="form-label">role</label>
-      <input
-        type="email"
-        class="form-control"
-        id="role"
-        placeholder="role"
-        formControlName="role"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="Nom" class="form-label">chef id</label>
-      <input
-        type="email"
-        class="form-control"
-        id="chef"
-        placeholder="chef"
-        formControlName="chef_id"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="grade" class="form-label">grade id</label>
-      <input
-        type="email"
-        class="form-control"
-        id="grade"
-        placeholder="grade"
-        formControlName="grade_id"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="fonction" class="form-label">fonction id</label>
-      <input
-        type="email"
-        class="form-control"
-        id="fonction"
-        placeholder="fonction"
-        formControlName="fonction_id"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="echelle" class="form-label">echelle id</label>
-      <input
-        type="email"
-        class="form-control"
-        id="echelle"
-        placeholder="echelle"
-        formControlName="echelle_id"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="service" class="form-label">service id</label>
-      <input
-        type="email"
-        class="form-control"
-        id="service"
-        placeholder="service"
-        formControlName="service_id"
-      />
-    </div>
-    <button type="submit" class="btn btn-success">Save</button>
-  </form>
+<div class="rounded rounded-3 border border-3 m-4">
+  <div class="border-bottom border-3 bg-light">
+    <p
+      class="p-3 bg-gray-300 h4 m-0 text-center d-flex justify-content-center align-items-center"
+    >
+      <span class="me-2">New Personne</span
+      ><mat-icon matSuffix class="">account_circle</mat-icon>
+    </p>
+  </div>
+  <div class="p-4">
+    <form [formGroup]="personneForm" (ngSubmit)="onSubmit()">
+      <div></div>
+      <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>CIN</mat-label>
+          <input
+            matInput
+            type="text"
+            id="CIN"
+            placeholder="CIN"
+            formControlName="CIN"
+            name="CIN"
+          />
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-hint>CIN</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Nom</mat-label>
+          <input
+            matInput
+            type="text"
+            id="nom"
+            placeholder="nom"
+            formControlName="nom"
+            name="nom"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint>Nom</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Prenom</mat-label>
+          <input
+            matInput
+            type="text"
+            id="prenom"
+            placeholder="prenom"
+            formControlName="prenom"
+            name="prenom"
+          />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint>Prenom</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-3">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Adresse</mat-label>
+          <input
+            matInput
+            type="text"
+            id="adresse"
+            placeholder="adresse"
+            formControlName="adresse"
+            name="adresse"
+          />
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-hint>Adresse</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Date Naissance</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            id="adresse"
+            name="date_naissance"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Telephone</mat-label>
+          <input
+            matInput
+            type="text"
+            id="telephone"
+            placeholder="telephone"
+            formControlName="telephone"
+            name="telephone"
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-hint>Telephone</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-3 row row-cols-2 row-cols-lg-3 g-3 g-lg-3">
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Role</mat-label>
+          <mat-select name="role">
+            <mat-option value="Employé">Employé</mat-option>
+            <mat-option value="Superviseur">Superviseur</mat-option>
+            <mat-option value="Directeur">Directeur</mat-option>
+          </mat-select>
+          <mat-hint align="end">Role</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Chef</mat-label>
+          <mat-select name="chef_id">
+            <mat-option value="">-</mat-option>
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+          <mat-hint align="end">Chef</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Grade</mat-label>
+          <mat-select name="grade_id">
+            <mat-option
+              value="{{ Grade[i].id }}"
+              *ngFor="let item of Grade; let i = index"
+              >{{ Grade[i].libelle }}</mat-option
+            >
+          </mat-select>
+          <mat-hint align="end">Grade</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Fonction</mat-label>
+          <mat-select class="fonction_id">
+            <mat-option
+              value="{{ Fonction[i].id }}"
+              *ngFor="let item of Fonction; let i = index"
+              >{{ Fonction[i].libelle }}</mat-option
+            >
+          </mat-select>
+          <mat-hint align="end">Fonction</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Echelle</mat-label>
+          <mat-select name="echelle_id">
+            <mat-option
+              value="{{ Echelle[i].id }}"
+              *ngFor="let item of Echelle; let i = index"
+              >{{ Echelle[i].libelle }}</mat-option
+            >
+          </mat-select>
+          <mat-hint align="end">Echelle</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Service</mat-label>
+          <mat-select class="service_id">
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+          <mat-hint align="end">Service</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button
+          type="submit"
+          class="btn btn-success me-3 w-25 d-flex align-items-center justify-content-center fw-semibold"
+        >
+          <span class="me-2 fs-5">Save</span>
+          <mat-icon matSuffix>save</mat-icon>
+        </button>
+        <a
+          class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold"
+          [routerLink]="['/personne']"
+          ><span class="me-2 fs-5">Annuler</span
+          ><mat-icon matSuffix>close</mat-icon></a
+        >
+      </div>
+    </form>
+  </div>
 </div>

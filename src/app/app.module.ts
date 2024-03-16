@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './router/app-routing.module';
 import { PdfComponent } from './pdf/pdf.component';
 import { PersonneComponent } from './pages/personne/personne.component';
-import { CreateComponent } from './pages/personne/create/create.component';
+import { CreateComponent as CreatePersonne } from './pages/personne/create/create.component';
+import { CreateComponent as CreateEchelle } from './pages/echelle/create/create.component';
+import { CreateComponent as CreateFonction } from './pages/fonction/create/create.component';
+import { CreateComponent as CreateGrade } from './pages/grade/create/create.component';
 import { EditComponent } from './pages/personne/edit/edit.component';
 import { ShowComponent } from './pages/personne/show/show.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +30,10 @@ import { TableGradeComponent } from './components/table-grade/table-grade.compon
     AppComponent,
     PdfComponent,
     PersonneComponent,
-    CreateComponent,
+    CreatePersonne,
+    CreateEchelle,
+    CreateFonction,
+    CreateGrade,
     EditComponent,
     ShowComponent,
     TablePersonnesComponent,

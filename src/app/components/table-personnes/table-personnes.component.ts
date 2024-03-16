@@ -52,9 +52,10 @@ export class TablePersonnesComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   delete(id: any, i: any) {
-    if (confirm('delete personnes ')) {
-      this.personneService.deletePersonne(id).subscribe((person) => {
+    if (confirm('Etes-vous sûr de vouloir supprimer cette personne')) {
+      this.personneService.deletePersonne(id).subscribe(() => {
         this.dataSource.data.splice(i, 1);
+        this.dataSource._updateChangeSubscription();
       });
     }
   }

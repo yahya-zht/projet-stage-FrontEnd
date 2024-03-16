@@ -16,7 +16,7 @@ export class TableEchelleComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Echelle>;
   dataSource = new MatTableDataSource<Echelle>();
 
-  displayedColumns = ['libelle', 'niveau'];
+  displayedColumns = ['libelle', 'niveau', 'Action'];
 
   constructor(private echelleService: EchelleService) {}
   ngOnInit(): void {
@@ -36,9 +36,10 @@ export class TableEchelleComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   delete(id: any, i: any) {
-    if (confirm('delete échelle')) {
-      this.echelleService.deleteEchelle(id).subscribe((echelle) => {
+    if (confirm('Etes-vous sûr de vouloir supprimer cette échelle')) {
+      this.echelleService.deleteEchelle(id).subscribe(() => {
         this.dataSource.data.splice(i, 1);
+        this.dataSource._updateChangeSubscription();
       });
     }
   }

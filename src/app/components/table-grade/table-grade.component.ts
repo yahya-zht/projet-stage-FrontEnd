@@ -15,7 +15,7 @@ export class TableGradeComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Grade>;
   dataSource = new MatTableDataSource<Grade>();
-  displayedColumns = ['libelle', 'salaire'];
+  displayedColumns = ['libelle', 'salaire', 'Action'];
 
   constructor(private grade: GradeService) {}
   ngOnInit(): void {
@@ -36,9 +36,10 @@ export class TableGradeComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   delete(id: any, i: any) {
-    if (confirm('delete grade ')) {
-      this.grade.deleteGrade(id).subscribe((grade) => {
+    if (confirm('Etes-vous sûr de vouloir supprimer cette grade?')) {
+      this.grade.deleteGrade(id).subscribe(() => {
         this.dataSource.data.splice(i, 1);
+        this.dataSource._updateChangeSubscription();
       });
     }
   }
