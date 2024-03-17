@@ -3,12 +3,12 @@
     <p
       class="p-3 bg-gray-300 h4 m-0 text-center d-flex justify-content-center align-items-center"
     >
-      <span class="me-2">New Etablissement </span
+      <span class="me-2">Edit Etablissement</span
       ><mat-icon matSuffix class="">account_circle</mat-icon>
     </p>
   </div>
   <div class="p-4">
-    <form [formGroup]="etablissementForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
       <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
         <mat-form-field appearance="fill" class="col">
           <mat-label>Nom</mat-label>
@@ -28,7 +28,7 @@
           <mat-select formControlName="directeur_id">
             <mat-option value="">-</mat-option>
             <mat-option
-              value="{{ item.id }}"
+              [value]="item.id"
               *ngFor="let item of Personnes; let i = index"
               >{{ item.nom + " " + item.prenom }}</mat-option
             >
@@ -59,7 +59,7 @@
           type="submit"
           class="btn btn-success me-3 w-25 d-flex align-items-center justify-content-center fw-semibold"
         >
-          <span class="me-2 fs-5">Save</span>
+          <span class="me-2 fs-5">Update</span>
           <mat-icon matSuffix>save</mat-icon>
         </button>
         <a

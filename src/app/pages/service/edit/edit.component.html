@@ -3,12 +3,12 @@
     <p
       class="p-3 bg-gray-300 h4 m-0 text-center d-flex justify-content-center align-items-center"
     >
-      <span class="me-2">New Etablissement </span
+      <span class="me-2">New Service </span
       ><mat-icon matSuffix class="">account_circle</mat-icon>
     </p>
   </div>
   <div class="p-4">
-    <form [formGroup]="etablissementForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
       <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
         <mat-form-field appearance="fill" class="col">
           <mat-label>Nom</mat-label>
@@ -24,31 +24,30 @@
           <mat-hint>Nom</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
-          <mat-label>Select Directeur</mat-label>
-          <mat-select formControlName="directeur_id">
+          <mat-label>Select Responsable</mat-label>
+          <mat-select formControlName="responsable_id">
             <mat-option value="">-</mat-option>
             <mat-option
-              value="{{ item.id }}"
+              [value]="item.id"
               *ngFor="let item of Personnes; let i = index"
               >{{ item.nom + " " + item.prenom }}</mat-option
             >
           </mat-select>
-          <mat-hint align="end">Directeur</mat-hint>
+          <mat-hint align="end">Responsable</mat-hint>
         </mat-form-field>
       </div>
       <div class="mb-3">
         <mat-form-field appearance="fill" class="w-100">
-          <mat-label>Adresse</mat-label>
+          <mat-label>nombre_employes</mat-label>
           <input
             matInput
             type="text"
-            id="adresse"
-            placeholder="adresse"
-            formControlName="adresse"
-            name="adresse"
+            id="nombre_employes"
+            placeholder="nombre_employes"
+            formControlName="nombre_employes"
           />
           <mat-icon matSuffix>home</mat-icon>
-          <mat-hint>Adresse</mat-hint>
+          <mat-hint>Nombre Employes</mat-hint>
         </mat-form-field>
       </div>
 

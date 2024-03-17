@@ -10,7 +10,9 @@ import { CreateComponent as CreateFonction } from './pages/fonction/create/creat
 import { CreateComponent as CreateGrade } from './pages/grade/create/create.component';
 import { CreateComponent as CreateService } from './pages/service/create/create.component';
 import { CreateComponent as CreateEtablissement } from './pages/etablissement/create/create.component';
-import { EditComponent } from './pages/personne/edit/edit.component';
+import { EditComponent as EditPersonne } from './pages/personne/edit/edit.component';
+import { EditComponent as EditEtablissement } from './pages/etablissement/edit/edit.component';
+import { EditComponent as EditService } from './pages/service/edit/edit.component';
 import { ShowComponent } from './pages/personne/show/show.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,6 +36,7 @@ import { TableEtablissementComponent } from './components/table-etablissement/ta
 import { TableServiceComponent } from './components/table-service/table-service.component';
 import { TableDemandeAbsenceComponent } from './components/table-demande-absence/table-demande-absence.component';
 import { TableDemandeCongeComponent } from './components/table-demande-conge/table-demande-conge.component';
+import { EditComponent } from './pages/service/edit/edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,9 @@ import { TableDemandeCongeComponent } from './components/table-demande-conge/tab
     CreateGrade,
     CreateEtablissement,
     CreateService,
-    EditComponent,
+    EditPersonne,
+    EditEtablissement,
+    EditService,
     ShowComponent,
     TablePersonnesComponent,
     EchelleComponent,
@@ -62,6 +67,7 @@ import { TableDemandeCongeComponent } from './components/table-demande-conge/tab
     TableServiceComponent,
     TableDemandeAbsenceComponent,
     TableDemandeCongeComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

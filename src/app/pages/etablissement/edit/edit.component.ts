@@ -1,26 +1,39 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Etablissement } from 'src/app/Models/Etablissement';
 import { Personne } from 'src/app/Models/Personne';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 import { PersonneService } from 'src/app/services/personne/personne.service';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css'],
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css'],
 })
-export class CreateComponent implements OnInit {
-  etablissementForm: FormGroup;
+export class EditComponent implements OnInit {
+  getId: any;
+  updateForm: FormGroup;
   Personnes: Personne[] = [];
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
+    private activatedRoute: ActivatedRoute,
     private etablissementService: EtablissementService,
     private personneService: PersonneService
   ) {
-    this.etablissementForm = this.formBiulder.group({
+    this.getId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.etablissementService
+      .getEtablissementById(this.getId)
+      .subscribe((etablissement: Etablissement) => {
+        this.updateForm.patchValue({
+          nom: etablissement.Etablissement['nom'],
+          adresse: etablissement.Etablissement.adresse,
+          directeur_id: etablissement.Etablissement.directeur_id,
+        });
+      });
+    this.updateForm = this.formBuilder.group({
       nom: [''],
       adresse: [''],
       directeur_id: [''],
@@ -31,25 +44,23 @@ export class CreateComponent implements OnInit {
     this.personneService.getAllPersonnes().subscribe(
       (personne: any) => {
         this.Personnes = personne.Personnes;
-        console.log('Personnes dataSource:', this.Personnes);
       },
       (error) => {
         console.error('Error fetching Service:', error);
       }
     );
   }
-  onSubmit(): any {
+  onUpdate(): any {
     this.etablissementService
-      .AddEtablissement(this.etablissementForm.value)
+      .updateEtablissement(this.getId, this.updateForm.value)
       .subscribe(
         () => {
-          console.log('Data added successfully');
+          console.log('Data updated successfully');
           this.ngZone.run(() => {
             this.router.navigate(['/etablissement']);
           });
         },
         (error) => {
-          console.log('Etablissement Form', this.etablissementForm);
           console.log(error);
         }
       );

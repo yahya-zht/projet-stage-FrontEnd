@@ -16,7 +16,7 @@ export class TableServiceComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Service>;
   dataSource = new MatTableDataSource<Service>();
 
-  displayedColumns = ['nom', 'responsable', 'nomberemployes'];
+  displayedColumns = ['nom', 'responsable', 'nomberemployes', 'Action'];
 
   constructor(private service: ServiceService) {}
   ngOnInit(): void {

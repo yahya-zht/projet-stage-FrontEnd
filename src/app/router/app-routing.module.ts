@@ -8,7 +8,9 @@ import { CreateComponent as CreateFonction } from '../pages/fonction/create/crea
 import { CreateComponent as CreateEchelle } from '../pages/echelle/create/create.component';
 import { CreateComponent as CreateService } from '../pages/service/create/create.component';
 import { CreateComponent as CreateEtablissement } from '../pages/etablissement/create/create.component';
-import { EditComponent } from '../pages/personne/edit/edit.component';
+import { EditComponent as EditPersonne } from '../pages/personne/edit/edit.component';
+import { EditComponent as EditEtablissement } from '../pages/etablissement/edit/edit.component';
+import { EditComponent as EditService } from '../pages/service/edit/edit.component';
 import { GradeComponent } from '../pages/grade/grade.component';
 import { FonctionComponent } from '../pages/fonction/fonction.component';
 import { EchelleComponent } from '../pages/echelle/echelle.component';
@@ -33,7 +35,7 @@ const routes: Routes = [
       },
       {
         path: 'edit/:id',
-        component: EditComponent,
+        component: EditPersonne,
       },
       {
         path: 'pdf/:id',
@@ -80,6 +82,7 @@ const routes: Routes = [
         component: ServiceComponent,
       },
       { path: 'create', component: CreateService },
+      { path: 'edit/:id', component: EditService },
     ],
   },
   {
@@ -90,6 +93,7 @@ const routes: Routes = [
         component: EtablissementComponent,
       },
       { path: 'create', component: CreateEtablissement },
+      { path: 'edit/:id', component: EditEtablissement },
     ],
   },
 ];
