@@ -8,6 +8,9 @@ import { Fonction } from 'src/app/Models/Fonction';
 import { Grade } from 'src/app/Models/Grade';
 import { FonctionService } from 'src/app/services/fonction/fonction.service';
 import { GradeService } from 'src/app/services/grade/grade.service';
+import { Service } from 'src/app/Models/Service';
+import { ServiceService } from 'src/app/services/service/service.service';
+import { Personne } from 'src/app/Models/Personne';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -18,6 +21,8 @@ export class CreateComponent implements OnInit {
   Echelle: Echelle[] = [];
   Fonction: Fonction[] = [];
   Grade: Grade[] = [];
+  Service: Service[] = [];
+  Personnes: Personne[] = [];
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -25,7 +30,8 @@ export class CreateComponent implements OnInit {
     private personneService: PersonneService,
     private echelleService: EchelleService,
     private fonctionService: FonctionService,
-    private gradeService: GradeService
+    private gradeService: GradeService,
+    private serviceService: ServiceService
   ) {
     this.personneForm = this.formBiulder.group({
       CIN: [''],
@@ -42,24 +48,24 @@ export class CreateComponent implements OnInit {
       service_id: [''],
     });
   }
+
   ngOnInit(): void {
     this.echelleService.getAllEchelle().subscribe(
       (echelle: any) => {
         this.Echelle = echelle.Echelles;
-        console.log('echelle dataSource:', this.Echelle);
-        console.log('echelle :', this.Echelle[0].libelle);
+        console.log('Echelle dataSource:', this.Echelle);
       },
       (error) => {
-        console.error('Error fetching personnes:', error);
+        console.error('Error fetching Echelle:', error);
       }
     );
     this.fonctionService.getAllFonction().subscribe(
       (fonction: any) => {
         this.Fonction = fonction.Fonctions;
-        console.log('Grade dataSource:', this.Fonction);
+        console.log('Fonction dataSource:', this.Fonction);
       },
       (error) => {
-        console.error('Error fetching personnes:', error);
+        console.error('Error fetching Founction:', error);
       }
     );
     this.gradeService.getAllGrade().subscribe(
@@ -68,11 +74,34 @@ export class CreateComponent implements OnInit {
         console.log('Grade dataSource:', this.Grade);
       },
       (error) => {
-        console.error('Error fetching personnes:', error);
+        console.error('Error fetching Grade:', error);
+      }
+    );
+    this.serviceService.getAllService().subscribe(
+      (service: any) => {
+        this.Service = service.Services;
+        console.log('Service dataSource:', this.Service);
+      },
+      (error) => {
+        console.error('Error fetching Service:', error);
+      }
+    );
+    this.personneService.getAllPersonnes().subscribe(
+      (personne: any) => {
+        this.Personnes = personne.Personnes;
+        console.log('Personnes dataSource:', this.Personnes);
+      },
+      (error) => {
+        console.error('Error fetching Service:', error);
       }
     );
   }
   onSubmit(): any {
+    const selectedDate: Date = this.personneForm.value.date_naissance;
+    const DateNess: string = `${selectedDate.getFullYear()}-${
+      Number(selectedDate.getMonth()) + 1
+    }-${selectedDate.getDate()}`;
+    this.personneForm.value.date_naissance = DateNess;
     this.personneService.AddPersonne(this.personneForm.value).subscribe(
       () => {
         console.log('Data added successfully');
@@ -81,6 +110,7 @@ export class CreateComponent implements OnInit {
         });
       },
       (error) => {
+        console.log('Personne Form', this.personneForm);
         console.log(error);
       }
     );

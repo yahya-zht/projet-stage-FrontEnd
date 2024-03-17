@@ -9,7 +9,6 @@
   </div>
   <div class="p-4">
     <form [formGroup]="personneForm" (ngSubmit)="onSubmit()">
-      <div></div>
       <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
         <mat-form-field appearance="fill" class="col">
           <mat-label>CIN</mat-label>
@@ -76,6 +75,7 @@
             [matDatepicker]="picker"
             id="adresse"
             name="date_naissance"
+            formControlName="date_naissance"
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -101,7 +101,7 @@
       <div class="mb-3 row row-cols-2 row-cols-lg-3 g-3 g-lg-3">
         <mat-form-field appearance="fill" class="col">
           <mat-label>Select Role</mat-label>
-          <mat-select name="role">
+          <mat-select formControlName="role">
             <mat-option value="Employé">Employé</mat-option>
             <mat-option value="Superviseur">Superviseur</mat-option>
             <mat-option value="Directeur">Directeur</mat-option>
@@ -110,15 +110,19 @@
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
           <mat-label>Select Chef</mat-label>
-          <mat-select name="chef_id">
+          <mat-select formControlName="chef_id">
             <mat-option value="">-</mat-option>
-            <mat-option value="option">Option</mat-option>
+            <mat-option
+              value="{{ item.id }}"
+              *ngFor="let item of Personnes; let i = index"
+              >{{ item.nom + " " + item.prenom }}</mat-option
+            >
           </mat-select>
           <mat-hint align="end">Chef</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
           <mat-label>Select Grade</mat-label>
-          <mat-select name="grade_id">
+          <mat-select formControlName="grade_id">
             <mat-option
               value="{{ Grade[i].id }}"
               *ngFor="let item of Grade; let i = index"
@@ -131,7 +135,7 @@
       <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
         <mat-form-field appearance="fill" class="col">
           <mat-label>Select Fonction</mat-label>
-          <mat-select class="fonction_id">
+          <mat-select formControlName="fonction_id">
             <mat-option
               value="{{ Fonction[i].id }}"
               *ngFor="let item of Fonction; let i = index"
@@ -142,11 +146,11 @@
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
           <mat-label>Select Echelle</mat-label>
-          <mat-select name="echelle_id">
+          <mat-select formControlName="echelle_id">
             <mat-option
               value="{{ Echelle[i].id }}"
               *ngFor="let item of Echelle; let i = index"
-              >{{ Echelle[i].libelle }}</mat-option
+              >{{ item.libelle }}</mat-option
             >
           </mat-select>
           <mat-hint align="end">Echelle</mat-hint>
@@ -155,8 +159,12 @@
       <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
         <mat-form-field appearance="fill" class="col">
           <mat-label>Select Service</mat-label>
-          <mat-select class="service_id">
-            <mat-option value="option">Option</mat-option>
+          <mat-select formControlName="service_id">
+            <mat-option
+              value="{{ item.id }}"
+              *ngFor="let item of Service; let i = index"
+              >{{ item.nom }}</mat-option
+            >
           </mat-select>
           <mat-hint align="end">Service</mat-hint>
         </mat-form-field>

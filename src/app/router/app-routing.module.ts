@@ -6,10 +6,14 @@ import { CreateComponent as CreatePersonne } from '../pages/personne/create/crea
 import { CreateComponent as CreateGrade } from '../pages/grade/create/create.component';
 import { CreateComponent as CreateFonction } from '../pages/fonction/create/create.component';
 import { CreateComponent as CreateEchelle } from '../pages/echelle/create/create.component';
+import { CreateComponent as CreateService } from '../pages/service/create/create.component';
+import { CreateComponent as CreateEtablissement } from '../pages/etablissement/create/create.component';
 import { EditComponent } from '../pages/personne/edit/edit.component';
 import { GradeComponent } from '../pages/grade/grade.component';
 import { FonctionComponent } from '../pages/fonction/fonction.component';
 import { EchelleComponent } from '../pages/echelle/echelle.component';
+import { ServiceComponent } from '../pages/service/service.component';
+import { EtablissementComponent } from '../pages/etablissement/etablissement.component';
 
 const routes: Routes = [
   {
@@ -66,6 +70,26 @@ const routes: Routes = [
         component: CreateEchelle,
       },
       // { path: '**', component: PageNotFoundComponent },
+    ],
+  },
+  {
+    path: 'service',
+    children: [
+      {
+        path: '',
+        component: ServiceComponent,
+      },
+      { path: 'create', component: CreateService },
+    ],
+  },
+  {
+    path: 'etablissement',
+    children: [
+      {
+        path: '',
+        component: EtablissementComponent,
+      },
+      { path: 'create', component: CreateEtablissement },
     ],
   },
 ];

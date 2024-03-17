@@ -1,1 +1,9 @@
-<p>etablissement works!</p>
+<mat-card class="my-3 bg-light">
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="mb-0 fs-5 fw-bolder">Établissements</p>
+    <a [routerLink]="['create']" class="btn btn-danger">Create</a>
+  </div>
+</mat-card>
+<div>
+  <app-table-etablissement></app-table-etablissement>
+</div>

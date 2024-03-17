@@ -8,6 +8,8 @@ import { CreateComponent as CreatePersonne } from './pages/personne/create/creat
 import { CreateComponent as CreateEchelle } from './pages/echelle/create/create.component';
 import { CreateComponent as CreateFonction } from './pages/fonction/create/create.component';
 import { CreateComponent as CreateGrade } from './pages/grade/create/create.component';
+import { CreateComponent as CreateService } from './pages/service/create/create.component';
+import { CreateComponent as CreateEtablissement } from './pages/etablissement/create/create.component';
 import { EditComponent } from './pages/personne/edit/edit.component';
 import { ShowComponent } from './pages/personne/show/show.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +30,10 @@ import { TableGradeComponent } from './components/table-grade/table-grade.compon
 import { ServiceComponent } from './pages/service/service.component';
 import { EtablissementComponent } from './pages/etablissement/etablissement.component';
 import { CreateComponent } from './pages/etablissement/create/create.component';
+import { TableEtablissementComponent } from './components/table-etablissement/table-etablissement.component';
+import { TableServiceComponent } from './components/table-service/table-service.component';
+import { TableDemandeAbsenceComponent } from './components/table-demande-absence/table-demande-absence.component';
+import { TableDemandeCongeComponent } from './components/table-demande-conge/table-demande-conge.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +43,8 @@ import { CreateComponent } from './pages/etablissement/create/create.component';
     CreateEchelle,
     CreateFonction,
     CreateGrade,
+    CreateEtablissement,
+    CreateService,
     EditComponent,
     ShowComponent,
     TablePersonnesComponent,
@@ -50,6 +58,10 @@ import { CreateComponent } from './pages/etablissement/create/create.component';
     ServiceComponent,
     EtablissementComponent,
     CreateComponent,
+    TableEtablissementComponent,
+    TableServiceComponent,
+    TableDemandeAbsenceComponent,
+    TableDemandeCongeComponent,
   ],
   imports: [
     BrowserModule,
