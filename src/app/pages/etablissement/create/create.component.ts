@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { Personne } from 'src/app/Models/Personne';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 import { PersonneService } from 'src/app/services/personne/personne.service';
@@ -13,6 +15,7 @@ import { PersonneService } from 'src/app/services/personne/personne.service';
 export class CreateComponent implements OnInit {
   etablissementForm: FormGroup;
   Personnes: Personne[] = [];
+  error: any;
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -49,8 +52,7 @@ export class CreateComponent implements OnInit {
           });
         },
         (error) => {
-          console.log('Etablissement Form', this.etablissementForm);
-          console.log(error);
+          this.error = error.errors;
         }
       );
   }

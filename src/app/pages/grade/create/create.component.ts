@@ -10,7 +10,9 @@ import { GradeService } from 'src/app/services/grade/grade.service';
 })
 export class CreateComponent implements OnInit {
   gradeForm: FormGroup;
-primary: any;
+  primary: any;
+  error: any;
+
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -32,7 +34,7 @@ primary: any;
         });
       },
       (error) => {
-        console.log(error);
+        this.error = error.errors;
       }
     );
   }

@@ -21,6 +21,9 @@
             name="libelle"
           />
           <mat-icon matSuffix>label</mat-icon>
+          <div *ngIf="error?.libelle" class="text-danger">
+            {{ error.libelle }}
+          </div>
           <mat-hint>libelle</mat-hint>
         </mat-form-field>
       </div>

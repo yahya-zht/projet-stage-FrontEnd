@@ -23,6 +23,7 @@ export class CreateComponent implements OnInit {
   Grade: Grade[] = [];
   Service: Service[] = [];
   Personnes: Personne[] = [];
+  error: any;
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -98,10 +99,12 @@ export class CreateComponent implements OnInit {
   }
   onSubmit(): any {
     const selectedDate: Date = this.personneForm.value.date_naissance;
-    const DateNess: string = `${selectedDate.getFullYear()}-${
-      Number(selectedDate.getMonth()) + 1
-    }-${selectedDate.getDate()}`;
-    this.personneForm.value.date_naissance = DateNess;
+    if (selectedDate) {
+      const DateNess: string = `${selectedDate.getFullYear()}-${
+        Number(selectedDate.getMonth()) + 1
+      }-${selectedDate.getDate()}`;
+      this.personneForm.value.date_naissance = DateNess;
+    }
     this.personneService.AddPersonne(this.personneForm.value).subscribe(
       () => {
         console.log('Data added successfully');
@@ -110,8 +113,7 @@ export class CreateComponent implements OnInit {
         });
       },
       (error) => {
-        console.log('Personne Form', this.personneForm);
-        console.log(error);
+        this.error = error.errors;
       }
     );
   }

@@ -9,6 +9,7 @@ import { EchelleService } from 'src/app/services/echelle/echelle.service';
 })
 export class CreateComponent implements OnInit {
   echelleForm: FormGroup;
+  error: any;
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -30,7 +31,7 @@ export class CreateComponent implements OnInit {
         });
       },
       (error) => {
-        console.log(error);
+        this.error = error.errors;
       }
     );
   }

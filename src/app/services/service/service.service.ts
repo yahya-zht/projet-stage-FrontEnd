@@ -19,7 +19,8 @@ export class ServiceService {
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      // errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = error.error;
     }
     console.log(errorMessage);
     return throwError(errorMessage);

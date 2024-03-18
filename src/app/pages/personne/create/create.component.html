@@ -21,6 +21,7 @@
             name="CIN"
           />
           <mat-icon matSuffix>badge</mat-icon>
+          <div *ngIf="error?.CIN" class="text-danger">{{ error.CIN }}</div>
           <mat-hint>CIN</mat-hint>
         </mat-form-field>
       </div>
@@ -36,6 +37,7 @@
             name="nom"
           />
           <mat-icon matSuffix>person</mat-icon>
+          <div *ngIf="error?.nom" class="text-danger">{{ error.nom }}</div>
           <mat-hint>Nom</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
@@ -49,6 +51,9 @@
             name="prenom"
           />
           <mat-icon matSuffix>person</mat-icon>
+          <div *ngIf="error?.prenom" class="text-danger">
+            {{ error.prenom }}
+          </div>
           <mat-hint>Prenom</mat-hint>
         </mat-form-field>
       </div>
@@ -64,6 +69,9 @@
             name="adresse"
           />
           <mat-icon matSuffix>home</mat-icon>
+          <div *ngIf="error?.adresse" class="text-danger">
+            {{ error.adresse }}
+          </div>
           <mat-hint>Adresse</mat-hint>
         </mat-form-field>
       </div>
@@ -82,6 +90,9 @@
             matSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
+          <div *ngIf="error?.date_naissance" class="text-danger">
+            {{ error.date_naissance }}
+          </div>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
@@ -95,6 +106,9 @@
             name="telephone"
           />
           <mat-icon matSuffix>phone</mat-icon>
+          <div *ngIf="error?.telephone" class="text-danger">
+            {{ error.telephone }}
+          </div>
           <mat-hint>Telephone</mat-hint>
         </mat-form-field>
       </div>
@@ -106,6 +120,9 @@
             <mat-option value="Superviseur">Superviseur</mat-option>
             <mat-option value="Directeur">Directeur</mat-option>
           </mat-select>
+          <div *ngIf="error?.role" class="text-danger">
+            {{ error.role }}
+          </div>
           <mat-hint align="end">Role</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
@@ -118,6 +135,9 @@
               >{{ item.nom + " " + item.prenom }}</mat-option
             >
           </mat-select>
+          <div *ngIf="error?.chef_id" class="text-danger">
+            {{ error.chef_id }}
+          </div>
           <mat-hint align="end">Chef</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
@@ -129,6 +149,9 @@
               >{{ Grade[i].libelle }}</mat-option
             >
           </mat-select>
+          <div *ngIf="error?.grade_id" class="text-danger">
+            {{ error.grade_id }}
+          </div>
           <mat-hint align="end">Grade</mat-hint>
         </mat-form-field>
       </div>
@@ -142,6 +165,9 @@
               >{{ Fonction[i].libelle }}</mat-option
             >
           </mat-select>
+          <div *ngIf="error?.fonction_id" class="text-danger">
+            {{ error.fonction_id }}
+          </div>
           <mat-hint align="end">Fonction</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
@@ -153,6 +179,9 @@
               >{{ item.libelle }}</mat-option
             >
           </mat-select>
+          <div *ngIf="error?.echelle_id" class="text-danger">
+            {{ error.echelle_id }}
+          </div>
           <mat-hint align="end">Echelle</mat-hint>
         </mat-form-field>
       </div>
@@ -166,6 +195,9 @@
               >{{ item.nom }}</mat-option
             >
           </mat-select>
+          <div *ngIf="error?.service_id" class="text-danger">
+            {{ error.service_id }}
+          </div>
           <mat-hint align="end">Service</mat-hint>
         </mat-form-field>
       </div>

@@ -13,6 +13,7 @@ import { ServiceService } from 'src/app/services/service/service.service';
 export class CreateComponent implements OnInit {
   serviceForm: FormGroup;
   Personnes: Personne[] = [];
+  error: any;
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -47,8 +48,7 @@ export class CreateComponent implements OnInit {
         });
       },
       (error) => {
-        console.log('Service Form', this.serviceForm);
-        console.log(error);
+        this.error = error.errors;
       }
     );
   }

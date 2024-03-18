@@ -15,6 +15,7 @@ export class EditComponent implements OnInit {
   getId: any;
   updateForm: FormGroup;
   Personnes: Personne[] = [];
+  error: any;
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
@@ -61,7 +62,7 @@ export class EditComponent implements OnInit {
           });
         },
         (error) => {
-          console.log(error);
+          this.error = error.errors;
         }
       );
   }

@@ -10,6 +10,7 @@ import { FonctionService } from 'src/app/services/fonction/fonction.service';
 })
 export class CreateComponent implements OnInit {
   fonctionForm: FormGroup;
+  error: any;
   constructor(
     public formBiulder: FormBuilder,
     private router: Router,
@@ -30,7 +31,7 @@ export class CreateComponent implements OnInit {
         });
       },
       (error) => {
-        console.log(error);
+        this.error = error.errors;
       }
     );
   }

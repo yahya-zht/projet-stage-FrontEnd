@@ -24,6 +24,7 @@ export class EditComponent implements OnInit {
   Grade: Grade[] = [];
   Service: Service[] = [];
   Personnes: Personne[] = [];
+  error: any;
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
@@ -118,6 +119,13 @@ export class EditComponent implements OnInit {
     );
   }
   onUpdate(): any {
+    const selectedDate: Date = this.updateForm.value.date_naissance;
+    if (selectedDate) {
+      const DateNess: string = `${selectedDate.getFullYear()}-${
+        Number(selectedDate.getMonth()) + 1
+      }-${selectedDate.getDate()}`;
+      this.updateForm.value.date_naissance = DateNess;
+    }
     this.personneService
       .updatePersonne(this.getId, this.updateForm.value)
       .subscribe(
@@ -128,7 +136,7 @@ export class EditComponent implements OnInit {
           });
         },
         (error) => {
-          console.log(error);
+          this.error = error.errors;
         }
       );
   }

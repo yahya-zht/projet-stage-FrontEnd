@@ -21,6 +21,7 @@
             name="nom"
           />
           <mat-icon matSuffix>person</mat-icon>
+          <div *ngIf="error?.nom" class="text-danger">{{ error.nom }}</div>
           <mat-hint>Nom</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" class="col">
@@ -33,6 +34,9 @@
               >{{ item.nom + " " + item.prenom }}</mat-option
             >
           </mat-select>
+          <div *ngIf="error?.directeur_id" class="text-danger">
+            {{ error.directeur_id }}
+          </div>
           <mat-hint align="end">Directeur</mat-hint>
         </mat-form-field>
       </div>
@@ -48,6 +52,9 @@
             name="adresse"
           />
           <mat-icon matSuffix>home</mat-icon>
+          <div *ngIf="error?.adresse" class="text-danger">
+            {{ error.adresse }}
+          </div>
           <mat-hint>Adresse</mat-hint>
         </mat-form-field>
       </div>
