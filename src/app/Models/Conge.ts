@@ -8,7 +8,8 @@ export class Conge extends AbsenceCongeBase {
       AbsenceCongeBase.datefin,
       AbsenceCongeBase.duree,
       AbsenceCongeBase.type,
-      AbsenceCongeBase.Personne_id
+      AbsenceCongeBase.personne_id,
+      AbsenceCongeBase.demande_conge_id
     );
   }
 }

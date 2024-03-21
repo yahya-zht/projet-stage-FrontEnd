@@ -2,10 +2,6 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import {
-  TableDemandeCongeDataSource,
-  TableDemandeCongeItem,
-} from './table-demande-conge-datasource';
 import { DemandeConge } from 'src/app/Models/DemandeConge';
 import { DemandeCongeService } from 'src/app/services/demande_conge/demande-conge.service';
 
@@ -22,12 +18,12 @@ export class TableDemandeCongeComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
+    'Personne',
+    'Durée',
+    'état',
     'DateDemande',
     'DateDebut',
     'DateFin',
-    'Durée',
-    'Personne',
-    'état',
   ];
 
   constructor(private demandeCongeService: DemandeCongeService) {}

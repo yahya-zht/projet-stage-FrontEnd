@@ -18,6 +18,8 @@ import { EchelleComponent } from '../pages/echelle/echelle.component';
 import { ServiceComponent } from '../pages/service/service.component';
 import { EtablissementComponent } from '../pages/etablissement/etablissement.component';
 import { DemandecongeComponent } from '../pages/demandeconge/demandeconge.component';
+import { DemandecongeDirecteurComponent } from '../pages/demandeconge-directeur/demandeconge-directeur.component';
+import { CongeComponent } from '../pages/conge/conge.component';
 
 const routes: Routes = [
   {
@@ -106,6 +108,24 @@ const routes: Routes = [
         component: DemandecongeComponent,
       },
       { path: 'create', component: CreateDemandeConge },
+    ],
+  },
+  {
+    path: 'admin/demande/conge',
+    children: [
+      {
+        path: '',
+        component: DemandecongeDirecteurComponent,
+      },
+    ],
+  },
+  {
+    path: 'conge',
+    children: [
+      {
+        path: '',
+        component: CongeComponent,
+      },
     ],
   },
 ];

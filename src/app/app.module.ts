@@ -22,23 +22,27 @@ import { MaterialModule } from './material/material/material.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { TablePersonnesComponent } from './components/table-personnes/table-personnes.component';
+import { TablePersonnesComponent } from './components/tables/table-personnes/table-personnes.component';
 import { EchelleComponent } from './pages/echelle/echelle.component';
 import { FonctionComponent } from './pages/fonction/fonction.component';
 import { GradeComponent } from './pages/grade/grade.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { TableEchelleComponent } from './components/table-echelle/table-echelle.component';
-import { TableFonctionComponent } from './components/table-fonction/table-fonction.component';
-import { TableGradeComponent } from './components/table-grade/table-grade.component';
+import { TableEchelleComponent } from './components/tables/table-echelle/table-echelle.component';
+import { TableFonctionComponent } from './components/tables/table-fonction/table-fonction.component';
+import { TableGradeComponent } from './components/tables/table-grade/table-grade.component';
 import { ServiceComponent } from './pages/service/service.component';
 import { EtablissementComponent } from './pages/etablissement/etablissement.component';
 import { CreateComponent } from './pages/etablissement/create/create.component';
-import { TableEtablissementComponent } from './components/table-etablissement/table-etablissement.component';
-import { TableServiceComponent } from './components/table-service/table-service.component';
-import { TableDemandeAbsenceComponent } from './components/table-demande-absence/table-demande-absence.component';
-import { TableDemandeCongeComponent } from './components/table-demande-conge/table-demande-conge.component';
+import { TableEtablissementComponent } from './components/tables/table-etablissement/table-etablissement.component';
+import { TableServiceComponent } from './components/tables/table-service/table-service.component';
+import { TableDemandeAbsenceComponent } from './components/tables/table-demande-absence/table-demande-absence.component';
+import { TableDemandeCongeComponent } from './components/tables/table-demande-conge/table-demande-conge.component';
 import { EditComponent } from './pages/service/edit/edit.component';
 import { DemandecongeComponent } from './pages/demandeconge/demandeconge.component';
+import { DemandecongeDirecteurComponent } from './pages/demandeconge-directeur/demandeconge-directeur.component';
+import { TableDemandeCongeDirecteurComponent } from './components/tables/table-demande-conge-directeur/table-demande-conge-directeur.component';
+import { CongeComponent } from './pages/conge/conge.component';
+import { TableCongeComponent } from './components/tables/table-conge/table-conge.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +76,10 @@ import { DemandecongeComponent } from './pages/demandeconge/demandeconge.compone
     TableDemandeCongeComponent,
     EditComponent,
     DemandecongeComponent,
+    DemandecongeDirecteurComponent,
+    TableDemandeCongeDirecteurComponent,
+    CongeComponent,
+    TableCongeComponent,
   ],
   imports: [
     BrowserModule,

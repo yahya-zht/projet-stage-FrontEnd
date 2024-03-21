@@ -5,6 +5,11 @@ export class Demande {
   dateFin: Date;
   étet: string;
   Personne_id: number;
+  personne!: {
+    CIN: string;
+    nom: string;
+    prenom: string;
+  };
 
   constructor(
     id: number,
