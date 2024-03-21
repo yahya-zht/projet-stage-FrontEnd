@@ -14,12 +14,12 @@ export class CreateComponent implements OnInit {
   error: any;
 
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private gradeService: GradeService
   ) {
-    this.gradeForm = this.formBiulder.group({
+    this.gradeForm = this.formBuilder.group({
       libelle: [''],
       salaire: [''],
     });

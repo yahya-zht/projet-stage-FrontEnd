@@ -13,19 +13,22 @@ import { PersonneService } from 'src/app/services/personne/personne.service';
 export class CreateComponent implements OnInit {
   demandeCongeForm: FormGroup;
   Personnes: Personne[] = [];
+  Duree: number = 0;
   error: any;
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private demandeCongeService: DemandeCongeService,
     private personneService: PersonneService
   ) {
-    this.demandeCongeForm = this.formBiulder.group({
+    this.demandeCongeForm = this.formBuilder.group({
       dateDebut: [''],
       dateFin: [''],
       personne_id: [''],
       dateDemande: [''],
+      type: [''],
+      duree: this.Duree,
     });
   }
 
@@ -39,28 +42,60 @@ export class CreateComponent implements OnInit {
         console.error('Error fetching Service:', error);
       }
     );
+    // this.demandeCongeForm.get('dateDebut')?.valueChanges.subscribe(() => {
+    //   this.calculateDuration();
+    // });
+    // this.demandeCongeForm.get('dateFin')?.valueChanges.subscribe(() => {
+    //   this.calculateDuration();
+    // });
+    this.demandeCongeForm.valueChanges.subscribe(() => {
+      this.calculateDuration();
+    });
   }
-  onSubmit(): any {
+
+  calculateDuration(): void {
+    const dateDebut: Date = this.demandeCongeForm.value.dateDebut;
+    const dateFin: Date = this.demandeCongeForm.value.dateFin;
+    if (
+      !dateDebut ||
+      !dateFin ||
+      isNaN(dateDebut.getTime()) ||
+      isNaN(dateFin.getTime())
+    ) {
+      console.log('Invalid dates');
+      this.demandeCongeForm.patchValue({ duree: '0' }, { emitEvent: false });
+      return;
+    }
+
+    const differenceInMilliseconds: number =
+      dateFin.getTime() - dateDebut.getTime();
+    const differenceInDays: number =
+      differenceInMilliseconds / (1000 * 60 * 60 * 24);
+    console.log(' dates');
+
+    this.demandeCongeForm.patchValue(
+      { duree: differenceInDays + 1 },
+      { emitEvent: false }
+    );
+  }
+  private getCurrentDateString(): string {
     const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const currentDate = `${year}-${month}-${day}`;
-    this.demandeCongeForm.value.dateDemande = currentDate;
-    const selectedDateDebut: Date = this.demandeCongeForm.value.dateDebut;
-    const selectedDateFin: Date = this.demandeCongeForm.value.dateFin;
-    if (selectedDateDebut) {
-      const DateDebut: string = `${selectedDateDebut.getFullYear()}-${
-        Number(selectedDateDebut.getMonth()) + 1
-      }-${selectedDateDebut.getDate()}`;
-      this.demandeCongeForm.value.dateDebut = DateDebut;
+    return now.toISOString().split('T')[0];
+  }
+  private setDate(controlName: string): void {
+    const selectedDate: Date = this.demandeCongeForm.value[controlName];
+    if (selectedDate) {
+      const Date: string = `${selectedDate.getFullYear()}-${
+        Number(selectedDate.getMonth()) + 1
+      }-${selectedDate.getDate()}`;
+      this.demandeCongeForm.value[controlName] = Date;
     }
-    if (selectedDateFin) {
-      const DateFin: string = `${selectedDateFin.getFullYear()}-${
-        Number(selectedDateFin.getMonth()) + 1
-      }-${selectedDateFin.getDate()}`;
-      this.demandeCongeForm.value.dateFin = DateFin;
-    }
+  }
+  onSubmit(): void {
+    const currentDate: string = this.getCurrentDateString();
+    this.demandeCongeForm.controls['dateDemande'].setValue(currentDate);
+    this.setDate('dateDebut');
+    this.setDate('dateFin');
     this.demandeCongeService
       .AddDemandeConge(this.demandeCongeForm.value)
       .subscribe(

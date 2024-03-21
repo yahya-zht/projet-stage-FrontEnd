@@ -12,12 +12,12 @@ export class CreateComponent implements OnInit {
   fonctionForm: FormGroup;
   error: any;
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private fonctionService: FonctionService
   ) {
-    this.fonctionForm = this.formBiulder.group({
+    this.fonctionForm = this.formBuilder.group({
       libelle: [''],
     });
   }

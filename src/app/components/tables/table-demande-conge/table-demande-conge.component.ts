@@ -19,11 +19,12 @@ export class TableDemandeCongeComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
     'Personne',
+    'Type',
     'Durée',
-    'état',
     'DateDemande',
     'DateDebut',
     'DateFin',
+    'état',
   ];
 
   constructor(private demandeCongeService: DemandeCongeService) {}

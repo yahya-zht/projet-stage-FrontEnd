@@ -17,13 +17,13 @@ export class CreateComponent implements OnInit {
   Personnes: Personne[] = [];
   error: any;
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private etablissementService: EtablissementService,
     private personneService: PersonneService
   ) {
-    this.etablissementForm = this.formBiulder.group({
+    this.etablissementForm = this.formBuilder.group({
       nom: [''],
       adresse: [''],
       directeur_id: [''],

@@ -11,12 +11,12 @@ export class CreateComponent implements OnInit {
   echelleForm: FormGroup;
   error: any;
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private echelleService: EchelleService
   ) {
-    this.echelleForm = this.formBiulder.group({
+    this.echelleForm = this.formBuilder.group({
       libelle: [''],
       niveau: [''],
     });

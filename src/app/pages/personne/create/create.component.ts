@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
   Personnes: Personne[] = [];
   error: any;
   constructor(
-    public formBiulder: FormBuilder,
+    public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private personneService: PersonneService,
@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
     private gradeService: GradeService,
     private serviceService: ServiceService
   ) {
-    this.personneForm = this.formBiulder.group({
+    this.personneForm = this.formBuilder.group({
       CIN: [''],
       nom: [''],
       prenom: [''],

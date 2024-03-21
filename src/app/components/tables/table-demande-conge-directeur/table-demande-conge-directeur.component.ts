@@ -18,6 +18,7 @@ export class TableDemandeCongeDirecteurComponent implements AfterViewInit {
 
   displayedColumns = [
     'Personne',
+    'Type',
     'Durée',
     'DateDemande',
     'DateDebut',
