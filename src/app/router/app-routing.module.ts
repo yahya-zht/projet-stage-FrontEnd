@@ -44,10 +44,6 @@ const routes: Routes = [
         path: 'edit/:id',
         component: EditPersonne,
       },
-      {
-        path: 'pdf/:id',
-        component: PdfComponent,
-      },
     ],
   },
   {
@@ -111,6 +107,10 @@ const routes: Routes = [
         component: DemandecongeComponent,
       },
       { path: 'create', component: CreateDemandeConge },
+      {
+        path: 'pdf/:id',
+        component: PdfComponent,
+      },
     ],
   },
   {
@@ -119,6 +119,10 @@ const routes: Routes = [
       {
         path: '',
         component: DemandecongeDirecteurComponent,
+      },
+      {
+        path: 'pdf/:id',
+        component: PdfComponent,
       },
     ],
   },

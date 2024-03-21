@@ -1,11 +1,12 @@
-<div class="container d-flex py-4">
-  <p class="my-auto fw-bold">Html To PDF</p>
-  <div class="ms-5">
+<mat-card class="my-3 bg-light">
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="mb-0 fs-5 fw-bolder">Imprimer la Demande</p>
     <button type="button" (click)="convertToPDF()" class="btn btn-danger">
       PDF
     </button>
   </div>
-</div>
+</mat-card>
+
 <!--  -->
 <!--  -->
 <!--  -->
@@ -90,20 +91,29 @@
         <ul class="lh-sm" style="list-style: none">
           <li class="">
             <span class="text-decoration-underline">ARTICLE UNIQUE :</span> Un
-            congé de cinq jours ouvrables (05 jrs.)
+            congé de {{ DemandeConge?.duree }} jours ouvrables ({{
+              DemandeConge?.duree
+            }}
+            jrs.)
           </li>
           <li>
-            Est accordé à : M. {{ Personne?.nom + " " + Personne?.prenom }}
+            Est accordé à : M.
+            {{
+              DemandeConge?.personne.nom + " " + DemandeConge?.personne.prenom
+            }}
           </li>
           <li>
-            Grade: {{ Personne?.grade.libelle }}
+            Grade: {{ DemandeConge?.personne.grade.libelle }}
             <span class="ms-5">
-              <span class="fw-bold">P.P.R :</span>{{ Personne?.CIN }}</span
+              <span class="fw-bold">P.P.R :</span
+              >{{ DemandeConge?.personne.CIN }}</span
             >
           </li>
-          <li>En fonction à :{{ Personne?.fonction.libelle }}</li>
-          <li>Congé de : congé annuel 2023.</li>
-          <li>Pour en bénéficier à compter du: 20/11/2023.</li>
+          <li>En fonction à :{{ DemandeConge?.personne.fonction.libelle }}</li>
+          <li>Congé de : {{ DemandeConge?.type }} {{ DemandeConge?.year }}.</li>
+          <li>
+            Pour en bénéficier à compter du: {{ DemandeConge?.dateDebut }}.
+          </li>
         </ul>
       </div>
       <div class="d-flex justify-content-end mt-5">

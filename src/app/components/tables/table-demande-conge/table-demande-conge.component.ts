@@ -25,6 +25,7 @@ export class TableDemandeCongeComponent implements AfterViewInit {
     'DateDebut',
     'DateFin',
     'état',
+    'Action',
   ];
 
   constructor(private demandeCongeService: DemandeCongeService) {}

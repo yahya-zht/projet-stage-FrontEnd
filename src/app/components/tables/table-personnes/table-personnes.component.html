@@ -65,16 +65,7 @@
       </th>
       <td mat-cell *matCellDef="let row; let i = index">
         <div class="d-flex">
-          <a [routerLink]="['pdf/', row.id]" class="btn btn-info me-1">
-            <mat-icon
-              class="text-danger"
-              aria-hidden="false"
-              aria-label="picture_as_pdf"
-              fontIcon="picture_as_pdf"
-              >picture_as_pdf</mat-icon
-            >PDF
-          </a>
-          <a [routerLink]="['edit/', row.id]" class="btn btn-primary me-1">
+          <button [routerLink]="['edit/', row.id]" class="btn btn-primary me-1">
             <mat-icon
               class="red"
               aria-hidden="false"
@@ -82,7 +73,7 @@
               fontIcon="edit"
               >edit</mat-icon
             >Edit
-          </a>
+          </button>
           <button (click)="delete(row.id, i)" class="btn btn-danger">
             <mat-icon
               class="red"

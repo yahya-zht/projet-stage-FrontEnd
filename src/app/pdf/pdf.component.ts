@@ -5,6 +5,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { PersonneService } from '../services/personne/personne.service';
 import { Personne } from '../Models/Personne';
+import { DemandeConge } from '../Models/DemandeConge';
+import { DemandeCongeService } from '../services/demande_conge/demande-conge.service';
+import { Conge } from '../Models/Conge';
 
 @Component({
   selector: 'app-pdf',
@@ -13,18 +16,17 @@ import { Personne } from '../Models/Personne';
 })
 export class PdfComponent implements OnInit {
   id: any;
-  Personne: any;
-  PersonneService: any;
+  DemandeConge: any;
   constructor(
     private route: ActivatedRoute,
-    private personneService: PersonneService
+    private demandeCongeService: DemandeCongeService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     console.log('ID =>', this.id);
     if (this.id === null) {
-      this.Personne = {
+      this.DemandeConge = {
         CIN: '1834358',
         nom: 'KHAFFANE',
         prenom: 'Abdesadek',
@@ -35,12 +37,15 @@ export class PdfComponent implements OnInit {
         },
       };
     } else {
-      this.personneService
-        .getPersonneById(this.id)
-        .subscribe((personne: Personne) => {
-          console.log('=>', personne.Personne['CIN']);
-          this.Personne = personne.Personne;
-          console.log('Personne:', this.Personne);
+      this.demandeCongeService
+        .getDemandeCongeById(this.id)
+        .subscribe((conge: any) => {
+          console.log('=>', conge.DemandeConge.personne['CIN']);
+          this.DemandeConge = conge.DemandeConge;
+          const dateParts = this.DemandeConge.dateDemande.split('-');
+          const year = dateParts[0];
+          this.DemandeConge.year = year;
+          console.log('DemandeConge:', this.DemandeConge);
         });
     }
   }
