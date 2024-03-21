@@ -23,6 +23,7 @@ import { DemandecongeDirecteurComponent } from '../pages/demandeconge-directeur/
 import { CongeComponent } from '../pages/conge/conge.component';
 import { DemandeabsenceComponent } from '../pages/demandeabsence/demandeabsence.component';
 import { DemandeabsenceAdminComponent } from '../pages/demandeabsence-admin/demandeabsence-admin.component';
+import { AbsenceComponent } from '../pages/absence/absence.component';
 
 const routes: Routes = [
   {
@@ -100,6 +101,15 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'conge',
+    children: [
+      {
+        path: '',
+        component: CongeComponent,
+      },
+    ],
+  },
+  {
     path: 'demande/conge',
     children: [
       {
@@ -126,15 +136,7 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'conge',
-    children: [
-      {
-        path: '',
-        component: CongeComponent,
-      },
-    ],
-  },
+
   {
     path: 'demande/absence',
     children: [
@@ -151,6 +153,15 @@ const routes: Routes = [
       {
         path: '',
         component: DemandeabsenceAdminComponent,
+      },
+    ],
+  },
+  {
+    path: 'absence',
+    children: [
+      {
+        path: '',
+        component: AbsenceComponent,
       },
     ],
   },

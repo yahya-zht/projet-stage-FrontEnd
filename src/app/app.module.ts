@@ -47,6 +47,8 @@ import { TableCongeComponent } from './components/tables/table-conge/table-conge
 import { DemandeabsenceComponent } from './pages/demandeabsence/demandeabsence.component';
 import { DemandeabsenceAdminComponent } from './pages/demandeabsence-admin/demandeabsence-admin.component';
 import { TableDemandeAbsenceAdminComponent } from './components/tables/table-demande-absence-admin/table-demande-absence-admin.component';
+import { TableAbsenceComponent } from './components/tables/table-absence/table-absence.component';
+import { AbsenceComponent } from './pages/absence/absence.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +90,8 @@ import { TableDemandeAbsenceAdminComponent } from './components/tables/table-dem
     DemandeabsenceComponent,
     DemandeabsenceAdminComponent,
     TableDemandeAbsenceAdminComponent,
+    TableAbsenceComponent,
+    AbsenceComponent,
   ],
   imports: [
     BrowserModule,
