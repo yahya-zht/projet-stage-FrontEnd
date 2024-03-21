@@ -27,17 +27,41 @@
           <a class="nav-link" [routerLink]="['/personne']">Personne</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/demande/conge']"
-            >Demande Congé</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['admin/demande/conge']"
-            >Demande Congé Directeur</a
-          >
-        </li>
-        <li class="nav-item">
           <a class="nav-link" [routerLink]="['conge']">Congé</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Demande
+          </a>
+          <ul class="dropdown-menu">
+            <li></li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/demande/conge']"
+                >Demande Congé</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['admin/demande/conge']"
+                >Demande Congé Directeur</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/demande/absence']"
+                >Demande Absence</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['admin/demande/absence']"
+                >Demande Absence Directeur</a
+              >
+            </li>
+          </ul>
         </li>
         <li class="nav-item dropdown">
           <a

@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Personne } from 'src/app/Models/Personne';
-import { DemandeCongeService } from 'src/app/services/demande_conge/demande-conge.service';
+import { DemandeAbsenceService } from 'src/app/services/demande_absence/demande-absence.service';
 import { PersonneService } from 'src/app/services/personne/personne.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PersonneService } from 'src/app/services/personne/personne.service';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent implements OnInit {
-  demandeCongeForm: FormGroup;
+  demandeAbsenceForm: FormGroup;
   Personnes: Personne[] = [];
   Duree: number = 0;
   error: any;
@@ -19,10 +19,10 @@ export class CreateComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
-    private demandeCongeService: DemandeCongeService,
+    private demandeAbsenceService: DemandeAbsenceService,
     private personneService: PersonneService
   ) {
-    this.demandeCongeForm = this.formBuilder.group({
+    this.demandeAbsenceForm = this.formBuilder.group({
       dateDebut: [''],
       dateFin: [''],
       personne_id: [''],
@@ -42,20 +42,13 @@ export class CreateComponent implements OnInit {
         console.error('Error fetching Service:', error);
       }
     );
-    // this.demandeCongeForm.get('dateDebut')?.valueChanges.subscribe(() => {
-    //   this.calculateDuration();
-    // });
-    // this.demandeCongeForm.get('dateFin')?.valueChanges.subscribe(() => {
-    //   this.calculateDuration();
-    // });
-    this.demandeCongeForm.valueChanges.subscribe(() => {
+    this.demandeAbsenceForm.valueChanges.subscribe(() => {
       this.calculateDuration();
     });
   }
-
   calculateDuration(): void {
-    const dateDebut: Date = this.demandeCongeForm.value.dateDebut;
-    const dateFin: Date = this.demandeCongeForm.value.dateFin;
+    const dateDebut: Date = this.demandeAbsenceForm.value.dateDebut;
+    const dateFin: Date = this.demandeAbsenceForm.value.dateFin;
     if (
       !dateDebut ||
       !dateFin ||
@@ -63,7 +56,7 @@ export class CreateComponent implements OnInit {
       isNaN(dateFin.getTime())
     ) {
       console.log('Invalid dates');
-      this.demandeCongeForm.patchValue({ duree: '0' }, { emitEvent: false });
+      this.demandeAbsenceForm.patchValue({ duree: '0' }, { emitEvent: false });
       return;
     }
     const differenceInMilliseconds: number =
@@ -71,7 +64,7 @@ export class CreateComponent implements OnInit {
     const differenceInDays: number =
       differenceInMilliseconds / (1000 * 60 * 60 * 24);
     const differenceInDaysINT = Math.ceil(differenceInDays);
-    this.demandeCongeForm.patchValue(
+    this.demandeAbsenceForm.patchValue(
       { duree: differenceInDaysINT + 1 },
       { emitEvent: false }
     );
@@ -81,32 +74,31 @@ export class CreateComponent implements OnInit {
     return now.toISOString().split('T')[0];
   }
   private setDate(controlName: string): void {
-    const selectedDate: Date = this.demandeCongeForm.value[controlName];
+    const selectedDate: Date = this.demandeAbsenceForm.value[controlName];
     if (selectedDate) {
       const Date: string = `${selectedDate.getFullYear()}-${
         Number(selectedDate.getMonth()) + 1
       }-${selectedDate.getDate()}`;
-      this.demandeCongeForm.value[controlName] = Date;
+      this.demandeAbsenceForm.value[controlName] = Date;
     }
   }
   onSubmit(): void {
     const currentDate: string = this.getCurrentDateString();
-    this.demandeCongeForm.controls['dateDemande'].setValue(currentDate);
+    this.demandeAbsenceForm.controls['dateDemande'].setValue(currentDate);
     this.setDate('dateDebut');
     this.setDate('dateFin');
-    this.demandeCongeService
-      .AddDemandeConge(this.demandeCongeForm.value)
+    this.demandeAbsenceService
+      .AddDemandeAbsence(this.demandeAbsenceForm.value)
       .subscribe(
         () => {
           console.log('Data added successfully');
           this.ngZone.run(() => {
-            this.router.navigate(['/demande/conge']);
+            this.router.navigate(['/demande/absence']);
           });
         },
         (error) => {
           this.error = error.errors;
         }
       );
-    // console.log('data Form: ' + JSON.stringify(this.demandeCongeForm.value));
   }
 }

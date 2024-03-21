@@ -9,6 +9,7 @@ import { CreateComponent as CreateEchelle } from '../pages/echelle/create/create
 import { CreateComponent as CreateService } from '../pages/service/create/create.component';
 import { CreateComponent as CreateEtablissement } from '../pages/etablissement/create/create.component';
 import { CreateComponent as CreateDemandeConge } from '../pages/demandeconge/create/create.component';
+import { CreateComponent as CreateDemandeAbsence } from '../pages/demandeabsence/create/create.component';
 import { EditComponent as EditPersonne } from '../pages/personne/edit/edit.component';
 import { EditComponent as EditEtablissement } from '../pages/etablissement/edit/edit.component';
 import { EditComponent as EditService } from '../pages/service/edit/edit.component';
@@ -20,6 +21,8 @@ import { EtablissementComponent } from '../pages/etablissement/etablissement.com
 import { DemandecongeComponent } from '../pages/demandeconge/demandeconge.component';
 import { DemandecongeDirecteurComponent } from '../pages/demandeconge-directeur/demandeconge-directeur.component';
 import { CongeComponent } from '../pages/conge/conge.component';
+import { DemandeabsenceComponent } from '../pages/demandeabsence/demandeabsence.component';
+import { DemandeabsenceAdminComponent } from '../pages/demandeabsence-admin/demandeabsence-admin.component';
 
 const routes: Routes = [
   {
@@ -125,6 +128,25 @@ const routes: Routes = [
       {
         path: '',
         component: CongeComponent,
+      },
+    ],
+  },
+  {
+    path: 'demande/absence',
+    children: [
+      {
+        path: '',
+        component: DemandeabsenceComponent,
+      },
+      { path: 'create', component: CreateDemandeAbsence },
+    ],
+  },
+  {
+    path: 'admin/demande/absence',
+    children: [
+      {
+        path: '',
+        component: DemandeabsenceAdminComponent,
       },
     ],
   },

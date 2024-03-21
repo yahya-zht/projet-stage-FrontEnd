@@ -11,6 +11,7 @@ import { CreateComponent as CreateGrade } from './pages/grade/create/create.comp
 import { CreateComponent as CreateService } from './pages/service/create/create.component';
 import { CreateComponent as CreateEtablissement } from './pages/etablissement/create/create.component';
 import { CreateComponent as CreateDemandeConge } from './pages/demandeconge/create/create.component';
+import { CreateComponent as CreateDemandeAbsence } from './pages/demandeabsence/create/create.component';
 import { EditComponent as EditPersonne } from './pages/personne/edit/edit.component';
 import { EditComponent as EditEtablissement } from './pages/etablissement/edit/edit.component';
 import { EditComponent as EditService } from './pages/service/edit/edit.component';
@@ -43,6 +44,9 @@ import { DemandecongeDirecteurComponent } from './pages/demandeconge-directeur/d
 import { TableDemandeCongeDirecteurComponent } from './components/tables/table-demande-conge-directeur/table-demande-conge-directeur.component';
 import { CongeComponent } from './pages/conge/conge.component';
 import { TableCongeComponent } from './components/tables/table-conge/table-conge.component';
+import { DemandeabsenceComponent } from './pages/demandeabsence/demandeabsence.component';
+import { DemandeabsenceAdminComponent } from './pages/demandeabsence-admin/demandeabsence-admin.component';
+import { TableDemandeAbsenceAdminComponent } from './components/tables/table-demande-absence-admin/table-demande-absence-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +58,7 @@ import { TableCongeComponent } from './components/tables/table-conge/table-conge
     CreateGrade,
     CreateEtablissement,
     CreateDemandeConge,
+    CreateDemandeAbsence,
     CreateService,
     EditPersonne,
     EditEtablissement,
@@ -80,6 +85,9 @@ import { TableCongeComponent } from './components/tables/table-conge/table-conge
     TableDemandeCongeDirecteurComponent,
     CongeComponent,
     TableCongeComponent,
+    DemandeabsenceComponent,
+    DemandeabsenceAdminComponent,
+    TableDemandeAbsenceAdminComponent,
   ],
   imports: [
     BrowserModule,

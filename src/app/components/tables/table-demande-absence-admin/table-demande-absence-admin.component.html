@@ -15,7 +15,7 @@
       <td mat-cell *matCellDef="let row">{{ row.duree }}</td>
     </ng-container>
     <ng-container matColumnDef="DateDemande">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Demande</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>DateDemande</th>
       <td mat-cell *matCellDef="let row">{{ row.dateDemande }}</td>
     </ng-container>
     <ng-container matColumnDef="DateDebut">
@@ -26,10 +26,27 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Fin</th>
       <td mat-cell *matCellDef="let row">{{ row.dateFin }}</td>
     </ng-container>
-    <ng-container matColumnDef="état">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>état</th>
-      <td mat-cell *matCellDef="let row" [style.color]="getColor(row['état'])">
-        {{ row["état"] }}
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <p class="text-center">Action</p>
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index">
+        <div class="d-flex justify-content-around">
+          <button
+            href="#"
+            class="btn btn-success"
+            (click)="addAbsence(row.id, i)"
+          >
+            Accepter
+          </button>
+          <button
+            href="#"
+            class="btn btn-danger"
+            (click)="rejectDemande(row.id, i)"
+          >
+            REJETÉ
+          </button>
+        </div>
       </td>
     </ng-container>
 
