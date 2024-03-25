@@ -7,6 +7,12 @@ export class Service {
     nom: string;
     pernom: string;
   };
+  etablissement!: {
+    id: number;
+    nom: string;
+    adresse: string;
+    directeur: number;
+  };
   Service: any;
   constructor(
     id: number,

@@ -3,7 +3,7 @@
     <p
       class="p-3 bg-gray-300 h4 m-0 text-center d-flex justify-content-center align-items-center"
     >
-      <span class="me-2">New Service </span
+      <span class="me-2">Edit Service </span
       ><mat-icon matSuffix class="">account_circle</mat-icon>
     </p>
   </div>
@@ -40,8 +40,8 @@
           <mat-hint align="end">Responsable</mat-hint>
         </mat-form-field>
       </div>
-      <div class="mb-3">
-        <mat-form-field appearance="fill" class="w-100">
+      <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-">
+        <mat-form-field appearance="fill" class="col">
           <mat-label>nombre_employes</mat-label>
           <input
             matInput
@@ -50,11 +50,28 @@
             placeholder="nombre_employes"
             formControlName="nombre_employes"
           />
-          <mat-icon matSuffix>home</mat-icon>
+          <mat-icon matSuffix>groups</mat-icon>
           <div *ngIf="error?.nombre_employes" class="text-danger">
             {{ error.nombre_employes }}
           </div>
           <mat-hint>Nombre Employes</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Etablissements</mat-label>
+          <mat-select multiple formControlName="etablissements_id">
+            <!-- <mat-option
+              *ngFor="let item of Etablissement; let i = index"
+              [value]="item.id"
+              *ngIf="item.id === n[i]"
+              >{{ item.nom }}</mat-option
+            > -->
+            <mat-option
+              *ngFor="let item of Etablissement; let i = index"
+              [value]="item.id"
+            >
+              <ng-container>{{ item.nom }}</ng-container>
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
 
