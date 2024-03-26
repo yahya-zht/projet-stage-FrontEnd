@@ -32,7 +32,7 @@ export class EditComponent implements OnInit {
     this.etablissementService
       .getEtablissementById(this.getId)
       .subscribe((etablissement: Etablissement) => {
-        console.log(etablissement);
+        console.log('Etablissement ====>>>> ' + etablissement);
         this.updateForm.patchValue({
           nom: etablissement.Etablissement['nom'],
           adresse: etablissement.Etablissement.adresse,

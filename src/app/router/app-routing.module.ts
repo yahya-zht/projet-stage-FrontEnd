@@ -24,6 +24,7 @@ import { CongeComponent } from '../pages/conge/conge.component';
 import { DemandeabsenceComponent } from '../pages/demandeabsence/demandeabsence.component';
 import { DemandeabsenceAdminComponent } from '../pages/demandeabsence-admin/demandeabsence-admin.component';
 import { AbsenceComponent } from '../pages/absence/absence.component';
+import { ShowComponent } from '../pages/etablissement/show/show.component';
 
 const routes: Routes = [
   {
@@ -98,6 +99,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateEtablissement },
       { path: 'edit/:id', component: EditEtablissement },
+      { path: 'show/:id', component: ShowComponent },
     ],
   },
   {

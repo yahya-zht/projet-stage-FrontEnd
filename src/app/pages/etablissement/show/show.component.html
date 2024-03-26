@@ -1,0 +1,34 @@
+<div class="my-3">
+  <mat-card>
+    <div>
+      <p class="fs-5">
+        <span class="fw-bolder">Nom Etablissement : </span
+        >{{ NomEtablissement }}
+      </p>
+      <p class="fs-5">
+        <span class="fw-bolder">Directeur Etablissement : </span
+        >{{ NomDirecteur + " " + PrenomDirecteur }}
+      </p>
+      <p class="fs-5">
+        <span class="fw-bolder">Adresse Etablissement : </span>
+        {{ AdresseEtablissement }}
+      </p>
+    </div>
+  </mat-card>
+</div>
+<div>
+  <mat-card>
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="fs-5 fw-bolder m-0">Service</p>
+      <a
+        class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold"
+        [routerLink]="['/etablissement']"
+      >
+        <mat-icon matSuffix>arrow_back</mat-icon>
+      </a>
+    </div>
+  </mat-card>
+</div>
+<div class="mt-2">
+  <app-table-service></app-table-service>
+</div>

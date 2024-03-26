@@ -2,8 +2,8 @@ export class Etablissement {
   id: number;
   nom: string;
   adresse: string;
-  directeur: number;
-  personne!: {
+  directeur_id: number;
+  directeur!: {
     nom: string;
     pernom: string;
   };
@@ -15,10 +15,14 @@ export class Etablissement {
     nom: string;
     nombre_employes: number;
   };
-  constructor(id: number, nom: string, adresse: string, directeur: number) {
+  responsable!: {
+    nom: string;
+    pernom: string;
+  };
+  constructor(id: number, nom: string, adresse: string, directeur_id: number) {
     this.id = id;
     this.nom = nom;
     this.adresse = adresse;
-    this.directeur = directeur;
+    this.directeur_id = directeur_id;
   }
 }

@@ -15,7 +15,8 @@ import { CreateComponent as CreateDemandeAbsence } from './pages/demandeabsence/
 import { EditComponent as EditPersonne } from './pages/personne/edit/edit.component';
 import { EditComponent as EditEtablissement } from './pages/etablissement/edit/edit.component';
 import { EditComponent as EditService } from './pages/service/edit/edit.component';
-import { ShowComponent } from './pages/personne/show/show.component';
+import { ShowComponent as ShowPersonne } from './pages/personne/show/show.component';
+import { ShowComponent as ShowEtablissement } from './pages/etablissement/show/show.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,6 +50,7 @@ import { DemandeabsenceAdminComponent } from './pages/demandeabsence-admin/deman
 import { TableDemandeAbsenceAdminComponent } from './components/tables/table-demande-absence-admin/table-demande-absence-admin.component';
 import { TableAbsenceComponent } from './components/tables/table-absence/table-absence.component';
 import { AbsenceComponent } from './pages/absence/absence.component';
+import { ShowComponent } from './pages/service/show/show.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +67,8 @@ import { AbsenceComponent } from './pages/absence/absence.component';
     EditPersonne,
     EditEtablissement,
     EditService,
-    ShowComponent,
+    ShowPersonne,
+    ShowEtablissement,
     TablePersonnesComponent,
     EchelleComponent,
     FonctionComponent,
@@ -92,6 +95,7 @@ import { AbsenceComponent } from './pages/absence/absence.component';
     TableDemandeAbsenceAdminComponent,
     TableAbsenceComponent,
     AbsenceComponent,
+    ShowComponent,
   ],
   imports: [
     BrowserModule,
