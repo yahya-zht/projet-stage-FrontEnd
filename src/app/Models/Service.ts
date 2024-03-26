@@ -13,6 +13,13 @@ export class Service {
     adresse: string;
     directeur: number;
   };
+  employee!: {
+    id: number;
+    nom: string;
+    prenom: string;
+    role: string;
+    fonction_id: number;
+  };
   Service: any;
   constructor(
     id: number,

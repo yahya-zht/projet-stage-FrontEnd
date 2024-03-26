@@ -19,7 +19,6 @@ export class ShowComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private etablissementService: EtablissementService,
-    private serviceService: ServiceService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     this.etablissementService

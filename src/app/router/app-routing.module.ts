@@ -24,7 +24,9 @@ import { CongeComponent } from '../pages/conge/conge.component';
 import { DemandeabsenceComponent } from '../pages/demandeabsence/demandeabsence.component';
 import { DemandeabsenceAdminComponent } from '../pages/demandeabsence-admin/demandeabsence-admin.component';
 import { AbsenceComponent } from '../pages/absence/absence.component';
-import { ShowComponent } from '../pages/etablissement/show/show.component';
+import { ShowComponent as ShowEtablissement } from '../pages/etablissement/show/show.component';
+import { ShowComponent as ShowService } from '../pages/service/show/show.component';
+import { ShowComponent as ShowEmployee } from '../pages/etablissement/show/show.component';
 
 const routes: Routes = [
   {
@@ -88,6 +90,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateService },
       { path: 'edit/:id', component: EditService },
+      { path: 'show/:id', component: ShowService },
     ],
   },
   {
@@ -99,7 +102,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateEtablissement },
       { path: 'edit/:id', component: EditEtablissement },
-      { path: 'show/:id', component: ShowComponent },
+      { path: 'show/:id', component: ShowEtablissement },
     ],
   },
   {

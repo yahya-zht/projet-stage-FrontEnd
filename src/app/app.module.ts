@@ -17,6 +17,7 @@ import { EditComponent as EditEtablissement } from './pages/etablissement/edit/e
 import { EditComponent as EditService } from './pages/service/edit/edit.component';
 import { ShowComponent as ShowPersonne } from './pages/personne/show/show.component';
 import { ShowComponent as ShowEtablissement } from './pages/etablissement/show/show.component';
+import { ShowComponent as ShowService } from './pages/service/show/show.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -69,6 +70,7 @@ import { ShowComponent } from './pages/service/show/show.component';
     EditService,
     ShowPersonne,
     ShowEtablissement,
+    ShowService,
     TablePersonnesComponent,
     EchelleComponent,
     FonctionComponent,

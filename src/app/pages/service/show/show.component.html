@@ -1,1 +1,33 @@
-<p>show works!</p>
+<div class="my-3">
+  <mat-card>
+    <div>
+      <p class="fs-5">
+        <span class="fw-bolder">Nom Service : </span>{{ NomService }}
+      </p>
+      <p class="fs-5">
+        <span class="fw-bolder">Responsable Service : </span
+        >{{ NomResponsable + " " + PrenomResponsable }}
+      </p>
+      <p class="fs-5">
+        <span class="fw-bolder">Nombre Employes : </span>
+        {{ Nbr }}
+      </p>
+    </div>
+  </mat-card>
+</div>
+<div>
+  <mat-card>
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="fs-5 fw-bolder m-0">Employees</p>
+      <a
+        class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold"
+        [routerLink]="['/service']"
+      >
+        <mat-icon matSuffix>arrow_back</mat-icon>
+      </a>
+    </div>
+  </mat-card>
+</div>
+<div class="mt-2">
+  <app-table-personnes></app-table-personnes>
+</div>
