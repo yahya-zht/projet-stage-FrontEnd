@@ -20,7 +20,7 @@
     <ng-container matColumnDef="Personne_id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Personne</th>
       <td mat-cell *matCellDef="let row">
-        {{ row.personne.nom + " " + row.personne.prenom }}
+        {{ row.personne?.nom + " " + row.personne?.prenom }}
       </td>
     </ng-container>
     <ng-container matColumnDef="demande_conge_id">

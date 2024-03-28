@@ -26,7 +26,7 @@ import { DemandeabsenceAdminComponent } from '../pages/demandeabsence-admin/dema
 import { AbsenceComponent } from '../pages/absence/absence.component';
 import { ShowComponent as ShowEtablissement } from '../pages/etablissement/show/show.component';
 import { ShowComponent as ShowService } from '../pages/service/show/show.component';
-import { ShowComponent as ShowEmployee } from '../pages/etablissement/show/show.component';
+import { ShowComponent as ShowEmployee } from '../pages/personne/show/show.component';
 
 const routes: Routes = [
   {
@@ -48,6 +48,7 @@ const routes: Routes = [
         path: 'edit/:id',
         component: EditPersonne,
       },
+      { path: 'show/:id', component: ShowEmployee },
     ],
   },
   {
