@@ -24,7 +24,6 @@ export class ShowComponent implements OnInit {
   Service: string = '';
   Etablissement: string = '';
   Email: string = '';
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private personneService: PersonneService
@@ -46,8 +45,12 @@ export class ShowComponent implements OnInit {
         this.Echelle = personne.Personne.echelle.libelle;
         this.Service = personne.Personne.service.nom;
         this.Etablissement = '---';
-        this.Chef =
-          personne.Personne.chef?.nom + ' ' + personne.Personne.chef?.prenom;
+        if (personne.Personne.chef) {
+          this.Chef =
+            personne.Personne.chef?.nom + ' ' + personne.Personne.chef?.prenom;
+        } else {
+          this.Chef = 'Null';
+        }
       });
   }
 

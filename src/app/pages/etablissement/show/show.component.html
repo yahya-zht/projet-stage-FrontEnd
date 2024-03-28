@@ -2,16 +2,33 @@
   <mat-card class="bg-light">
     <div>
       <p class="fs-5">
-        <span class="fw-bolder">Nom Etablissement : </span
-        >{{ NomEtablissement }}
+        <span class="fw-bolder">Nom Etablissement : </span>{{ NomEtablissement
+        }}<mat-progress-bar
+          class=""
+          color="red"
+          mode="indeterminate"
+          *ngIf="NomEtablissement === ''"
+        ></mat-progress-bar>
       </p>
       <p class="fs-5">
         <span class="fw-bolder">Directeur Etablissement : </span
-        >{{ NomDirecteur + " " + PrenomDirecteur }}
+        >{{ NomDirecteur + " " + PrenomDirecteur
+        }}<mat-progress-bar
+          class=""
+          color="red"
+          mode="indeterminate"
+          *ngIf="NomDirecteur === ''"
+        ></mat-progress-bar>
       </p>
       <p class="fs-5">
         <span class="fw-bolder">Adresse Etablissement : </span>
-        {{ AdresseEtablissement }}
+        {{ AdresseEtablissement
+        }}<mat-progress-bar
+          class=""
+          color="red"
+          mode="indeterminate"
+          *ngIf="AdresseEtablissement === ''"
+        ></mat-progress-bar>
       </p>
     </div>
   </mat-card>

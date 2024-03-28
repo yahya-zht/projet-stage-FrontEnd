@@ -13,42 +13,125 @@
   <mat-card>
     <div class="fs-4 m-2">
       <div class="row my-3">
-        <p class="col-6"><span class="fw-bold">Nom : </span>{{ Nom }}</p>
-        <p class="col-6"><span class="fw-bold">Prenom :</span>{{ Prenom }}</p>
+        <p class="col-6">
+          <span class="fw-bold">Nom : </span>
+          {{ Nom }}
+          <mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Nom === ''"
+          ></mat-progress-bar>
+        </p>
+
+        <p class="col-6">
+          <span class="fw-bold">Prenom :</span>{{ Prenom
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Prenom === ''"
+          ></mat-progress-bar>
+        </p>
       </div>
       <div class="my-3 row">
-        <p><span class="fw-bold col">CIN :</span> {{ CIN }}</p>
+        <p>
+          <span class="fw-bold col">CIN :</span> {{ CIN
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="CIN === ''"
+          ></mat-progress-bar>
+        </p>
       </div>
       <div class="my-3 row">
-        <p><span class="fw-bold col">Adresse :</span> {{ Adresse }}</p>
+        <p class="">
+          <span class="fw-bold col">Adresse :</span> {{ Adresse
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Adresse === ''"
+          ></mat-progress-bar>
+        </p>
       </div>
       <div class="row my-3">
         <p class="col-6">
-          <span class="fw-bold">Telephone : </span>{{ Telephon }}
+          <span class="fw-bold">Telephone : </span>{{ Telephon
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Telephon === ''"
+          ></mat-progress-bar>
         </p>
         <p class="col-6">
-          <span class="fw-bold">Date Naissance :</span>{{ Date_Naissance }}
+          <span class="fw-bold">Date Naissance :</span>{{ Date_Naissance
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Date_Naissance === ''"
+          ></mat-progress-bar>
         </p>
       </div>
       <div class="row my-3">
-        <p class="col-6"><span class="fw-bold">Role :</span> {{ Role }}</p>
-        <p class="col-6"><span class="fw-bold">Chef :</span> {{ Chef }}</p>
+        <p class="col-6">
+          <span class="fw-bold">Role :</span> {{ Role
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Role === ''"
+          ></mat-progress-bar>
+        </p>
+        <p class="col-6">
+          <span class="fw-bold">Chef :</span>
+          {{ Chef }}
+          <mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Chef === ''"
+          ></mat-progress-bar>
+        </p>
       </div>
       <div class="row my-3">
-        <p class="col-4"><span class="fw-bold">Grade : </span>{{ Grade }}</p>
         <p class="col-4">
-          <span class="fw-bold">Fonction : </span>{{ Fonction }}
+          <span class="fw-bold">Grade : </span>{{ Grade
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Grade === ''"
+          ></mat-progress-bar>
         </p>
         <p class="col-4">
-          <span class="fw-bold">Echelle : </span>{{ Echelle }}
+          <span class="fw-bold">Fonction : </span>{{ Fonction
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Fonction === ''"
+          ></mat-progress-bar>
+        </p>
+        <p class="col-4">
+          <span class="fw-bold">Echelle : </span>{{ Echelle
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Echelle === ''"
+          ></mat-progress-bar>
         </p>
       </div>
       <div class="row my-3">
         <p class="col-6">
-          <span class="fw-bold">Service : </span>{{ Service }}
+          <span class="fw-bold">Service : </span>{{ Service
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="Service === ''"
+          ></mat-progress-bar>
         </p>
         <p class="col-6">
-          <span class="fw-bold">Etablissement :</span> {{ Etablissement }}
+          <span class="fw-bold">Etablissement :</span> {{ Etablissement
+          }}<mat-progress-bar
+            class=""
+            color="red"
+            mode="indeterminate"
+            *ngIf="Etablissement === ''"
+          ></mat-progress-bar>
         </p>
       </div>
     </div>
