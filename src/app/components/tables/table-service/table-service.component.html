@@ -22,57 +22,72 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
       <td mat-cell *matCellDef="let row; let i = index" class="w-25">
         <div class="d-flex justify-content-between">
-          <a
+          <button
             [routerLink]="['show/', row.id]"
             *ngIf="getId === null"
-            class="btn btn-secondary m-1"
-            >Show</a
+            class="btn btn-secondary m-1 d-flex align-items-center"
           >
-          <a
+            <mat-icon
+              class="me-1"
+              aria-hidden="false"
+              aria-label="edit"
+              fontIcon="edit"
+              >visibility</mat-icon
+            >Show
+          </button>
+          <button
             [routerLink]="['/service/show/', row.id]"
             *ngIf="getId !== null"
-            class="btn btn-secondary m-1"
-            >Show</a
+            class="btn btn-secondary m-1 d-flex align-items-center"
           >
-          <a
+            <mat-icon
+              class="me-1"
+              aria-hidden="false"
+              aria-label="edit"
+              fontIcon="edit"
+              >visibility</mat-icon
+            >Show
+          </button>
+          <button
             *ngIf="getId === null"
             [routerLink]="['edit/', row.id]"
-            class="btn btn-primary m-1 d-flex justify-content-center align-content-center"
+            class="btn btn-primary m-1 d-flex align-items-center"
           >
-            Edit
             <mat-icon
-              class="red ms-1"
+              class="me-1"
               aria-hidden="false"
               aria-label="edit"
               fontIcon="edit"
               >edit</mat-icon
             >
-          </a>
-          <a
+            Edit
+          </button>
+          <button
             *ngIf="getId !== null"
             [routerLink]="['/service/edit/', row.id]"
-            class="btn btn-primary m-1 d-flex justify-content-center align-content-center"
+            class="btn btn-primary m-1 d-flex align-items-center"
           >
-            Edit
             <mat-icon
-              class="red ms-1"
+              class="me-1"
               aria-hidden="false"
               aria-label="edit"
               fontIcon="edit"
               >edit</mat-icon
             >
-          </a>
+            Edit
+          </button>
           <button
             (click)="delete(row.id, i)"
-            class="btn btn-danger d-flex justify-content-center align-content-center m-1"
+            class="btn btn-danger m-1 d-flex align-items-center"
           >
-            Delete<mat-icon
-              class="red"
+            <mat-icon
+              class="me-1"
               aria-hidden="false"
               aria-label="delete"
               fontIcon="delete"
               >delete</mat-icon
             >
+            Delete
           </button>
         </div>
       </td>

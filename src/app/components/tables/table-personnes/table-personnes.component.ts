@@ -37,15 +37,11 @@ export class TablePersonnesComponent implements AfterViewInit {
         'CIN',
         'nom',
         'prenom',
-        'dateNaissance',
-        'adresse',
         'telephone',
         'role',
-        'grade_id',
         'fonction_id',
         'echelle_id',
         'service_id',
-        'chef_id',
         'Action',
       ];
     } else {
@@ -53,15 +49,10 @@ export class TablePersonnesComponent implements AfterViewInit {
         'CIN',
         'nom',
         'prenom',
-        'dateNaissance',
-        'adresse',
         'telephone',
         'role',
-        'grade_id',
         'fonction_id',
-        'echelle_id',
         'Etablissement',
-        'chef_id',
         'Action',
       ];
     }
