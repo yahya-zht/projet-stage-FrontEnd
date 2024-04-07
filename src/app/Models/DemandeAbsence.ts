@@ -9,7 +9,8 @@ export class DemandeAbsence extends Demande {
       demande.dateDebut,
       demande.dateFin,
       demande.Personne_id,
-      demande.étet
+      demande.étet,
+      demande.Ref
     );
     this.Absence_id = Absence_id;
   }

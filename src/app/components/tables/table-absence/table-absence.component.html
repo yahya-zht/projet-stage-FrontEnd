@@ -23,11 +23,9 @@
         {{ row.personne.nom + " " + row.personne.prenom }}
       </td>
     </ng-container>
-    <ng-container matColumnDef="demande_absence_id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        id demande conge
-      </th>
-      <td mat-cell *matCellDef="let row">{{ row.demande_absence_id }}</td>
+    <ng-container matColumnDef="Ref_demande">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ref Demande</th>
+      <td mat-cell *matCellDef="let row">{{ row.demande_absence.Ref }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

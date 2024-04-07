@@ -5,6 +5,7 @@ export class Demande {
   dateFin: Date;
   étet: string;
   Personne_id: number;
+  Ref: string;
   personne!: {
     CIN: string;
     nom: string;
@@ -17,7 +18,8 @@ export class Demande {
     dateDebut: Date,
     dateFin: Date,
     Personne_id: number,
-    étet: string
+    étet: string,
+    Ref: string
   ) {
     this.id = id;
     this.dateDemande = dateDemande;
@@ -25,5 +27,6 @@ export class Demande {
     this.dateFin = dateFin;
     this.Personne_id = Personne_id;
     this.étet = étet;
+    this.Ref = Ref;
   }
 }

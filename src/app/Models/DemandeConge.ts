@@ -9,7 +9,8 @@ export class DemandeConge extends Demande {
       demande.dateDebut,
       demande.dateFin,
       demande.Personne_id,
-      demande.étet
+      demande.étet,
+      demande.Ref
     );
     this.Conge_id = Conge_id;
   }

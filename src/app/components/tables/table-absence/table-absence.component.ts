@@ -18,7 +18,7 @@ export class TableAbsenceComponent implements AfterViewInit {
 
   displayedColumns = [
     'Personne_id',
-    'demande_absence_id',
+    'Ref_demande',
     'datedebut',
     'datefin',
     'duree',
@@ -29,7 +29,7 @@ export class TableAbsenceComponent implements AfterViewInit {
     this.absenceService.getAllAbsence().subscribe(
       (absences: any) => {
         this.dataSource.data = absences.Absences;
-        console.log('Conge dataSource:', this.dataSource.data);
+        console.log('Absence dataSource:', this.dataSource.data);
       },
       (error) => {
         console.error('Error fetching Conge:', error);

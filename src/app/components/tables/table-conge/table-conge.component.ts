@@ -19,7 +19,7 @@ export class TableCongeComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
     'Personne_id',
-    'demande_conge_id',
+    'Ref_demande',
     'datedebut',
     'datefin',
     'duree',
