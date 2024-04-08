@@ -46,7 +46,7 @@
       <div class="card w-100">
         <div class="card-header bg-bl text-white">Inscrivez-vous ici</div>
         <div class="card-body">
-          <form action="" #loginForm="ngForm">
+          <form action="" #signupForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 row">
               <label for="cin" class="col-form-label">CIN</label>
               <div class="">
@@ -55,11 +55,12 @@
                   class="form-control"
                   id="cin"
                   placeholder="CIN"
-                  name="cin"
+                  name="CIN"
+                  [(ngModel)]="form.CIN"
                 />
-                <!-- <div class="alert alert-danger" [hidden]="!error.name">
+                <div class="alert alert-danger" [hidden]="!error.name">
                   {{ error.name }}
-                </div> -->
+                </div>
               </div>
             </div>
             <div class="mb-3">
@@ -71,10 +72,11 @@
                   id="email"
                   placeholder="email@example.com"
                   name="email"
+                  [(ngModel)]="form.email"
                 />
-                <!-- <div class="alert alert-danger" [hidden]="!error.email">
+                <div class="alert alert-danger" [hidden]="!error.email">
                   {{ error.email }}
-                </div> -->
+                </div>
               </div>
             </div>
             <div class="mb-3">
@@ -86,10 +88,11 @@
                   id="password"
                   name="password"
                   placeholder="Password"
+                  [(ngModel)]="form.password"
                 />
-                <!-- <div class="alert alert-danger" [hidden]="!error.password">
+                <div class="alert alert-danger" [hidden]="!error.password">
                   {{ error.password }}
-                </div> -->
+                </div>
               </div>
             </div>
             <div class="mb-3">
@@ -102,13 +105,18 @@
                   class="form-control"
                   id="password_confirmation"
                   name="password_confirmation"
-                  placeholder="Confirm Password "
+                  placeholder="Confirm Password"
+                  [(ngModel)]="form.password_confirmation"
                 />
               </div>
             </div>
             <div class="from-group">
               <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary" [disabled]="">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="!signupForm.valid"
+                >
                   S'inscrire
                 </button>
                 <a
