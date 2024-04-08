@@ -52,6 +52,8 @@ import { TableDemandeAbsenceAdminComponent } from './components/tables/table-dem
 import { TableAbsenceComponent } from './components/tables/table-absence/table-absence.component';
 import { AbsenceComponent } from './pages/absence/absence.component';
 import { ShowComponent } from './pages/service/show/show.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +100,8 @@ import { ShowComponent } from './pages/service/show/show.component';
     TableAbsenceComponent,
     AbsenceComponent,
     ShowComponent,
+    SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

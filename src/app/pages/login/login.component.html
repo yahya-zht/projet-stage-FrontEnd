@@ -1,0 +1,100 @@
+<div class="row" style="height: 100vh">
+  <div
+    class="col-7 bg-bl d-flex flex-column align-items-center justify-content-center pb-5"
+  >
+    <div class="mb-5">
+      <img
+        src="../assets/Image/ministere-de-la-sante-maroc.png"
+        alt=""
+        style="width: 100px"
+      />
+    </div>
+    <div>
+      <p class="h2 text-center text-white">
+        Application de Gestion des Ressources Humaines pour l'Etablissement de
+        Santé
+      </p>
+    </div>
+  </div>
+  <mat-card class="col-5 d-flex flex-column align-items-center pb-5">
+    <div class="w-100">
+      <div class="d-flex mx-1">
+        <div class="col-5 text-center">
+          <p class="fw-bold mb-2">Royaume du Maroc</p>
+          <p class="fw-bolder fst-italic mb-1">
+            Ministère de la Santé et de la Protection Sociale
+          </p>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center mx-2">
+          <div>
+            <img
+              src="../assets/Image/royaume-du-maroc-kingdom-of-morocco.png"
+              alt=""
+              style="width: 50px"
+            />
+          </div>
+        </div>
+        <div class="text-center">
+          <p class="fs-5 fw-bold mb-2">المملكة المغربية</p>
+          <p class="fs-6 fw-bolder fst-italic mb-1">
+            وزارة الصحة والحماية الاجتماعية
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="w-100 h-100 d-flex justify-content-center align-items-center">
+      <div class="card w-100">
+        <div class="card-header bg-bl text-white">Connectez-vous ici</div>
+        <div class="card-body">
+          <form action="" #loginForm="ngForm">
+            <div class="mb-3">
+              <label for="email" class="col-form-label">Email / CIN</label>
+              <div class="">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="email@example.com / F12345"
+                  name="email"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="col-form-label">Password</label>
+              <div class="">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <div class="from-group row">
+              <div class="d-flex justify-content-end">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="!loginForm.valid"
+                >
+                  Se connecter
+                </button>
+              </div>
+            </div>
+            <p class="text-center mb-0">
+              <small class="float-right">
+                <a [routerLink]="['/request-password-reset']"
+                  >Mot de passe oublié ?
+                </a> </small
+              ><br />
+              <small class="float-right">
+                <a [routerLink]="['/signup']">Inscrivez-vous </a>
+              </small>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

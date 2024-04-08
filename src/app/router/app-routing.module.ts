@@ -27,6 +27,8 @@ import { AbsenceComponent } from '../pages/absence/absence.component';
 import { ShowComponent as ShowEtablissement } from '../pages/etablissement/show/show.component';
 import { ShowComponent as ShowService } from '../pages/service/show/show.component';
 import { ShowComponent as ShowEmployee } from '../pages/personne/show/show.component';
+import { SignupComponent } from '../pages/signup/signup.component';
+import { LoginComponent } from '../pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -170,6 +172,15 @@ const routes: Routes = [
         component: AbsenceComponent,
       },
     ],
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    // canActivate: [BeforeLoginService],
   },
 ];
 
