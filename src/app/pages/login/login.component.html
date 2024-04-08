@@ -46,7 +46,10 @@
       <div class="card w-100">
         <div class="card-header bg-bl text-white">Connectez-vous ici</div>
         <div class="card-body">
-          <form action="" #loginForm="ngForm">
+          <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="alert alert-danger" [hidden]="!error">
+              {{ error }}
+            </div>
             <div class="mb-3">
               <label for="email" class="col-form-label">Email / CIN</label>
               <div class="">
@@ -56,6 +59,7 @@
                   id="email"
                   placeholder="email@example.com / F12345"
                   name="email"
+                  [(ngModel)]="form.email"
                 />
               </div>
             </div>
@@ -68,6 +72,7 @@
                   id="password"
                   name="password"
                   placeholder="Password"
+                  [(ngModel)]="form.password"
                 />
               </div>
             </div>

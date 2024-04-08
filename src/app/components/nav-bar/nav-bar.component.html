@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd">
+<nav
+  class="navbar navbar-expand-lg"
+  style="background-color: #e3f2fd"
+  *ngIf="loggedIn"
+>
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']">
       <img
@@ -90,8 +94,32 @@
     </div>
     <div>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']">déconnexion</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Setting
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="nav-link" [routerLink]="['/']" *ngIf="loggedIn"
+                >Profile</a
+              >
+            </li>
+            <li>
+              <a
+                class="nav-link"
+                [routerLink]="['#']"
+                (click)="logout($event)"
+                *ngIf="loggedIn"
+                >déconnexion</a
+              >
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

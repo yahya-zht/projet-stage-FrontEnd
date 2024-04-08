@@ -29,6 +29,7 @@ import { ShowComponent as ShowService } from '../pages/service/show/show.compone
 import { ShowComponent as ShowEmployee } from '../pages/personne/show/show.component';
 import { SignupComponent } from '../pages/signup/signup.component';
 import { LoginComponent } from '../pages/login/login.component';
+import { BeforeLoginService } from '../services/auth/before-login.service';
 
 const routes: Routes = [
   {
