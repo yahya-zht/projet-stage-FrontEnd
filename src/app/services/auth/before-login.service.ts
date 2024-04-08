@@ -18,7 +18,8 @@ export class BeforeLoginService implements CanActivate {
     | boolean
     | UrlTree
     | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+    | Promise<boolean | UrlTree> 
+    {
     return !this.Token.loggedIn();
   }
   constructor(private Token: TokenService) {}

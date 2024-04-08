@@ -30,11 +30,13 @@ import { ShowComponent as ShowEmployee } from '../pages/personne/show/show.compo
 import { SignupComponent } from '../pages/signup/signup.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { BeforeLoginService } from '../services/auth/before-login.service';
+import { AfterLoginService } from '../services/auth/after-login.service';
 
 const routes: Routes = [
   {
     path: 'pdf',
     component: PdfComponent,
+    canActivate: [AfterLoginService],
   },
   {
     path: 'personne',
@@ -53,6 +55,7 @@ const routes: Routes = [
       },
       { path: 'show/:id', component: ShowEmployee },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'grade',
@@ -63,6 +66,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateGrade },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'fonction',
@@ -70,6 +74,7 @@ const routes: Routes = [
       { path: '', component: FonctionComponent },
       { path: 'create', component: CreateFonction },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'echelle',
@@ -82,8 +87,8 @@ const routes: Routes = [
         path: 'create',
         component: CreateEchelle,
       },
-      // { path: '**', component: PageNotFoundComponent },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'service',
@@ -96,6 +101,7 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditService },
       { path: 'show/:id', component: ShowService },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'etablissement',
@@ -108,6 +114,7 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditEtablissement },
       { path: 'show/:id', component: ShowEtablissement },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'conge',
@@ -117,6 +124,7 @@ const routes: Routes = [
         component: CongeComponent,
       },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'demande/conge',
@@ -131,6 +139,7 @@ const routes: Routes = [
         component: PdfComponent,
       },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'admin/demande/conge',
@@ -144,6 +153,7 @@ const routes: Routes = [
         component: PdfComponent,
       },
     ],
+    canActivate: [AfterLoginService],
   },
 
   {
@@ -155,6 +165,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateDemandeAbsence },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'admin/demande/absence',
@@ -164,6 +175,7 @@ const routes: Routes = [
         component: DemandeabsenceAdminComponent,
       },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'absence',
@@ -173,16 +185,19 @@ const routes: Routes = [
         component: AbsenceComponent,
       },
     ],
+    canActivate: [AfterLoginService],
   },
   {
     path: 'signup',
     component: SignupComponent,
+    canActivate: [BeforeLoginService],
   },
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [BeforeLoginService],
+    canActivate: [BeforeLoginService],
   },
+  // { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -16,7 +17,13 @@ export class AfterLoginService implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):
-    | boolean| UrlTree | Observable<boolean | UrlTree>| Promise<boolean | UrlTree> {return this.Token.loggedIn();
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
+    return this.Token.loggedIn();
   }
-  constructor(private Token: TokenService) {}
+  constructor(private Token: TokenService, private router: Router) {
+    this.router.navigateByUrl('/login');
+  }
 }
