@@ -11,6 +11,7 @@ import { EchelleService } from 'src/app/services/echelle/echelle.service';
 import { FonctionService } from 'src/app/services/fonction/fonction.service';
 import { GradeService } from 'src/app/services/grade/grade.service';
 import { ServiceService } from 'src/app/services/service/service.service';
+import { TokenService } from 'src/app/services/auth/token.service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -34,7 +35,8 @@ export class EditComponent implements OnInit {
     private echelleService: EchelleService,
     private fonctionService: FonctionService,
     private gradeService: GradeService,
-    private serviceService: ServiceService
+    private serviceService: ServiceService,
+    private tokenService: TokenService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     this.personneService
@@ -99,7 +101,8 @@ export class EditComponent implements OnInit {
         console.error('Error fetching Grade:', error);
       }
     );
-    this.serviceService.getAllService().subscribe(
+    const accessToken: any = this.tokenService.getAccessToken();
+    this.serviceService.getAllService(accessToken).subscribe(
       (service: any) => {
         this.Service = service.Services;
         console.log('Service dataSource:', this.Service);

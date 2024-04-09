@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="mt-2">
+    <mat-card class="my-3 bg-light">
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="fs-5 fw-bolder m-0">Profile</p>
+        <a
+          class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold"
+          [routerLink]="['/']"
+        >
+          <mat-icon matSuffix>arrow_back</mat-icon>
+        </a>
+      </div>
+    </mat-card>
+    <div class="fs-4 m-2">
+      <mat-card class="border border-2 border-dark mt-2">
+        <div class="my-3 row">
+          <p>
+            <span class="fw-bold col">CIN :</span> {{ profile.CIN
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.CIN === ''"
+            ></mat-progress-bar>
+          </p>
+        </div>
+        <div class="row my-3">
+          <p class="col-6">
+            <span class="fw-bold">Nom : </span>
+            {{ profile!.nom }}
+            <mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile!.nom === ''"
+            ></mat-progress-bar>
+          </p>
+          <p class="col-6">
+            <span class="fw-bold">Prenom :</span>{{ profile.prenom
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.prenom === ''"
+            ></mat-progress-bar>
+          </p></div
+      ></mat-card>
+      <mat-card class="border border-2 border-dark mt-2">
+        <div class="my-3 row">
+          <p class="">
+            <span class="fw-bold col">Adresse :</span> {{ profile.adresse
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.adresse === ''"
+            ></mat-progress-bar>
+          </p>
+        </div>
+        <div class="row my-3">
+          <p class="col-6">
+            <span class="fw-bold">Telephone : </span>{{ profile.telephone
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.telephone === ''"
+            ></mat-progress-bar>
+          </p>
+          <p class="col-6">
+            <span class="fw-bold">Date Naissance :</span
+            >{{ profile.date_naissance
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.date_naissance === ''"
+            ></mat-progress-bar>
+          </p></div
+      ></mat-card>
+      <mat-card class="border border-2 border-dark mt-2">
+        <div class="my-3 row">
+          <p>
+            <span class="fw-bold col">Email :</span> {{ profile.email
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.email === ''"
+            ></mat-progress-bar>
+          </p>
+        </div>
+        <div class="row my-3">
+          <p class="col-6">
+            <span class="fw-bold">Role :</span> {{ profile.role
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.role === ''"
+            ></mat-progress-bar>
+          </p>
+          <p class="col-6">
+            <span class="fw-bold">Chef :</span>
+            {{ profile.chef ? profile.chef : "--" }}
+            <mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.chef === ''"
+            ></mat-progress-bar>
+          </p></div
+      ></mat-card>
+      <mat-card class="border border-2 border-dark mt-2">
+        <div class="row my-3">
+          <p class="col-4">
+            <span class="fw-bold">Grade : </span>{{ profile.grade
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.grade === ''"
+            ></mat-progress-bar>
+          </p>
+          <p class="col-4">
+            <span class="fw-bold">Fonction : </span>{{ profile.fonction
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.fonction === ''"
+            ></mat-progress-bar>
+          </p>
+          <p class="col-4">
+            <span class="fw-bold">Echelle : </span>{{ profile.echelle
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.echelle === ''"
+            ></mat-progress-bar>
+          </p></div
+      ></mat-card>
+      <mat-card class="border border-2 border-dark mt-2">
+        <div class="row my-3">
+          <p class="col-6">
+            <span class="fw-bold">Service : </span>{{ profile.service
+            }}<mat-progress-bar
+              class=""
+              mode="indeterminate"
+              *ngIf="profile.service === ''"
+            ></mat-progress-bar>
+          </p>
+          <p class="col-6">
+            <span class="fw-bold">Etablissement :</span>
+            {{ profile.etablissement
+            }}<mat-progress-bar
+              class=""
+              color="red"
+              mode="indeterminate"
+              *ngIf="profile.etablissement === ''"
+            ></mat-progress-bar>
+          </p></div
+      ></mat-card>
+    </div>
+  </div>
+</div>

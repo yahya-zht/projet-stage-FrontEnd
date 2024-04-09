@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Etablissement } from 'src/app/Models/Etablissement';
 import { Service } from 'src/app/Models/Service';
+import { TokenService } from 'src/app/services/auth/token.service';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 import { ServiceService } from 'src/app/services/service/service.service';
 
@@ -24,14 +25,16 @@ export class TableServiceComponent implements AfterViewInit {
   constructor(
     private service: ServiceService,
     private activatedRoute: ActivatedRoute,
-    private etablissementService: EtablissementService
+    private etablissementService: EtablissementService,
+    private tokenService: TokenService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('Id=>' + this.getId);
   }
   ngOnInit(): void {
+    const accessToken: any = this.tokenService.getAccessToken();
     if (this.getId === null) {
-      this.service.getAllService().subscribe(
+      this.service.getAllService(accessToken).subscribe(
         (services: any) => {
           this.dataSource.data = services.Services;
           console.log('Services dataSource:', this.dataSource.data);

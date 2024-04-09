@@ -54,6 +54,7 @@ import { AbsenceComponent } from './pages/absence/absence.component';
 import { ShowComponent } from './pages/service/show/show.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +103,7 @@ import { LoginComponent } from './pages/login/login.component';
     ShowComponent,
     SignupComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

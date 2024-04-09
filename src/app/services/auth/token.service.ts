@@ -18,14 +18,14 @@ export class TokenService {
     localStorage.setItem('token', token);
     // localStorage.setItem('token', JSON.stringify(token));
   }
-  get() {
+  getAccessToken() {
     return localStorage.getItem('token');
   }
   remove() {
     localStorage.removeItem('token');
   }
   isValid() {
-    const token = this.get();
+    const token = this.getAccessToken();
     if (token) {
       const payload = this.payload(token);
       if (payload) {

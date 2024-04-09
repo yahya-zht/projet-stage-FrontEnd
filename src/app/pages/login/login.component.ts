@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   handleResponse(date: any) {
     this.Token.handle(date.access_token);
     this.auth.changeAuthStatus(true);
+    this.auth.setUserRole(date.Role);
     this.router.navigate(['/']);
   }
   handleError(error: any) {

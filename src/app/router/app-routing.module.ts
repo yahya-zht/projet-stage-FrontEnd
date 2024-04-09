@@ -31,6 +31,7 @@ import { SignupComponent } from '../pages/signup/signup.component';
 import { LoginComponent } from '../pages/login/login.component';
 import { BeforeLoginService } from '../services/auth/before-login.service';
 import { AfterLoginService } from '../services/auth/after-login.service';
+import { ProfileComponent } from '../pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -196,6 +197,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [BeforeLoginService],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AfterLoginService],
   },
   // { path: '**', component: PageNotFoundComponent },
 ];
