@@ -32,8 +32,32 @@ import { LoginComponent } from '../pages/login/login.component';
 import { BeforeLoginService } from '../services/auth/before-login.service';
 import { AfterLoginService } from '../services/auth/after-login.service';
 import { ProfileComponent } from '../pages/profile/profile.component';
+import { AccueilComponent } from '../pages/accueil/accueil.component';
+import { RoleGuard } from './role.guard';
+import { TablePersonnesComponent } from '../components/tables/table-personnes/table-personnes.component';
+import { TableGradeComponent } from '../components/tables/table-grade/table-grade.component';
+import { TableFonctionComponent } from '../components/tables/table-fonction/table-fonction.component';
+import { TableEchelleComponent } from '../components/tables/table-echelle/table-echelle.component';
+import { TableServiceComponent } from '../components/tables/table-service/table-service.component';
+import { TableEtablissementComponent } from '../components/tables/table-etablissement/table-etablissement.component';
+import { TableCongeComponent } from '../components/tables/table-conge/table-conge.component';
+import { TableDemandeCongeComponent } from '../components/tables/table-demande-conge/table-demande-conge.component';
+import { TableDemandeCongeDirecteurComponent } from '../components/tables/table-demande-conge-directeur/table-demande-conge-directeur.component';
+import { TableDemandeAbsenceComponent } from '../components/tables/table-demande-absence/table-demande-absence.component';
+import { TableDemandeAbsenceAdminComponent } from '../components/tables/table-demande-absence-admin/table-demande-absence-admin.component';
+import { TableAbsenceComponent } from '../components/tables/table-absence/table-absence.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AccueilComponent,
+    canActivate: [AfterLoginService],
+  },
+  {
+    path: 'accueil',
+    component: AccueilComponent,
+    canActivate: [AfterLoginService],
+  },
   {
     path: 'pdf',
     component: PdfComponent,
@@ -41,10 +65,11 @@ const routes: Routes = [
   },
   {
     path: 'personne',
+    component: PersonneComponent,
     children: [
       {
         path: '',
-        component: PersonneComponent,
+        component: TablePersonnesComponent,
       },
       {
         path: 'create',
@@ -60,10 +85,11 @@ const routes: Routes = [
   },
   {
     path: 'grade',
+    component: GradeComponent,
     children: [
       {
         path: '',
-        component: GradeComponent,
+        component: TableGradeComponent,
       },
       { path: 'create', component: CreateGrade },
     ],
@@ -71,18 +97,20 @@ const routes: Routes = [
   },
   {
     path: 'fonction',
+    component: FonctionComponent,
     children: [
-      { path: '', component: FonctionComponent },
+      { path: '', component: TableFonctionComponent },
       { path: 'create', component: CreateFonction },
     ],
     canActivate: [AfterLoginService],
   },
   {
     path: 'echelle',
+    component: EchelleComponent,
     children: [
       {
         path: '',
-        component: EchelleComponent,
+        component: TableEchelleComponent,
       },
       {
         path: 'create',
@@ -93,10 +121,11 @@ const routes: Routes = [
   },
   {
     path: 'service',
+    component: ServiceComponent,
     children: [
       {
         path: '',
-        component: ServiceComponent,
+        component: TableServiceComponent,
       },
       { path: 'create', component: CreateService },
       { path: 'edit/:id', component: EditService },
@@ -106,33 +135,36 @@ const routes: Routes = [
   },
   {
     path: 'etablissement',
+    component: EtablissementComponent,
     children: [
       {
         path: '',
-        component: EtablissementComponent,
+        component: TableEtablissementComponent,
       },
       { path: 'create', component: CreateEtablissement },
       { path: 'edit/:id', component: EditEtablissement },
       { path: 'show/:id', component: ShowEtablissement },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoleGuard],
   },
   {
     path: 'conge',
+    component: CongeComponent,
     children: [
       {
         path: '',
-        component: CongeComponent,
+        component: TableCongeComponent,
       },
     ],
     canActivate: [AfterLoginService],
   },
   {
     path: 'demande/conge',
+    component: DemandecongeComponent,
     children: [
       {
         path: '',
-        component: DemandecongeComponent,
+        component: TableDemandeCongeComponent,
       },
       { path: 'create', component: CreateDemandeConge },
       {
@@ -144,10 +176,11 @@ const routes: Routes = [
   },
   {
     path: 'admin/demande/conge',
+    component: DemandecongeDirecteurComponent,
     children: [
       {
         path: '',
-        component: DemandecongeDirecteurComponent,
+        component: TableDemandeCongeDirecteurComponent,
       },
       {
         path: 'pdf/:id',
@@ -159,10 +192,11 @@ const routes: Routes = [
 
   {
     path: 'demande/absence',
+    component: DemandeabsenceComponent,
     children: [
       {
         path: '',
-        component: DemandeabsenceComponent,
+        component: TableDemandeAbsenceComponent,
       },
       { path: 'create', component: CreateDemandeAbsence },
     ],
@@ -170,20 +204,22 @@ const routes: Routes = [
   },
   {
     path: 'admin/demande/absence',
+    component: DemandeabsenceAdminComponent,
     children: [
       {
         path: '',
-        component: DemandeabsenceAdminComponent,
+        component: TableDemandeAbsenceAdminComponent,
       },
     ],
     canActivate: [AfterLoginService],
   },
   {
     path: 'absence',
+    component: AbsenceComponent,
     children: [
       {
         path: '',
-        component: AbsenceComponent,
+        component: TableAbsenceComponent,
       },
     ],
     canActivate: [AfterLoginService],
@@ -203,7 +239,7 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AfterLoginService],
   },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: AccueilComponent, canActivate: [AfterLoginService] },
 ];
 
 @NgModule({

@@ -1,9 +1,6 @@
-<mat-card class="my-3 bg-light">
-  <div class="d-flex justify-content-between align-items-center">
-    <p class="mb-0 fs-5 fw-bolder">Échelle</p>
-    <a [routerLink]="['create']" class="btn btn-danger">Create</a>
-  </div>
-</mat-card>
+<div class="">
+  <app-nav-bar></app-nav-bar>
+</div>
 <div>
-  <app-table-echelle></app-table-echelle>
+  <router-outlet></router-outlet>
 </div>

@@ -23,6 +23,7 @@ export class TokenService {
   }
   remove() {
     localStorage.removeItem('token');
+    localStorage.removeItem('Lld$sqz');
   }
   isValid() {
     const token = this.getAccessToken();

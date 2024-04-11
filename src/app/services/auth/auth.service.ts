@@ -1,22 +1,41 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TokenService } from './token.service';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userRole: string = '';
-  constructor(private Token: TokenService) {}
+  private baseUrl = 'http://127.0.0.1:8000/api';
+  private readonly ROLE_KEY = 'Lld$sqz';
+  constructor(private Token: TokenService, private http: HttpClient) {}
   private loggedIn = new BehaviorSubject<boolean>(this.Token.loggedIn());
   authStatus = this.loggedIn.asObservable();
   changeAuthStatus(value: boolean) {
     this.loggedIn.next(value);
   }
-  setUserRole(role: string) {
-    this.userRole = role;
+  logout() {
+    return this.http.get<string>(`${this.baseUrl}/logout`);
   }
-  getUserRole() {
-    return this.userRole;
+  setUserRole(role: string): void {
+    console.log('userRole=>', role);
+    const encryptedRole = CryptoJS.AES.encrypt(
+      role.trim(),
+      'secret_key'
+    ).toString();
+    localStorage.setItem(this.ROLE_KEY, encryptedRole);
   }
+  getUserRole(): string {
+    const encryptedRole = localStorage.getItem(this.ROLE_KEY);
+    if (encryptedRole) {
+      const decryptedBytes = CryptoJS.AES.decrypt(encryptedRole, 'secret_key');
+      return decryptedBytes.toString(CryptoJS.enc.Utf8);
+    }
+    return '';
+  }
+  // getUserRolee(token: string): Observable<string> {
+  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  //   return this.http.get<string>(`${this.baseUrl}/user/role`, { headers });
+  // }
 }

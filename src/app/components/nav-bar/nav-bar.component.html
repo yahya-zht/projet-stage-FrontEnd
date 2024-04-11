@@ -20,7 +20,7 @@
           <a
             class="nav-link"
             [routerLink]="['/etablissement']"
-            *ngIf="authService.getUserRole() === 'Directeur'"
+            *ngIf="Role === 'Directeur'"
             >Établissement</a
           >
         </li>
@@ -28,7 +28,7 @@
           <a
             class="nav-link"
             [routerLink]="['/service']"
-            *ngIf="authService.getUserRole() === 'Superviseur'"
+            *ngIf="Role === 'Superviseur'"
             >Service</a
           >
         </li>
@@ -36,32 +36,23 @@
           <a
             class="nav-link"
             [routerLink]="['/personne']"
-            *ngIf="
-              authService.getUserRole() === 'Directeur' ||
-              authService.getUserRole() === 'Superviseur'
-            "
+            *ngIf="Role === 'Directeur' || Role === 'Superviseur'"
             >Employés</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="['conge']"
-            *ngIf="
-              authService.getUserRole() === 'Directeur' ||
-              authService.getUserRole() === 'Superviseur'
-            "
+            [routerLink]="['/conge']"
+            *ngIf="Role === 'Directeur' || Role === 'Superviseur'"
             >Congé</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="['absence']"
-            *ngIf="
-              authService.getUserRole() === 'Directeur' ||
-              authService.getUserRole() === 'Superviseur'
-            "
+            [routerLink]="['/absence']"
+            *ngIf="Role === 'Directeur' || Role === 'Superviseur'"
             >Absence</a
           >
         </li>
@@ -81,18 +72,15 @@
               <a
                 class="nav-link"
                 [routerLink]="['/demande/conge']"
-                *ngIf="
-                  authService.getUserRole() === 'Employé' ||
-                  authService.getUserRole() === 'Superviseur'
-                "
+                *ngIf="Role === 'Employé' || Role === 'Superviseur'"
                 >Demande Congé</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                [routerLink]="['admin/demande/conge']"
-                *ngIf="authService.getUserRole() === 'Directeur'"
+                [routerLink]="['/admin/demande/conge']"
+                *ngIf="Role === 'Directeur'"
                 >Demande Congé</a
               >
             </li>
@@ -100,18 +88,15 @@
               <a
                 class="nav-link"
                 [routerLink]="['/demande/absence']"
-                *ngIf="
-                  authService.getUserRole() === 'Employé' ||
-                  authService.getUserRole() === 'Superviseur'
-                "
+                *ngIf="Role === 'Employé' || Role === 'Superviseur'"
                 >Demande Absence</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link"
-                [routerLink]="['admin/demande/absence']"
-                *ngIf="authService.getUserRole() === 'Directeur'"
+                [routerLink]="['/admin/demande/absence']"
+                *ngIf="Role === 'Directeur'"
                 >Demande Absence</a
               >
             </li>
@@ -124,7 +109,7 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            *ngIf="authService.getUserRole() === 'Admin'"
+            *ngIf="Role === 'Admin'"
           >
             Autre
           </a>
@@ -132,24 +117,24 @@
             <li>
               <a
                 class="dropdown-item"
-                [routerLink]="['echelle']"
-                *ngIf="authService.getUserRole() === 'Admin'"
+                [routerLink]="['/echelle']"
+                *ngIf="Role === 'Admin'"
                 >Échelle</a
               >
             </li>
             <li>
               <a
                 class="dropdown-item"
-                [routerLink]="['fonction']"
-                *ngIf="authService.getUserRole() === 'Admin'"
+                [routerLink]="['/fonction']"
+                *ngIf="Role === 'Admin'"
                 >Fonction</a
               >
             </li>
             <li>
               <a
                 class="dropdown-item"
-                [routerLink]="['grade']"
-                *ngIf="authService.getUserRole() === 'Adimn'"
+                [routerLink]="['/grade']"
+                *ngIf="Role === 'Adimn'"
                 >Grade</a
               >
             </li>
@@ -171,7 +156,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="nav-link" [routerLink]="['profile']" *ngIf="loggedIn"
+              <a class="nav-link" [routerLink]="['/profile']" *ngIf="loggedIn"
                 >Profile</a
               >
             </li>
