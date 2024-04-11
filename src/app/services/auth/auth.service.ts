@@ -34,8 +34,4 @@ export class AuthService {
     }
     return '';
   }
-  // getUserRolee(token: string): Observable<string> {
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  //   return this.http.get<string>(`${this.baseUrl}/user/role`, { headers });
-  // }
 }

@@ -12,16 +12,22 @@ import { AuthService } from '../services/auth/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RoleGuard implements CanActivate {
-  public userRole = '';
+export class RolechefanddirecteurGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
-  ngOnInit(): void {}
-
-  canActivate(): boolean {
-    this.userRole = this.authService.getUserRole();
-    console.log('RoleGuard', this.userRole);
-    const userRole = this.userRole;
-    if (userRole === 'admin' || userRole === 'Directeur') {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    const userRole = this.authService.getUserRole();
+    if (
+      userRole === 'Admin' ||
+      userRole === 'Superviseur' ||
+      userRole === 'Directeur'
+    ) {
       return true;
     } else {
       this.router.navigate(['/accueil']);

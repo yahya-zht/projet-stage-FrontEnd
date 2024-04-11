@@ -33,7 +33,6 @@ import { BeforeLoginService } from '../services/auth/before-login.service';
 import { AfterLoginService } from '../services/auth/after-login.service';
 import { ProfileComponent } from '../pages/profile/profile.component';
 import { AccueilComponent } from '../pages/accueil/accueil.component';
-import { RoleGuard } from './role.guard';
 import { TablePersonnesComponent } from '../components/tables/table-personnes/table-personnes.component';
 import { TableGradeComponent } from '../components/tables/table-grade/table-grade.component';
 import { TableFonctionComponent } from '../components/tables/table-fonction/table-fonction.component';
@@ -46,6 +45,11 @@ import { TableDemandeCongeDirecteurComponent } from '../components/tables/table-
 import { TableDemandeAbsenceComponent } from '../components/tables/table-demande-absence/table-demande-absence.component';
 import { TableDemandeAbsenceAdminComponent } from '../components/tables/table-demande-absence-admin/table-demande-absence-admin.component';
 import { TableAbsenceComponent } from '../components/tables/table-absence/table-absence.component';
+import { RoledirecteurGuard } from './roledirecteur.guard';
+import { RolechefGuard } from './rolechef.guard';
+import { RolechefanddirecteurGuard } from './rolechefanddirecteur.guard';
+import { RoleAdminGuard } from './role-admin.guard';
+import { RoleemployeeGuard } from './roleemployee.guard';
 
 const routes: Routes = [
   {
@@ -58,11 +62,11 @@ const routes: Routes = [
     component: AccueilComponent,
     canActivate: [AfterLoginService],
   },
-  {
-    path: 'pdf',
-    component: PdfComponent,
-    canActivate: [AfterLoginService],
-  },
+  // {
+  //   path: 'pdf',
+  //   component: PdfComponent,
+  //   canActivate: [AfterLoginService],
+  // },
   {
     path: 'personne',
     component: PersonneComponent,
@@ -81,7 +85,7 @@ const routes: Routes = [
       },
       { path: 'show/:id', component: ShowEmployee },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RolechefanddirecteurGuard],
   },
   {
     path: 'grade',
@@ -93,7 +97,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateGrade },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoleAdminGuard],
   },
   {
     path: 'fonction',
@@ -102,7 +106,7 @@ const routes: Routes = [
       { path: '', component: TableFonctionComponent },
       { path: 'create', component: CreateFonction },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoleAdminGuard],
   },
   {
     path: 'echelle',
@@ -117,7 +121,7 @@ const routes: Routes = [
         component: CreateEchelle,
       },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoleAdminGuard],
   },
   {
     path: 'service',
@@ -131,7 +135,7 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditService },
       { path: 'show/:id', component: ShowService },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoledirecteurGuard],
   },
   {
     path: 'etablissement',
@@ -145,7 +149,7 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditEtablissement },
       { path: 'show/:id', component: ShowEtablissement },
     ],
-    canActivate: [AfterLoginService, RoleGuard],
+    canActivate: [AfterLoginService, RoledirecteurGuard],
   },
   {
     path: 'conge',
@@ -156,7 +160,7 @@ const routes: Routes = [
         component: TableCongeComponent,
       },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RolechefanddirecteurGuard],
   },
   {
     path: 'demande/conge',
@@ -172,7 +176,7 @@ const routes: Routes = [
         component: PdfComponent,
       },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoleemployeeGuard],
   },
   {
     path: 'admin/demande/conge',
@@ -187,7 +191,7 @@ const routes: Routes = [
         component: PdfComponent,
       },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoledirecteurGuard],
   },
 
   {
@@ -200,7 +204,7 @@ const routes: Routes = [
       },
       { path: 'create', component: CreateDemandeAbsence },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoleemployeeGuard],
   },
   {
     path: 'admin/demande/absence',
@@ -211,7 +215,7 @@ const routes: Routes = [
         component: TableDemandeAbsenceAdminComponent,
       },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RoledirecteurGuard],
   },
   {
     path: 'absence',
@@ -222,7 +226,7 @@ const routes: Routes = [
         component: TableAbsenceComponent,
       },
     ],
-    canActivate: [AfterLoginService],
+    canActivate: [AfterLoginService, RolechefanddirecteurGuard],
   },
   {
     path: 'signup',

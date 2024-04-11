@@ -26,7 +26,6 @@ export class AfterLoginService implements CanActivate {
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.tokenService.loggedIn()) {
-      console.log('eeeeeeee');
       return true;
     } else {
       this.router.navigateByUrl('/login');
