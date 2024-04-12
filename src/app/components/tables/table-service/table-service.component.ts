@@ -26,15 +26,13 @@ export class TableServiceComponent implements AfterViewInit {
     private service: ServiceService,
     private activatedRoute: ActivatedRoute,
     private etablissementService: EtablissementService,
-    private tokenService: TokenService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('Id=>' + this.getId);
   }
   ngOnInit(): void {
-    const accessToken: any = this.tokenService.getAccessToken();
     if (this.getId === null) {
-      this.service.getAllService(accessToken).subscribe(
+      this.service.getAllService().subscribe(
         (services: any) => {
           this.dataSource.data = services.Services;
           console.log('Services dataSource:', this.dataSource.data);

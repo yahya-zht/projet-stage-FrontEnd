@@ -30,26 +30,23 @@ export class ProfileComponent implements OnInit {
     email: '',
   };
   ngOnInit(): void {
-    const accessToken = this.tokenService.getAccessToken();
-    if (accessToken) {
-      this.profileService.getUserProfile(accessToken).subscribe(
-        (response) => {
-          console.log(response);
-          this.profile = response.user.personne;
-          this.profile.email = response.user.email;
-          this.profile.grade = response.user.personne.grade.libelle;
-          this.profile.fonction = response.user.personne.fonction.libelle;
-          this.profile.echelle = response.user.personne.echelle.libelle;
-          this.profile.service = response.user.personne.service.nom;
-          this.profile.chef =
-            response.user.personne.chef.nom +
-            ' ' +
-            response.user.personne.chef.prenom;
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    }
+    this.profileService.getUserProfile().subscribe(
+      (response) => {
+        console.log(response);
+        this.profile = response.user.personne;
+        this.profile.email = response.user.email;
+        this.profile.grade = response.user.personne.grade.libelle;
+        this.profile.fonction = response.user.personne.fonction.libelle;
+        this.profile.echelle = response.user.personne.echelle.libelle;
+        this.profile.service = response.user.personne.service?.nom;
+        this.profile.chef =
+          response.user.personne.chef?.nom +
+          ' ' +
+          response.user.personne.chef?.prenom;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

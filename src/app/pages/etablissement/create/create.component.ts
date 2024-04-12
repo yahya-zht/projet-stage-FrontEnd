@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { Personne } from 'src/app/Models/Personne';
 import { Service } from 'src/app/Models/Service';
-import { TokenService } from 'src/app/services/auth/token.service';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 import { PersonneService } from 'src/app/services/personne/personne.service';
 import { ServiceService } from 'src/app/services/service/service.service';
@@ -27,7 +26,6 @@ export class CreateComponent implements OnInit {
     private etablissementService: EtablissementService,
     private personneService: PersonneService,
     private serviceService: ServiceService,
-    private tokenService: TokenService
   ) {
     this.etablissementForm = this.formBuilder.group({
       nom: [''],
@@ -47,8 +45,7 @@ export class CreateComponent implements OnInit {
         console.error('Error fetching Service:', error);
       }
     );
-    const accessToken: any = this.tokenService.getAccessToken();
-    this.serviceService.getAllService(accessToken).subscribe(
+    this.serviceService.getAllService().subscribe(
       (service: any) => {
         this.Service = service.Services;
         console.log('Service dataSource:', this.Service);

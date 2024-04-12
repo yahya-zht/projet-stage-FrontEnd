@@ -6,14 +6,19 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Etablissement } from 'src/app/Models/Etablissement';
+import { TokenService } from '../auth/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EtablissementService {
-  REST_API: string = 'http://127.0.0.1:8000/api/etablissement';
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) {}
+  private readonly REST_API = 'http://127.0.0.1:8000/api/etablissement';
+  private readonly token: any = this.tokenService.getAccessToken();
+  private readonly httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${this.token}`,
+  });
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -32,14 +37,18 @@ export class EtablissementService {
       .pipe(catchError(this.handleError));
   }
   getAllEtablissement(): Observable<Etablissement[]> {
+    const token: any = this.tokenService.getAccessToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     let API_URL = this.REST_API;
     return this.http
-      .get<Etablissement[]>(API_URL)
+      .get<Etablissement[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));
   }
   getEtablissementById(id: number): Observable<Etablissement> {
+    const token: any = this.tokenService.getAccessToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     let API_URL = `${this.REST_API}/${id}`;
-    return this.http.get<Etablissement>(API_URL).pipe(
+    return this.http.get<Etablissement>(API_URL, { headers }).pipe(
       map((res: any) => {
         return res || {};
       }),

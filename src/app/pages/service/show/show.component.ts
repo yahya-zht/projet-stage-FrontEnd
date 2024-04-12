@@ -24,9 +24,9 @@ export class ShowComponent implements OnInit {
       .getServiceById(this.getId)
       .subscribe((service: Service) => {
         console.log('Service ====>>>> ' + service.Service.nom);
-        this.NomService = service.Service.nom;
-        this.NomResponsable = service.Service.responsable.nom;
-        this.PrenomResponsable = service.Service.responsable.prenom;
+        this.NomService = service.Service?.nom;
+        this.NomResponsable = service.Service.responsable?.nom;
+        this.PrenomResponsable = service.Service.responsable?.prenom;
       });
   }
   ngOnInit(): void {}

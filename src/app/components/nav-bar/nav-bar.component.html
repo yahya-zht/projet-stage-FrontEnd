@@ -28,7 +28,7 @@
           <a
             class="nav-link"
             [routerLink]="['/service']"
-            *ngIf="Role === 'Directeur'|| Role === 'Admin'"
+            *ngIf="Role === 'Directeur' || Role === 'Admin'"
             >Service</a
           >
         </li>
@@ -36,7 +36,9 @@
           <a
             class="nav-link"
             [routerLink]="['/personne']"
-            *ngIf="Role === 'Directeur' || Role === 'Superviseur'|| Role === 'Admin'"
+            *ngIf="
+              Role === 'Directeur' || Role === 'Superviseur' || Role === 'Admin'
+            "
             >Employés</a
           >
         </li>
@@ -44,7 +46,9 @@
           <a
             class="nav-link"
             [routerLink]="['/conge']"
-            *ngIf="Role === 'Directeur' || Role === 'Superviseur'|| Role === 'Admin'"
+            *ngIf="
+              Role === 'Directeur' || Role === 'Superviseur' || Role === 'Admin'
+            "
             >Congé</a
           >
         </li>
@@ -52,7 +56,9 @@
           <a
             class="nav-link"
             [routerLink]="['/absence']"
-            *ngIf="Role === 'Directeur' || Role === 'Superviseur'|| Role === 'Admin'"
+            *ngIf="
+              Role === 'Directeur' || Role === 'Superviseur' || Role === 'Admin'
+            "
             >Absence</a
           >
         </li>
@@ -72,7 +78,11 @@
               <a
                 class="nav-link"
                 [routerLink]="['/demande/conge']"
-                *ngIf="Role === 'Employé' || Role === 'Superviseur'|| Role === 'Admin'"
+                *ngIf="
+                  Role === 'Employé' ||
+                  Role === 'Superviseur' ||
+                  Role === 'Admin'
+                "
                 >Demande Congé</a
               >
             </li>
@@ -80,7 +90,7 @@
               <a
                 class="nav-link"
                 [routerLink]="['/admin/demande/conge']"
-                *ngIf="Role === 'Directeur'|| Role === 'Admin'"
+                *ngIf="Role === 'Directeur' || Role === 'Admin'"
                 >Demande Congé</a
               >
             </li>
@@ -88,7 +98,11 @@
               <a
                 class="nav-link"
                 [routerLink]="['/demande/absence']"
-                *ngIf="Role === 'Employé' || Role === 'Superviseur'|| Role === 'Admin'"
+                *ngIf="
+                  Role === 'Employé' ||
+                  Role === 'Superviseur' ||
+                  Role === 'Admin'
+                "
                 >Demande Absence</a
               >
             </li>
@@ -96,7 +110,7 @@
               <a
                 class="nav-link"
                 [routerLink]="['/admin/demande/absence']"
-                *ngIf="Role === 'Directeur'|| Role === 'Admin'"
+                *ngIf="Role === 'Directeur' || Role === 'Admin'"
                 >Demande Absence</a
               >
             </li>
@@ -134,7 +148,7 @@
               <a
                 class="dropdown-item"
                 [routerLink]="['/grade']"
-                *ngIf="Role === 'Adimn'"
+                *ngIf="Role === 'Admin'"
                 >Grade</a
               >
             </li>

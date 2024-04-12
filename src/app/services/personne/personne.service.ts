@@ -6,14 +6,18 @@ import {
 } from '@angular/common/http';
 import { Personne } from '../../Models/Personne';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { TokenService } from '../auth/token.service';
 @Injectable({
   providedIn: 'root',
 })
 export class PersonneService {
-  REST_API: string = 'http://127.0.0.1:8000/api/personne';
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) {}
-
+  private readonly REST_API = 'http://127.0.0.1:8000/api/personne';
+  private readonly token: any = this.tokenService.getAccessToken();
+  private readonly httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${this.token}`,
+  });
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -26,21 +30,33 @@ export class PersonneService {
     return throwError(errorMessage);
   }
   AddPersonne(data: Personne): Observable<Personne> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
     return this.http
-      .post<Personne>(API_URL, data)
+      .post<Personne>(API_URL, data, { headers })
       .pipe(catchError(this.handleError));
   }
   getAllPersonnes(): Observable<Personne[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
     return this.http
-      .get<Personne[]>(API_URL)
+      .get<Personne[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));
   }
   getPersonneById(id: number): Observable<Personne> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     // let API_URL = this.REST_API + '/' + id;
     let API_URL = `${this.REST_API}/${id}`;
-    return this.http.get<Personne>(API_URL).pipe(
+    return this.http.get<Personne>(API_URL, { headers }).pipe(
       map((res: any) => {
         return res || {};
       }),

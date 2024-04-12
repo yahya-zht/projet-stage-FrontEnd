@@ -11,7 +11,6 @@ import { GradeService } from 'src/app/services/grade/grade.service';
 import { Service } from 'src/app/Models/Service';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { Personne } from 'src/app/Models/Personne';
-import { TokenService } from 'src/app/services/auth/token.service';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -34,7 +33,6 @@ export class CreateComponent implements OnInit {
     private fonctionService: FonctionService,
     private gradeService: GradeService,
     private serviceService: ServiceService,
-    private tokenService: TokenService
   ) {
     this.personneForm = this.formBuilder.group({
       CIN: [''],
@@ -80,8 +78,7 @@ export class CreateComponent implements OnInit {
         console.error('Error fetching Grade:', error);
       }
     );
-    const accessToken: any = this.tokenService.getAccessToken();
-    this.serviceService.getAllService(accessToken).subscribe(
+    this.serviceService.getAllService().subscribe(
       (service: any) => {
         this.Service = service.Services;
         console.log('Service dataSource:', this.Service);

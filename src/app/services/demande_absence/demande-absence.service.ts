@@ -6,14 +6,19 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { DemandeAbsence } from 'src/app/Models/DemandeAbsence';
+import { TokenService } from '../auth/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DemandeAbsenceService {
-  REST_API: string = 'http://127.0.0.1:8000/api/demande/Absence';
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) {}
+  private readonly REST_API = 'http://127.0.0.1:8000/api/demande/Absence';
+  private readonly token: any = this.tokenService.getAccessToken();
+  private readonly httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${this.token}`,
+  });
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -26,20 +31,32 @@ export class DemandeAbsenceService {
     return throwError(errorMessage);
   }
   AddDemandeAbsence(data: DemandeAbsence): Observable<DemandeAbsence> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
     return this.http
-      .post<DemandeAbsence>(API_URL, data)
+      .post<DemandeAbsence>(API_URL, data, { headers })
       .pipe(catchError(this.handleError));
   }
   getAllDemandeAbsence(): Observable<DemandeAbsence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
     return this.http
-      .get<DemandeAbsence[]>(API_URL)
+      .get<DemandeAbsence[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));
   }
   getDemandeAbsenceById(id: number): Observable<DemandeAbsence> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = `${this.REST_API}/${id}`;
-    return this.http.get<DemandeAbsence>(API_URL).pipe(
+    return this.http.get<DemandeAbsence>(API_URL, { headers }).pipe(
       map((res: any) => {
         return res || {};
       }),

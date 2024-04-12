@@ -6,16 +6,22 @@ import {
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { DemandeAbsence } from 'src/app/Models/DemandeAbsence';
+import { TokenService } from '../auth/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DemandeAbsenceAdminService {
-  REST_API: string = 'http://127.0.0.1:8000/api/admin/demande/Absence';
-  REST_API_Conge: string = 'http://127.0.0.1:8000/api/absence/create';
-  REST_API_Reject: string = 'http://127.0.0.1:8000/api/demande/absence/reject';
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) {}
+  private readonly REST_API = 'http://127.0.0.1:8000/api/admin/demande/Absence';
+  private readonly REST_API_Conge = 'http://127.0.0.1:8000/api/absence/create';
+  private readonly REST_API_Reject =
+    'http://127.0.0.1:8000/api/demande/absence/reject';
+  private readonly token: any = this.tokenService.getAccessToken();
+  private readonly httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${this.token}`,
+  });
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -28,21 +34,33 @@ export class DemandeAbsenceAdminService {
     return throwError(errorMessage);
   }
   getAllDemandeAbsence(): Observable<DemandeAbsence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
     return this.http
-      .get<DemandeAbsence[]>(API_URL)
+      .get<DemandeAbsence[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));
   }
   AddAbsence(id: number): Observable<DemandeAbsence> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = `${this.REST_API_Conge}/${id}`;
     return this.http
-      .post<DemandeAbsence>(API_URL, id)
+      .post<DemandeAbsence>(API_URL, id, { headers })
       .pipe(catchError(this.handleError));
   }
   RejectAbsence(id: number): Observable<DemandeAbsence> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = `${this.REST_API_Reject}/${id}`;
     return this.http
-      .post<DemandeAbsence>(API_URL, id)
+      .post<DemandeAbsence>(API_URL, id, { headers })
       .pipe(catchError(this.handleError));
   }
 }

@@ -6,14 +6,19 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Conge } from 'src/app/Models/Conge';
+import { TokenService } from '../auth/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CongeService {
-  REST_API: string = 'http://127.0.0.1:8000/api/conge';
-  httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http: HttpClient) {}
+  private readonly REST_API = 'http://127.0.0.1:8000/api/conge';
+  private readonly token: any = this.tokenService.getAccessToken();
+  private readonly httpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${this.token}`,
+  });
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -26,18 +31,32 @@ export class CongeService {
     return throwError(errorMessage);
   }
   AddConge(data: Conge): Observable<Conge> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
     return this.http
-      .post<Conge>(API_URL, data)
+      .post<Conge>(API_URL, data, { headers })
       .pipe(catchError(this.handleError));
   }
   getAllConge(): Observable<Conge[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = this.REST_API;
-    return this.http.get<Conge[]>(API_URL).pipe(catchError(this.handleError));
+    return this.http
+      .get<Conge[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
   }
   getCongeById(id: number): Observable<Conge> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
     let API_URL = `${this.REST_API}/${id}`;
-    return this.http.get<Conge>(API_URL).pipe(
+    return this.http.get<Conge>(API_URL, { headers }).pipe(
       map((res: any) => {
         return res || {};
       }),
