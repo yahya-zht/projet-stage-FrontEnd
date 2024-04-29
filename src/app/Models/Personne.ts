@@ -12,6 +12,7 @@ export class Personne {
   fonction_id: number;
   echelle_id: number;
   service_id: number;
+  etablissement_id: number;
   grade!: {
     // id: number;
     libelle: string;
@@ -42,6 +43,10 @@ export class Personne {
   };
   chef!: {
     nom: string;
+    prenom: string;
+  };
+  etablissement!: {
+    nom: string;
   };
   Personne: any;
   constructor(
@@ -57,6 +62,7 @@ export class Personne {
     fonction_id: number,
     echelle_id: number,
     service_id: number,
+    etablissement_id: number,
     chef_id?: number
   ) {
     this.id = id;
@@ -72,5 +78,6 @@ export class Personne {
     this.fonction_id = fonction_id;
     this.echelle_id = echelle_id;
     this.service_id = service_id;
+    this.etablissement_id = etablissement_id;
   }
 }

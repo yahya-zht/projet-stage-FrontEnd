@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Etablissement } from 'src/app/Models/Etablissement';
 import { Service } from 'src/app/Models/Service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 import { ServiceService } from 'src/app/services/service/service.service';
@@ -20,17 +21,19 @@ export class TableServiceComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Service>;
   dataSource = new MatTableDataSource<Service>();
   displayedColumns = ['nom', 'responsable', 'nomberemployes', 'Action'];
-
+  public Role = '';
   getId: any;
   constructor(
+    private authService: AuthService,
     private service: ServiceService,
     private activatedRoute: ActivatedRoute,
-    private etablissementService: EtablissementService,
+    private etablissementService: EtablissementService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('Id=>' + this.getId);
   }
   ngOnInit(): void {
+    this.Role = this.authService.getUserRole();
     if (this.getId === null) {
       this.service.getAllService().subscribe(
         (services: any) => {

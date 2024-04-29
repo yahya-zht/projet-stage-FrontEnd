@@ -97,7 +97,10 @@
           </p>
           <p class="col-6">
             <span class="fw-bold">Chef :</span>
-            {{ profile.chef ? profile.chef : "--" }}
+            <span *ngIf="profile.chef === undefined">{{
+              profile.chef ? profile.chef : "--"
+            }}</span>
+            <span *ngIf="profile.chef !== undefined"> -- </span>
             <mat-progress-bar
               class=""
               mode="indeterminate"

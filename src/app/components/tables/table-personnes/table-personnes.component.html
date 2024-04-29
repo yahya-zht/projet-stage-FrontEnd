@@ -1,7 +1,9 @@
 <mat-card class="my-3 bg-light" *ngIf="getId === null">
   <div class="d-flex justify-content-between align-items-center">
     <p class="mb-0 fs-5 fw-bolder">Employés</p>
-    <a [routerLink]="['create']" class="btn btn-danger">Create</a>
+    <a [routerLink]="['create']" class="btn btn-danger" *ngIf="Role === 'Admin'"
+      >Create</a
+    >
   </div>
 </mat-card>
 <div class="mat-elevation-z8">
@@ -102,7 +104,7 @@
             >Show
           </button>
           <button
-            *ngIf="getId === null"
+            *ngIf="getId === null && Role === 'Admin'"
             [routerLink]="['edit/', row.id]"
             class="btn btn-primary m-1 d-flex align-items-center"
           >
@@ -115,7 +117,7 @@
             >Edit
           </button>
           <button
-            *ngIf="getId !== null"
+            *ngIf="getId !== null && Role === 'Admin'"
             [routerLink]="['/personne/edit/', row.id]"
             class="btn btn-primary m-1 d-flex align-items-center"
           >
@@ -128,6 +130,7 @@
             >Edit
           </button>
           <button
+            *ngIf="Role === 'Admin'"
             (click)="delete(row.id, i)"
             class="btn btn-danger m-1 d-flex align-items-center"
           >

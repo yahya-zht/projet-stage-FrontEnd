@@ -11,6 +11,8 @@ import { GradeService } from 'src/app/services/grade/grade.service';
 import { Service } from 'src/app/Models/Service';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { Personne } from 'src/app/Models/Personne';
+import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
+import { Etablissement } from 'src/app/Models/Etablissement';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -20,6 +22,7 @@ export class CreateComponent implements OnInit {
   personneForm: FormGroup;
   Echelle: Echelle[] = [];
   Fonction: Fonction[] = [];
+  Etablissements: Etablissement[] = [];
   Grade: Grade[] = [];
   Service: Service[] = [];
   Personnes: Personne[] = [];
@@ -33,6 +36,7 @@ export class CreateComponent implements OnInit {
     private fonctionService: FonctionService,
     private gradeService: GradeService,
     private serviceService: ServiceService,
+    private etablissementService: EtablissementService
   ) {
     this.personneForm = this.formBuilder.group({
       CIN: [''],
@@ -47,6 +51,7 @@ export class CreateComponent implements OnInit {
       fonction_id: [''],
       echelle_id: [''],
       service_id: [''],
+      etablissement_id: [''],
     });
   }
 
@@ -94,6 +99,15 @@ export class CreateComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching Service:', error);
+      }
+    );
+    this.etablissementService.getAllEtablissement().subscribe(
+      (Etablissements: any) => {
+        this.Etablissements = Etablissements.Etablissements;
+        console.log('Etablissements dataSource:', this.Fonction);
+      },
+      (error) => {
+        console.error('Error fetching Etablissements:', error);
       }
     );
   }

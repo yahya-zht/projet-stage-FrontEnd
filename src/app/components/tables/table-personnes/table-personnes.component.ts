@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { Service } from 'src/app/Models/Service';
 import { Etablissement } from 'src/app/Models/Etablissement';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-table-personnes',
@@ -21,8 +22,10 @@ export class TablePersonnesComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Personne>;
   dataSource = new MatTableDataSource<Personne>();
   getId: any;
+  public Role = '';
   displayedColumns: string[] = [];
   constructor(
+    private authService: AuthService,
     private personneService: PersonneService,
     private activatedRoute: ActivatedRoute,
     private serviceService: ServiceService
@@ -32,6 +35,7 @@ export class TablePersonnesComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.Role = this.authService.getUserRole();
     if (this.getId === null) {
       this.displayedColumns = [
         'CIN',

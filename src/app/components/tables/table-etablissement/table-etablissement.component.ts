@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Etablissement } from 'src/app/Models/Etablissement';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 
 @Component({
@@ -16,9 +17,13 @@ export class TableEtablissementComponent implements AfterViewInit {
   @ViewChild(MatTable) table!: MatTable<Etablissement>;
   dataSource = new MatTableDataSource<Etablissement>();
   displayedColumns = ['nom', 'adresse', 'directeur_id', 'Action'];
-
-  constructor(private etablissement: EtablissementService) {}
+  public Role = '';
+  constructor(
+    private authService: AuthService,
+    private etablissement: EtablissementService
+  ) {}
   ngOnInit(): void {
+    this.Role = this.authService.getUserRole();
     this.etablissement.getAllEtablissement().subscribe(
       (etablissement: any) => {
         this.dataSource.data = etablissement.Etablissements;

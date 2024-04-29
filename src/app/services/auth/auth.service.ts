@@ -16,6 +16,7 @@ export class AuthService {
     this.loggedIn.next(value);
   }
   logout() {
+    window.location.reload();
     return this.http.get<string>(`${this.baseUrl}/logout`);
   }
   setUserRole(role: string): void {

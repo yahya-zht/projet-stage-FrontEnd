@@ -33,12 +33,22 @@ export class ProfileComponent implements OnInit {
     this.profileService.getUserProfile().subscribe(
       (response) => {
         console.log(response);
+        console.log(
+          ' response.user.personne.etablissement.nom ',
+          response.user.personne.etablissement?.nom
+        );
+        console.log(
+          ' response.user.personne.chef.nom ',
+          response.user.personne.chef?.nom,
+          response.user.personne.chef?.prenom
+        );
         this.profile = response.user.personne;
         this.profile.email = response.user.email;
         this.profile.grade = response.user.personne.grade.libelle;
         this.profile.fonction = response.user.personne.fonction.libelle;
         this.profile.echelle = response.user.personne.echelle.libelle;
         this.profile.service = response.user.personne.service?.nom;
+        this.profile.etablissement = response.user.personne.etablissement?.nom;
         this.profile.chef =
           response.user.personne.chef?.nom +
           ' ' +

@@ -78,10 +78,12 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreatePersonne,
+        canActivate: [RoleAdminGuard],
       },
       {
         path: 'edit/:id',
         component: EditPersonne,
+        canActivate: [RoleAdminGuard],
       },
       { path: 'show/:id', component: ShowEmployee },
     ],
@@ -131,8 +133,16 @@ const routes: Routes = [
         path: '',
         component: TableServiceComponent,
       },
-      { path: 'create', component: CreateService },
-      { path: 'edit/:id', component: EditService },
+      {
+        path: 'create',
+        component: CreateService,
+        canActivate: [RoleAdminGuard],
+      },
+      {
+        path: 'edit/:id',
+        component: EditService,
+        canActivate: [RoleAdminGuard],
+      },
       { path: 'show/:id', component: ShowService },
     ],
     canActivate: [AfterLoginService, RoledirecteurGuard],
@@ -145,11 +155,17 @@ const routes: Routes = [
         path: '',
         component: TableEtablissementComponent,
       },
-      { path: 'create', component: CreateEtablissement },
-      { path: 'edit/:id', component: EditEtablissement },
+      {
+        path: 'create',
+        component: CreateEtablissement,
+      },
+      {
+        path: 'edit/:id',
+        component: EditEtablissement,
+      },
       { path: 'show/:id', component: ShowEtablissement },
     ],
-    canActivate: [AfterLoginService, RoledirecteurGuard],
+    canActivate: [AfterLoginService, RoleAdminGuard],
   },
   {
     path: 'conge',
