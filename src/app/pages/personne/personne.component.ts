@@ -8,25 +8,7 @@ import { PersonneService } from 'src/app/services/personne/personne.service';
   styleUrls: ['./personne.component.css'],
 })
 export class PersonneComponent implements OnInit {
-  Personnes: Personne[] = [];
-  constructor(private personneService: PersonneService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.personneService.getAllPersonnes().subscribe(
-      (personnes: any) => {
-        this.Personnes = personnes.Personnes;
-        console.log('Personnes:', this.Personnes);
-      },
-      (error) => {
-        console.error('Error fetching personnes:', error);
-      }
-    );
-  }
-  delete(id: any, i: any) {
-    if (confirm('delete personnes ')) {
-      this.personneService.deletePersonne(id).subscribe((person) => {
-        this.Personnes.splice(i, 1);
-      });
-    }
-  }
+  ngOnInit(): void {}
 }

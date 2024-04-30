@@ -18,6 +18,7 @@ export class TableDemandeAbsenceAdminComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<DemandeAbsence>();
 
   displayedColumns = [
+    'CIN',
     'Personne',
     'Type',
     'Durée',

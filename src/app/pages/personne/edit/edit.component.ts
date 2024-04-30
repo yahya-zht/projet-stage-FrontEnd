@@ -11,6 +11,8 @@ import { EchelleService } from 'src/app/services/echelle/echelle.service';
 import { FonctionService } from 'src/app/services/fonction/fonction.service';
 import { GradeService } from 'src/app/services/grade/grade.service';
 import { ServiceService } from 'src/app/services/service/service.service';
+import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
+import { Etablissement } from 'src/app/Models/Etablissement';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -21,6 +23,7 @@ export class EditComponent implements OnInit {
   updateForm: FormGroup;
   Echelle: Echelle[] = [];
   Fonction: Fonction[] = [];
+  Etablissements: Etablissement[] = [];
   Grade: Grade[] = [];
   Service: Service[] = [];
   Personnes: Personne[] = [];
@@ -34,13 +37,15 @@ export class EditComponent implements OnInit {
     private echelleService: EchelleService,
     private fonctionService: FonctionService,
     private gradeService: GradeService,
-    private serviceService: ServiceService
+    private serviceService: ServiceService,
+    private etablissementService: EtablissementService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     this.personneService
       .getPersonneById(this.getId)
       .subscribe((personne: Personne) => {
-        console.log(personne.Personne['chef_id']);
+        console.log(personne.Personne);
+        console.log(personne.Personne['etablissement_id']);
         this.updateForm.patchValue({
           CIN: personne.Personne['CIN'],
           nom: personne.Personne['nom'],
@@ -54,6 +59,7 @@ export class EditComponent implements OnInit {
           fonction_id: personne.Personne['fonction_id'],
           echelle_id: personne.Personne['echelle_id'],
           service_id: personne.Personne['service_id'],
+          etablissement_id: personne.Personne['etablissement_id'],
         });
       });
     this.updateForm = this.formBuilder.group({
@@ -69,6 +75,7 @@ export class EditComponent implements OnInit {
       fonction_id: [''],
       echelle_id: [''],
       service_id: [''],
+      etablissement_id: [''],
     });
   }
   ngOnInit(): void {
@@ -115,6 +122,15 @@ export class EditComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching Service:', error);
+      }
+    );
+    this.etablissementService.getAllEtablissement().subscribe(
+      (Etablissements: any) => {
+        this.Etablissements = Etablissements.Etablissements;
+        console.log('Etablissements dataSource:', this.Fonction);
+      },
+      (error) => {
+        console.error('Error fetching Etablissements:', error);
       }
     );
   }

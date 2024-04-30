@@ -10,9 +10,19 @@
       <td mat-cell *matCellDef="let row">{{ row.type }}</td>
     </ng-container>
     <ng-container matColumnDef="Personne">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Personne</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
       <td mat-cell *matCellDef="let row">
-        {{ row.personne.nom + " " + row.personne.prenom }}
+        {{
+          row.personne
+            ? row.personne.nom + " " + row.personne.prenom
+            : row.nom + " " + row.prenom
+        }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="CIN">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>CIN</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.personne ? row.personne.CIN : row.CIN }}
       </td>
     </ng-container>
     <ng-container matColumnDef="Durée">
@@ -52,14 +62,14 @@
           <button
             href="#"
             class="btn btn-success"
-            (click)="addConge(row.id, i)"
+            (click)="addConge(row.idC, i)"
           >
             Accepter
           </button>
           <button
             href="#"
             class="btn btn-danger"
-            (click)="rejectDemande(row.id, i)"
+            (click)="rejectDemande(row.idC, i)"
           >
             REJETÉ
           </button>

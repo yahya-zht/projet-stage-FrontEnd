@@ -117,8 +117,9 @@
           <mat-label>Select Role</mat-label>
           <mat-select formControlName="role">
             <mat-option value="Employé">Employé</mat-option>
-            <mat-option value="Superviseur">Superviseur</mat-option>
-            <mat-option value="Directeur">Directeur</mat-option>
+            <mat-option value="Superviseur">Responsable</mat-option>
+            <mat-option value="Directeur">Sous Directeur</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
           </mat-select>
           <div *ngIf="error?.role" class="text-danger">
             {{ error.role }}
@@ -200,6 +201,20 @@
             {{ error.service_id }}
           </div>
           <mat-hint align="end">Service</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col">
+          <mat-label>Select Établissement</mat-label>
+          <mat-select formControlName="etablissement_id">
+            <mat-option
+              [value]="item.id"
+              *ngFor="let item of Etablissements; let i = index"
+              >{{ item.nom }}</mat-option
+            >
+          </mat-select>
+          <div *ngIf="error?.etablissement_id" class="text-danger">
+            {{ error.etablissement_id }}
+          </div>
+          <mat-hint align="end">Établissement</mat-hint>
         </mat-form-field>
       </div>
       <div class="d-flex justify-content-between">

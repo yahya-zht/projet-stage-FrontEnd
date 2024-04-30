@@ -13,6 +13,12 @@ import { TokenService } from '../auth/token.service';
 })
 export class DemandeAbsenceService {
   private readonly REST_API = 'http://127.0.0.1:8000/api/demande/Absence';
+  private readonly REST_API_For_Responsable =
+    'http://127.0.0.1:8000/api/demande/absence/responsable';
+  private readonly REST_API_For_Directeur =
+    'http://127.0.0.1:8000/api/demande/absence/directeur';
+  private readonly REST_API_FOR_One =
+    'http://127.0.0.1:8000/api/demande/absence/one';
   private readonly token: any = this.tokenService.getAccessToken();
   private readonly httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -50,6 +56,38 @@ export class DemandeAbsenceService {
       .get<DemandeAbsence[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));
   }
+
+  getDemandeAbsenceForOne(): Observable<DemandeAbsence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_FOR_One;
+    return this.http
+      .get<DemandeAbsence[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getDemandeAbsenceForResponsable(): Observable<DemandeAbsence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_For_Responsable;
+    return this.http
+      .get<DemandeAbsence[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getDemandeAbsenceForDirecteur(): Observable<DemandeAbsence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_For_Directeur;
+    return this.http
+      .get<DemandeAbsence[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
   getDemandeAbsenceById(id: number): Observable<DemandeAbsence> {
     const headers = new HttpHeaders().set(
       'Authorization',

@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
     this.demandeCongeForm = this.formBuilder.group({
       dateDebut: [''],
       dateFin: [''],
-      personne_id: [''],
+      // personne_id: [''],
       dateDemande: [''],
       type: [''],
       duree: this.Duree,

@@ -13,6 +13,10 @@ import { TokenService } from '../auth/token.service';
 })
 export class DemandeCongeService {
   private readonly REST_API = 'http://127.0.0.1:8000/api/demande/Conge';
+  private readonly REST_API_For_One =
+    'http://127.0.0.1:8000/api/demande/conge/one';
+  private readonly REST_API_For_Responsable =
+    'http://127.0.0.1:8000/api/demande/conge/responsable';
   private readonly token: any = this.tokenService.getAccessToken();
   private readonly httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -46,6 +50,26 @@ export class DemandeCongeService {
       `Bearer ${this.token}`
     );
     let API_URL = this.REST_API;
+    return this.http
+      .get<DemandeConge[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getDemandeCongeForOne(): Observable<DemandeConge[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_For_One;
+    return this.http
+      .get<DemandeConge[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getDemandeCongeForResponsable(): Observable<DemandeConge[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_For_Responsable;
     return this.http
       .get<DemandeConge[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));

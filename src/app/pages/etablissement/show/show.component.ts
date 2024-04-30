@@ -18,19 +18,21 @@ export class ShowComponent implements OnInit {
   AdresseEtablissement: string = '';
   constructor(
     private activatedRoute: ActivatedRoute,
-    private etablissementService: EtablissementService,
+    private etablissementService: EtablissementService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     this.etablissementService
       .getEtablissementById(this.getId)
       .subscribe((etablissement: Etablissement) => {
         console.log(
-          'Etablissement ====>>>> ' + etablissement.Etablissement.directeur.nom
+          'Etablissement ====>>>> ' +
+            etablissement.Etablissement.directeur?.prenom
         );
+        console.log('=>', etablissement);
         this.NomEtablissement = etablissement.Etablissement['nom'];
         this.AdresseEtablissement = etablissement.Etablissement['adresse'];
-        this.NomDirecteur = etablissement.Etablissement.directeur.nom;
-        this.PrenomDirecteur = etablissement.Etablissement.directeur.pernom;
+        this.NomDirecteur = etablissement.Etablissement.directeur?.nom;
+        this.PrenomDirecteur = etablissement.Etablissement.directeur?.prenom;
       });
   }
   ngOnInit(): void {}

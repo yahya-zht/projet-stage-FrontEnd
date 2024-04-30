@@ -117,8 +117,9 @@
           <mat-label>Select Role</mat-label>
           <mat-select formControlName="role">
             <mat-option value="Employé">Employé</mat-option>
-            <mat-option value="Superviseur">Superviseur</mat-option>
-            <mat-option value="Directeur">Directeur</mat-option>
+            <mat-option value="Superviseur">Responsable</mat-option>
+            <mat-option value="Directeur">Sous Directeur</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
           </mat-select>
           <div *ngIf="error?.role" class="text-danger">
             {{ error.role }}

@@ -22,10 +22,14 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
       <td mat-cell *matCellDef="let row">{{ row.type }}</td>
     </ng-container>
-    <ng-container matColumnDef="Personne_id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Personne</th>
+    <ng-container matColumnDef="Nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
       <td mat-cell *matCellDef="let row">
-        {{ row.personne.nom + " " + row.personne.prenom }}
+        {{
+          row.personne
+            ? row.personne.nom + " " + row.personne.prenom
+            : row.nom + " " + row.prenom
+        }}
       </td>
     </ng-container>
     <ng-container matColumnDef="Ref_demande">

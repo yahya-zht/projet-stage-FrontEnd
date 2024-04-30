@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DemandeAbsence } from 'src/app/Models/DemandeAbsence';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { DemandeAbsenceService } from 'src/app/services/demande_absence/demande-absence.service';
 
 @Component({
@@ -18,26 +19,69 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
-    'Personne',
     'Type',
-    'Durée',
     'DateDemande',
     'DateDebut',
     'DateFin',
+    'Durée',
     'état',
   ];
-
-  constructor(private demandeAbsenceService: DemandeAbsenceService) {}
+  public Role = '';
+  constructor(
+    private demandeAbsenceService: DemandeAbsenceService,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
-    this.demandeAbsenceService.getAllDemandeAbsence().subscribe(
-      (demandeabsence: any) => {
-        this.dataSource.data = demandeabsence.DemandeAbsence;
-        console.log('Demande Absence dataSource:', this.dataSource.data);
-      },
-      (error) => {
-        console.error('Error fetching Demande Absence:', error);
-      }
-    );
+    this.Role = this.authService.getUserRole();
+    const Role = this.Role;
+    if (Role === 'Employé') {
+      console.log('Employé');
+      this.demandeAbsenceService.getDemandeAbsenceForOne().subscribe(
+        (demandeabsence: any) => {
+          this.dataSource.data = demandeabsence.DemandeAbsence;
+          console.log('Demande Absence dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Absence:', error);
+        }
+      );
+    } else if (Role === 'Directeur') {
+      console.log('Directeur');
+      this.displayedColumns.unshift('CIN', 'Nom');
+      this.demandeAbsenceService.getDemandeAbsenceForDirecteur().subscribe(
+        (demandeabsence: any) => {
+          this.dataSource.data = demandeabsence.DemandeAbsence;
+          console.log('Demande Absence dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Absence:', error);
+        }
+      );
+    } else if (Role === 'Superviseur') {
+      this.displayedColumns.unshift('CIN', 'Nom');
+      console.log('Superviseur');
+      this.demandeAbsenceService.getDemandeAbsenceForResponsable().subscribe(
+        (demandeabsence: any) => {
+          this.dataSource.data = demandeabsence.DemandeAbsence;
+          console.log('Demande Absence dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Absence:', error);
+        }
+      );
+    } else if (Role === 'Admin') {
+      console.log('Admin');
+      this.displayedColumns.unshift('CIN', 'Nom');
+      this.demandeAbsenceService.getAllDemandeAbsence().subscribe(
+        (demandeabsence: any) => {
+          this.dataSource.data = demandeabsence.DemandeAbsence;
+          console.log('Demande Absence dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Absence:', error);
+        }
+      );
+    }
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

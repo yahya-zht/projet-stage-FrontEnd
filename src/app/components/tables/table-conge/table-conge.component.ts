@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Conge } from 'src/app/Models/Conge';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CongeService } from 'src/app/services/conge/conge.service';
 
 @Component({
@@ -18,25 +19,52 @@ export class TableCongeComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
-    'Personne_id',
+    'Nom',
     'Ref_demande',
     'datedebut',
     'datefin',
     'duree',
     'type',
   ];
-
-  constructor(private congeService: CongeService) {}
+  public Role = '';
+  constructor(
+    private congeService: CongeService,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
-    this.congeService.getAllConge().subscribe(
-      (conge: any) => {
-        this.dataSource.data = conge.Conges;
-        console.log('Conge dataSource:', this.dataSource.data);
-      },
-      (error) => {
-        console.error('Error fetching Conge:', error);
-      }
-    );
+    this.Role = this.authService.getUserRole();
+    const Role = this.Role;
+    if (Role === 'Superviseur') {
+      this.congeService.getCongeForResponsable().subscribe(
+        (conge: any) => {
+          this.dataSource.data = conge.Conges;
+          console.log('Conge dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Conge:', error);
+        }
+      );
+    } else if (Role === 'Directeur') {
+      this.congeService.getCongeForDirecteur().subscribe(
+        (conge: any) => {
+          this.dataSource.data = conge.Conges;
+          console.log('Conge dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Conge:', error);
+        }
+      );
+    } else if (Role === 'Admin') {
+      this.congeService.getAllConge().subscribe(
+        (conge: any) => {
+          this.dataSource.data = conge.Conges;
+          console.log('Conge dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Conge:', error);
+        }
+      );
+    }
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

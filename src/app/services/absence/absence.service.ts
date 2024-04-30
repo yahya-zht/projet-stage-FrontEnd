@@ -13,6 +13,10 @@ import { TokenService } from '../auth/token.service';
 })
 export class AbsenceService {
   private readonly REST_API = 'http://127.0.0.1:8000/api/absence';
+  private readonly REST_API_Responsable =
+    'http://127.0.0.1:8000/api/absence/responsable';
+  private readonly REST_API_Directeur =
+    'http://127.0.0.1:8000/api/absence/directeur';
   private readonly token: any = this.tokenService.getAccessToken();
   private readonly httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -46,6 +50,26 @@ export class AbsenceService {
       `Bearer ${this.token}`
     );
     let API_URL = this.REST_API;
+    return this.http
+      .get<Absence[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getAbsenceForResponsable(): Observable<Absence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_Responsable;
+    return this.http
+      .get<Absence[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getAbsenceForDirecteur(): Observable<Absence[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_Directeur;
     return this.http
       .get<Absence[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));

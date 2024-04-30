@@ -13,7 +13,8 @@ import { TokenService } from '../auth/token.service';
 })
 export class DemandeAbsenceAdminService {
   private readonly REST_API = 'http://127.0.0.1:8000/api/admin/demande/Absence';
-  private readonly REST_API_Conge = 'http://127.0.0.1:8000/api/absence/create';
+  private readonly REST_API_Absence =
+    'http://127.0.0.1:8000/api/absence/create';
   private readonly REST_API_Reject =
     'http://127.0.0.1:8000/api/demande/absence/reject';
   private readonly token: any = this.tokenService.getAccessToken();
@@ -48,7 +49,7 @@ export class DemandeAbsenceAdminService {
       'Authorization',
       `Bearer ${this.token}`
     );
-    let API_URL = `${this.REST_API_Conge}/${id}`;
+    let API_URL = `${this.REST_API_Absence}/${id}`;
     return this.http
       .post<DemandeAbsence>(API_URL, id, { headers })
       .pipe(catchError(this.handleError));

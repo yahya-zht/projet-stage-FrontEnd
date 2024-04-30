@@ -17,6 +17,7 @@ export class TableDemandeCongeDirecteurComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<DemandeConge>();
 
   displayedColumns = [
+    'CIN',
     'Personne',
     'Type',
     'Durée',
@@ -36,6 +37,9 @@ export class TableDemandeCongeDirecteurComponent implements AfterViewInit {
   ngOnInit(): void {
     this.demandeCongeAdminService.getAllDemandeConge().subscribe(
       (demandeConge: any) => {
+        console.log('====================================');
+        console.log(demandeConge);
+        console.log('====================================');
         this.dataSource.data = demandeConge.demandesEnAttente;
         console.log('Demande Congé dataSource:', this.dataSource.data);
       },

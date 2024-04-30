@@ -12,6 +12,7 @@ import { TokenService } from '../auth/token.service';
 })
 export class PersonneService {
   private readonly REST_API = 'http://127.0.0.1:8000/api/personne';
+  private readonly REST_API_Employes = 'http://127.0.0.1:8000/api/employes';
   private readonly token: any = this.tokenService.getAccessToken();
   private readonly httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -45,6 +46,16 @@ export class PersonneService {
       `Bearer ${this.token}`
     );
     let API_URL = this.REST_API;
+    return this.http
+      .get<Personne[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getEmployes(): Observable<Personne[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = this.REST_API_Employes;
     return this.http
       .get<Personne[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));

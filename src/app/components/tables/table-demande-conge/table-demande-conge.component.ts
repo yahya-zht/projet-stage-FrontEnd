@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DemandeConge } from 'src/app/Models/DemandeConge';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { DemandeCongeService } from 'src/app/services/demande_conge/demande-conge.service';
 
 @Component({
@@ -18,27 +19,55 @@ export class TableDemandeCongeComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
-    'Personne',
     'Type',
-    'Durée',
     'DateDemande',
     'DateDebut',
     'DateFin',
+    'Durée',
     'état',
     'Action',
   ];
-
-  constructor(private demandeCongeService: DemandeCongeService) {}
+  public Role = '';
+  constructor(
+    private demandeCongeService: DemandeCongeService,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
-    this.demandeCongeService.getAllDemandeConge().subscribe(
-      (demandeConge: any) => {
-        this.dataSource.data = demandeConge.DemandeConge;
-        console.log('Demande Congé dataSource:', this.dataSource.data);
-      },
-      (error) => {
-        console.error('Error fetching Demande Congé:', error);
-      }
-    );
+    this.Role = this.authService.getUserRole();
+    const Role = this.Role;
+    if (Role === 'Employé') {
+      this.demandeCongeService.getDemandeCongeForOne().subscribe(
+        (demandeConge: any) => {
+          this.dataSource.data = demandeConge.DemandeConge;
+          console.log('Demande Congé dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Congé:', error);
+        }
+      );
+    } else if (Role === 'Superviseur') {
+      this.displayedColumns.unshift('CIN', 'Nom');
+      this.demandeCongeService.getDemandeCongeForResponsable().subscribe(
+        (demandeConge: any) => {
+          this.dataSource.data = demandeConge.DemandeConge;
+          console.log('Demande Congé dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Congé:', error);
+        }
+      );
+    } else if (Role === 'Admin') {
+      this.displayedColumns.unshift('CIN', 'Nom');
+      this.demandeCongeService.getAllDemandeConge().subscribe(
+        (demandeConge: any) => {
+          this.dataSource.data = demandeConge.DemandeConge;
+          console.log('Demande Congé dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Congé:', error);
+        }
+      );
+    }
   }
 
   ngAfterViewInit(): void {

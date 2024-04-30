@@ -36,6 +36,7 @@ export class TablePersonnesComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.Role = this.authService.getUserRole();
+    const Role = this.Role;
     if (this.getId === null) {
       this.displayedColumns = [
         'CIN',
@@ -61,15 +62,29 @@ export class TablePersonnesComponent implements AfterViewInit {
       ];
     }
     if (this.getId === null) {
-      this.personneService.getAllPersonnes().subscribe(
-        (personnes: any) => {
-          this.dataSource.data = personnes.Personnes;
-          console.log('Personnes dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching personnes:', error);
-        }
-      );
+      if (this.Role === 'Admin') {
+        console.log('Admin');
+        this.personneService.getAllPersonnes().subscribe(
+          (personnes: any) => {
+            this.dataSource.data = personnes.Personnes;
+            console.log('Personnes dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching personnes:', error);
+          }
+        );
+      } else if (Role === 'Superviseur' || Role === 'Directeur') {
+        console.log('sup or D');
+        this.personneService.getEmployes().subscribe(
+          (personnes: any) => {
+            this.dataSource.data = personnes.Personnes;
+            console.log('Personnes dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching personnes:', error);
+          }
+        );
+      }
     } else {
       this.serviceService
         .getServiceById(this.getId)

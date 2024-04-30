@@ -44,7 +44,7 @@ export class ShowComponent implements OnInit {
         this.Grade = personne.Personne.grade.libelle;
         this.Echelle = personne.Personne.echelle.libelle;
         this.Service = personne.Personne.service.nom;
-        this.Etablissement = '---';
+        this.Etablissement = personne.Personne.etablissement.nom;
         if (personne.Personne.chef) {
           this.Chef =
             personne.Personne.chef?.nom + ' ' + personne.Personne.chef?.prenom;
