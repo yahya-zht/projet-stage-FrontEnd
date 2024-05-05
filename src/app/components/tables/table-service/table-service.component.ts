@@ -35,15 +35,27 @@ export class TableServiceComponent implements AfterViewInit {
   ngOnInit(): void {
     this.Role = this.authService.getUserRole();
     if (this.getId === null) {
-      this.service.getAllService().subscribe(
-        (services: any) => {
-          this.dataSource.data = services.Services;
-          console.log('Services dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching personnes:', error);
-        }
-      );
+      if (this.Role === 'Directeur') {
+        this.service.getServicesForEtablissement().subscribe(
+          (services: any) => {
+            this.dataSource.data = services.Services;
+            console.log('Services dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching personnes:', error);
+          }
+        );
+      } else {
+        this.service.getAllService().subscribe(
+          (services: any) => {
+            this.dataSource.data = services.Services;
+            console.log('Services dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching personnes:', error);
+          }
+        );
+      }
     } else {
       this.etablissementService
         .getEtablissementById(this.getId)

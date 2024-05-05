@@ -32,16 +32,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileService.getUserProfile().subscribe(
       (response) => {
-        console.log(response);
-        console.log(
-          ' response.user.personne.etablissement.nom ',
-          response.user.personne.etablissement?.nom
-        );
-        console.log(
-          ' response.user.personne.chef.nom ',
-          response.user.personne.chef?.nom,
-          response.user.personne.chef?.prenom
-        );
         this.profile = response.user.personne;
         this.profile.email = response.user.email;
         this.profile.grade = response.user.personne.grade.libelle;

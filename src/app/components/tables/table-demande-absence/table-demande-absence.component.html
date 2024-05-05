@@ -1,7 +1,11 @@
 <mat-card class="my-3 bg-light">
   <div class="d-flex justify-content-between align-items-center">
-    <p class="mb-0 fs-5 fw-bolder">Demande Absence</p>
-    <a [routerLink]="['create']" class="btn btn-danger">Create</a>
+    <p class="mb-0 fs-5 fw-bolder">
+      Demande d'absence <span *ngIf="a === true">pour ce mois</span>
+    </p>
+    <a [routerLink]="['create']" class="btn btn-danger" *ngIf="a !== true"
+      >Create</a
+    >
   </div>
 </mat-card>
 <div class="mat-elevation-z8">

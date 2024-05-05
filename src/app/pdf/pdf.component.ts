@@ -17,6 +17,7 @@ import { Conge } from '../Models/Conge';
 export class PdfComponent implements OnInit {
   id: any;
   DemandeConge: any;
+  a = false;
   constructor(
     private route: ActivatedRoute,
     private demandeCongeService: DemandeCongeService
@@ -24,6 +25,9 @@ export class PdfComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    if (window.location.pathname === `/pdf/${this.id}`) {
+      this.a = true;
+    }
     console.log('ID =>', this.id);
     if (this.id === null) {
       this.DemandeConge = {

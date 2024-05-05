@@ -1,0 +1,301 @@
+<div>
+  <div class="" *ngIf="Role === 'Directeur'">
+    <div class="row row-cols-lg-2 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre d'employés dans l'établissement</p>
+          <span>{{ Accueil.personnes_count }}</span>
+        </mat-card>
+      </div>
+      <!-- <div class="col">
+        <mat-card>
+          <p>Number Responsable on Etablissment</p>
+          <span>{{ Accueil.NbConges }} Jours</span>
+        </mat-card>
+      </div> -->
+      <div class="col">
+        <mat-card>
+          <p>Nombre de services dans l'établissement</p>
+          <span>{{ Accueil.services_count }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-4 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence dans Ce jour-là</p>
+          <span>{{ Accueil.demande_absences_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés dans Ce jour-là</p>
+          <span>{{ Accueil.demande_conges_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence dans ce mois</p>
+          <span>{{ Accueil.demande_absences_count_month }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés dans ce mois</p>
+          <span>{{ Accueil.demande_conges_count_month }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-4 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre d'absences dans Ce jour-là</p>
+          <span>{{ Accueil.absences_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de congés dans Ce jour-là</p>
+          <span>{{ Accueil.conges_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de congés dans ce mois</p>
+          <span>{{ Accueil.conges_current_month_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre d'absences dans ce mois</p>
+          <span>{{ Accueil.absences_current_month_count }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-2 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence En Attendant</p>
+          <span>{{ Accueil.total_demande_absences_count_att }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés En Attendant</p>
+          <span>{{ Accueil.total_demande_conges_count_att }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div>
+      <div>
+        <mat-card>
+          <app-my-chart></app-my-chart>
+        </mat-card>
+      </div>
+      <div class="my-3">
+        <mat-card>
+          <div>
+            <app-table-demande-conge-directeur></app-table-demande-conge-directeur>
+          </div>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card>
+          <div>
+            <app-table-demande-absence-admin></app-table-demande-absence-admin>
+          </div>
+        </mat-card>
+      </div>
+      <div class="my-3">
+        <mat-card>
+          <div>
+            <app-table-conge></app-table-conge>
+          </div>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card>
+          <div>
+            <app-table-absence></app-table-absence>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="Role === 'Superviseur' || Role === 'Employé'">
+    <div class="row row-cols-lg-3 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Solde de Congés Restant</p>
+          <span>{{ Accueil.NbSoldeConges }} Jours</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Congés Cette Année</p>
+          <span>{{ Accueil.NbConges }} Jours</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Absences Cette Année</p>
+          <span>{{ Accueil.NbAbsence }} Jours</span>
+        </mat-card>
+      </div>
+    </div>
+    <div>
+      <mat-card>
+        <app-my-chart></app-my-chart>
+      </mat-card>
+    </div>
+    <div class="my-3">
+      <mat-card>
+        <div><app-table-demande-conge></app-table-demande-conge></div>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card>
+        <div><app-table-demande-absence></app-table-demande-absence></div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="" *ngIf="Role === 'Admin'">
+    <div class="row row-cols-lg-1 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre D'etablissements</p>
+          <span>{{ Accueil.etablissements_count }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-2 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre d'employés</p>
+          <span>{{ Accueil.personnes_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de services</p>
+          <span>{{ Accueil.services_count }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-4 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence dans Ce jour-là</p>
+          <span>{{ Accueil.demande_absences_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés dans Ce jour-là</p>
+          <span>{{ Accueil.demande_conges_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence dans ce mois</p>
+          <span>{{ Accueil.demande_absences_count_month }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés dans ce mois</p>
+          <span>{{ Accueil.demande_conges_count_month }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-2 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence dans Année</p>
+          <span>{{ Accueil.demandeAbsencesCountCetteAnnee }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés dans Année</p>
+          <span>{{ Accueil.demandeCongesCountCetteAnnee }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-4 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre d'absences dans Ce jour-là</p>
+          <span>{{ Accueil.absences_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de congés dans Ce jour-là</p>
+          <span>{{ Accueil.conges_today_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de congés dans ce mois</p>
+          <span>{{ Accueil.conges_current_month_count }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre d'absences dans ce mois</p>
+          <span>{{ Accueil.absences_current_month_count }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row row-cols-lg-2 mb-3 text-center fs-5 fw-bold">
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes d'absence En Attendant</p>
+          <span>{{ Accueil.total_demande_absences_count_att }}</span>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card>
+          <p>Nombre de demandes de congés En Attendant</p>
+          <span>{{ Accueil.total_demande_conges_count_att }}</span>
+        </mat-card>
+      </div>
+    </div>
+    <div>
+      <div>
+        <mat-card>
+          <app-my-chart></app-my-chart>
+        </mat-card>
+      </div>
+      <div class="my-3">
+        <mat-card>
+          <div>
+            <app-table-demande-conge-directeur></app-table-demande-conge-directeur>
+          </div>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card>
+          <div>
+            <app-table-demande-absence-admin></app-table-demande-absence-admin>
+          </div>
+        </mat-card>
+      </div>
+      <div class="my-3">
+        <mat-card>
+          <div>
+            <app-table-conge></app-table-conge>
+          </div>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card>
+          <div>
+            <app-table-absence></app-table-absence>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

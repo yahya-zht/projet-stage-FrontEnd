@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DemandeConge } from 'src/app/Models/DemandeConge';
+import { AccueilService } from 'src/app/services/accueil/accueil.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DemandeCongeService } from 'src/app/services/demande_conge/demande-conge.service';
 
@@ -28,34 +29,62 @@ export class TableDemandeCongeComponent implements AfterViewInit {
     'Action',
   ];
   public Role = '';
+  a = false;
   constructor(
     private demandeCongeService: DemandeCongeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private accueil: AccueilService
   ) {}
   ngOnInit(): void {
     this.Role = this.authService.getUserRole();
     const Role = this.Role;
     if (Role === 'Employé') {
-      this.demandeCongeService.getDemandeCongeForOne().subscribe(
-        (demandeConge: any) => {
-          this.dataSource.data = demandeConge.DemandeConge;
-          console.log('Demande Congé dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching Demande Congé:', error);
-        }
-      );
+      if (window.location.pathname === '/') {
+        this.a = true;
+        this.accueil.getAccueilEmployee().subscribe(
+          (demandeConge: any) => {
+            this.dataSource.data = demandeConge.demandeCongesCeMois;
+            console.log('Demande Congé dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Congé:', error);
+          }
+        );
+      } else {
+        this.demandeCongeService.getDemandeCongeForOne().subscribe(
+          (demandeConge: any) => {
+            this.dataSource.data = demandeConge.DemandeConge;
+            console.log('Demande Congé dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Congé:', error);
+          }
+        );
+      }
     } else if (Role === 'Superviseur') {
+      this.a = true;
       this.displayedColumns.unshift('CIN', 'Nom');
-      this.demandeCongeService.getDemandeCongeForResponsable().subscribe(
-        (demandeConge: any) => {
-          this.dataSource.data = demandeConge.DemandeConge;
-          console.log('Demande Congé dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching Demande Congé:', error);
-        }
-      );
+      if (window.location.pathname === '/') {
+        this.accueil.getAccueilEmployee().subscribe(
+          (demandeConge: any) => {
+            this.dataSource.data = demandeConge.demandeCongesCeMois;
+            console.log('Demande Congé dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Congé:', error);
+          }
+        );
+      } else {
+        this.demandeCongeService.getDemandeCongeForResponsable().subscribe(
+          (demandeConge: any) => {
+            this.dataSource.data = demandeConge.DemandeConge;
+            console.log('Demande Congé dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Congé:', error);
+          }
+        );
+      }
     } else if (Role === 'Admin') {
       this.displayedColumns.unshift('CIN', 'Nom');
       this.demandeCongeService.getAllDemandeConge().subscribe(

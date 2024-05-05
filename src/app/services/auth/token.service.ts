@@ -16,6 +16,11 @@ export class TokenService {
   }
   set(token: string) {
     localStorage.setItem('token', token);
+    setTimeout(() => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('Lld$sqz');
+      console.log('Token expired and removed from localStorage.');
+    }, 24 * 60 * 60 * 1000);
     // localStorage.setItem('token', JSON.stringify(token));
   }
   getAccessToken() {

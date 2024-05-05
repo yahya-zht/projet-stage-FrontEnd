@@ -56,6 +56,15 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+// import { ChartjsModule } from '@coreui/angular-chartjs';
+import { MyChartComponent } from './components/dashboard/chart/my-chart/my-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,6 +115,8 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
     LoginComponent,
     ProfileComponent,
     AccueilComponent,
+    DashboardComponent,
+    MyChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,6 +129,13 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    // ChartjsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -51,6 +51,16 @@ export class ServiceService {
       .get<Service[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));
   }
+  getServicesForEtablissement(): Observable<Service[]> {
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.token}`
+    );
+    let API_URL = `${this.REST_API}/directeur`;
+    return this.http
+      .get<Service[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
   getServiceById(id: number): Observable<Service> {
     const headers = new HttpHeaders().set(
       'Authorization',

@@ -62,11 +62,11 @@ const routes: Routes = [
     component: AccueilComponent,
     canActivate: [AfterLoginService],
   },
-  // {
-  //   path: 'pdf',
-  //   component: PdfComponent,
-  //   canActivate: [AfterLoginService],
-  // },
+  {
+    path: 'pdf/:id',
+    component: PdfComponent,
+    canActivate: [AfterLoginService],
+  },
   {
     path: 'personne',
     component: PersonneComponent,
@@ -187,10 +187,6 @@ const routes: Routes = [
         component: TableDemandeCongeComponent,
       },
       { path: 'create', component: CreateDemandeConge },
-      {
-        path: 'pdf/:id',
-        component: PdfComponent,
-      },
     ],
     canActivate: [AfterLoginService, RoleemployeeGuard],
   },

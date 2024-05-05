@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Absence } from 'src/app/Models/Absence';
 import { AbsenceService } from 'src/app/services/absence/absence.service';
+import { AccueilService } from 'src/app/services/accueil/accueil.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -26,9 +27,11 @@ export class TableAbsenceComponent implements AfterViewInit {
     'type',
   ];
   public Role = '';
+  a = false;
   constructor(
     private absenceService: AbsenceService,
-    private authService: AuthService
+    private authService: AuthService,
+    private accueil: AccueilService
   ) {}
   ngOnInit(): void {
     this.Role = this.authService.getUserRole();
@@ -44,25 +47,51 @@ export class TableAbsenceComponent implements AfterViewInit {
         }
       );
     } else if (Role === 'Directeur') {
-      this.absenceService.getAbsenceForDirecteur().subscribe(
-        (absences: any) => {
-          this.dataSource.data = absences.Absences;
-          console.log('Absence dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching Conge:', error);
-        }
-      );
+      if (window.location.pathname === '/absence') {
+        this.absenceService.getAbsenceForDirecteur().subscribe(
+          (absences: any) => {
+            this.dataSource.data = absences.Absences;
+            console.log('Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Conge:', error);
+          }
+        );
+      } else if (window.location.pathname === '/') {
+        this.a = true;
+        this.accueil.getAccueilDirecteur().subscribe(
+          (absences: any) => {
+            this.dataSource.data = absences.absences_today;
+            console.log('Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Conge:', error);
+          }
+        );
+      }
     } else if (Role === 'Admin') {
-      this.absenceService.getAllAbsence().subscribe(
-        (absences: any) => {
-          this.dataSource.data = absences.Absences;
-          console.log('Absence dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching Conge:', error);
-        }
-      );
+      if (window.location.pathname === '/absence') {
+        this.absenceService.getAllAbsence().subscribe(
+          (absences: any) => {
+            this.dataSource.data = absences.Absences;
+            console.log('Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Conge:', error);
+          }
+        );
+      } else if (window.location.pathname === '/') {
+        this.a = true;
+        this.accueil.getAccueilAdmin().subscribe(
+          (absences: any) => {
+            this.dataSource.data = absences.absences_today;
+            console.log('Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Conge:', error);
+          }
+        );
+      }
     }
   }
   ngAfterViewInit(): void {

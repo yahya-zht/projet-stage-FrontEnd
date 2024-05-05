@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DemandeConge } from 'src/app/Models/DemandeConge';
+import { AccueilService } from 'src/app/services/accueil/accueil.service';
 import { DemandeCongeAdminService } from 'src/app/services/demande_conge_admin/demande-conge-admin.service';
 
 @Component({
@@ -27,7 +28,11 @@ export class TableDemandeCongeDirecteurComponent implements AfterViewInit {
     'Action',
   ];
 
-  constructor(private demandeCongeAdminService: DemandeCongeAdminService) {}
+  a = false;
+  constructor(
+    private demandeCongeAdminService: DemandeCongeAdminService,
+    private accueil: AccueilService
+  ) {}
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
@@ -35,18 +40,34 @@ export class TableDemandeCongeDirecteurComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   ngOnInit(): void {
-    this.demandeCongeAdminService.getAllDemandeConge().subscribe(
-      (demandeConge: any) => {
-        console.log('====================================');
-        console.log(demandeConge);
-        console.log('====================================');
-        this.dataSource.data = demandeConge.demandesEnAttente;
-        console.log('Demande Congé dataSource:', this.dataSource.data);
-      },
-      (error) => {
-        console.error('Error fetching Demande Congé:', error);
-      }
-    );
+    if (window.location.pathname === '/admin/demande/conge') {
+      this.demandeCongeAdminService.getAllDemandeConge().subscribe(
+        (demandeConge: any) => {
+          console.log('====================================');
+          console.log(demandeConge);
+          console.log('====================================');
+          this.dataSource.data = demandeConge.demandesEnAttente;
+          console.log('Demande Congé dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Congé:', error);
+        }
+      );
+    } else if (window.location.pathname === '/') {
+      this.a = true;
+      this.accueil.getAccueilDirecteur().subscribe(
+        (demandeConge: any) => {
+          console.log('====================================');
+          console.log(demandeConge);
+          console.log('====================================');
+          this.dataSource.data = demandeConge.demande_conges_today;
+          console.log('Demande Congé dataSource:', this.dataSource.data);
+        },
+        (error) => {
+          console.error('Error fetching Demande Congé:', error);
+        }
+      );
+    }
   }
   addConge(id: any, i: any) {
     this.demandeCongeAdminService.AddConge(id).subscribe(() => {

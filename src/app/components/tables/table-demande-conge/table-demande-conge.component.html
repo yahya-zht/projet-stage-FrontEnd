@@ -1,7 +1,11 @@
 <mat-card class="my-3 bg-light">
   <div class="d-flex justify-content-between align-items-center">
-    <p class="mb-0 fs-5 fw-bolder">Demande Congé</p>
-    <a [routerLink]="['create']" class="btn btn-danger">Create</a>
+    <p class="mb-0 fs-5 fw-bolder">
+      Demande d'congé <span *ngIf="a === true">pour ce mois</span>
+    </p>
+    <a [routerLink]="['create']" class="btn btn-danger" *ngIf="a !== true"
+      >Create</a
+    >
   </div>
 </mat-card>
 <div class="mat-elevation-z8">
@@ -31,8 +35,8 @@
       <td mat-cell *matCellDef="let row">{{ row.duree }}</td>
     </ng-container>
     <ng-container matColumnDef="DateDemande">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Debut</th>
-      <td mat-cell *matCellDef="let row">{{ row.dateDebut }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Demande</th>
+      <td mat-cell *matCellDef="let row">{{ row.dateDemande }}</td>
     </ng-container>
     <ng-container matColumnDef="DateDebut">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Debut</th>

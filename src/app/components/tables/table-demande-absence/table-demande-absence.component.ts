@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DemandeAbsence } from 'src/app/Models/DemandeAbsence';
+import { AccueilService } from 'src/app/services/accueil/accueil.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DemandeAbsenceService } from 'src/app/services/demande_absence/demande-absence.service';
 
@@ -27,15 +28,38 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
     'état',
   ];
   public Role = '';
+  a = false;
   constructor(
     private demandeAbsenceService: DemandeAbsenceService,
-    private authService: AuthService
+    private authService: AuthService,
+    private accueil: AccueilService
   ) {}
   ngOnInit(): void {
     this.Role = this.authService.getUserRole();
     const Role = this.Role;
     if (Role === 'Employé') {
-      console.log('Employé');
+      if (window.location.pathname === '/') {
+        this.a = true;
+        this.accueil.getAccueilEmployee().subscribe(
+          (demandeabsence: any) => {
+            this.dataSource.data = demandeabsence.demandeAbsencesCeMois;
+            console.log('Demande Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Absence:', error);
+          }
+        );
+      } else {
+        this.demandeAbsenceService.getDemandeAbsenceForOne().subscribe(
+          (demandeabsence: any) => {
+            this.dataSource.data = demandeabsence.DemandeAbsence;
+            console.log('Demande Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Absence:', error);
+          }
+        );
+      }
       this.demandeAbsenceService.getDemandeAbsenceForOne().subscribe(
         (demandeabsence: any) => {
           this.dataSource.data = demandeabsence.DemandeAbsence;
@@ -59,16 +83,28 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
       );
     } else if (Role === 'Superviseur') {
       this.displayedColumns.unshift('CIN', 'Nom');
-      console.log('Superviseur');
-      this.demandeAbsenceService.getDemandeAbsenceForResponsable().subscribe(
-        (demandeabsence: any) => {
-          this.dataSource.data = demandeabsence.DemandeAbsence;
-          console.log('Demande Absence dataSource:', this.dataSource.data);
-        },
-        (error) => {
-          console.error('Error fetching Demande Absence:', error);
-        }
-      );
+      if (window.location.pathname === '/') {
+        this.a = true;
+        this.accueil.getAccueilEmployee().subscribe(
+          (demandeabsence: any) => {
+            this.dataSource.data = demandeabsence.demandeAbsencesCeMois;
+            console.log('Demande Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Absence:', error);
+          }
+        );
+      } else {
+        this.demandeAbsenceService.getDemandeAbsenceForResponsable().subscribe(
+          (demandeabsence: any) => {
+            this.dataSource.data = demandeabsence.DemandeAbsence;
+            console.log('Demande Absence dataSource:', this.dataSource.data);
+          },
+          (error) => {
+            console.error('Error fetching Demande Absence:', error);
+          }
+        );
+      }
     } else if (Role === 'Admin') {
       console.log('Admin');
       this.displayedColumns.unshift('CIN', 'Nom');
