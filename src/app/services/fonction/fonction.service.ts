@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError, map } from 'rxjs';
 import { Fonction } from 'src/app/Models/Fonction';
 
 @Injectable({
@@ -41,6 +41,23 @@ export class FonctionService {
     let API_URL = `${this.REST_API}/${id}`;
     return this.http
       .delete<Fonction>(API_URL, {
+        headers: this.httpHeaders,
+      })
+      .pipe(catchError(this.handleError));
+  }
+  getFonctionById(id: number): Observable<Fonction> {
+    let API_URL = `${this.REST_API}/${id}`;
+    return this.http.get<Fonction>(API_URL).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+  updateFonction(id: number, data: Fonction): Observable<Fonction> {
+    let API_URL = `${this.REST_API}/${id}`;
+    return this.http
+      .put<Fonction>(API_URL, data, {
         headers: this.httpHeaders,
       })
       .pipe(catchError(this.handleError));

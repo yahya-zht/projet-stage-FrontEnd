@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError, map } from 'rxjs';
 import { Echelle } from 'src/app/Models/Echelle';
 
 @Injectable({
@@ -39,6 +39,23 @@ export class EchelleService {
     let API_URL = `${this.REST_API}/${id}`;
     return this.http
       .delete<Echelle>(API_URL, {
+        headers: this.httpHeaders,
+      })
+      .pipe(catchError(this.handleError));
+  }
+  getEchelleById(id: number): Observable<Echelle> {
+    let API_URL = `${this.REST_API}/${id}`;
+    return this.http.get<Echelle>(API_URL).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+  updateEchelle(id: number, data: Echelle): Observable<Echelle> {
+    let API_URL = `${this.REST_API}/${id}`;
+    return this.http
+      .put<Echelle>(API_URL, data, {
         headers: this.httpHeaders,
       })
       .pipe(catchError(this.handleError));

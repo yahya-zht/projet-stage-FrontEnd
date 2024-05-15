@@ -26,6 +26,10 @@
           >
           Delete
         </button>
+      <a [routerLink]="['edit/', row.id]" class="btn btn-primary justify-content-center ms-1 align-content-center">
+        Edit
+        <mat-icon class="red ms-1" aria-hidden="false" aria-label="edit" fontIcon="edit">edit</mat-icon>
+      </a>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

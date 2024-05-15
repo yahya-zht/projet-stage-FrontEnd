@@ -49,6 +49,10 @@ import { DemandeabsenceAdminComponent } from './pages/demandeabsence-admin/deman
 import { TableDemandeAbsenceAdminComponent } from './components/tables/table-demande-absence-admin/table-demande-absence-admin.component';
 import { TableAbsenceComponent } from './components/tables/table-absence/table-absence.component';
 import { AbsenceComponent } from './pages/absence/absence.component';
+import { EditFonctionComponent } from './pages/fonction/edit/editFonction/edit-fonction.component';
+import { EditEchelleComponent } from './pages/echelle/edit/edit-echelle/edit-echelle.component';
+import { EditGradeComponent } from './pages/grade/edit/edit-grade/edit-grade.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +96,10 @@ import { AbsenceComponent } from './pages/absence/absence.component';
     TableDemandeAbsenceAdminComponent,
     TableAbsenceComponent,
     AbsenceComponent,
+    EditFonctionComponent,
+    EditEchelleComponent,
+    EditGradeComponent,
+    
   ],
   imports: [
     BrowserModule,

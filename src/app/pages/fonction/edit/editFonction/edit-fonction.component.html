@@ -1,0 +1,45 @@
+<div class="rounded rounded-3 border border-3 m-4">
+    <div class="border-bottom border-3 bg-light">
+      <p
+        class="p-3 bg-gray-300 h4 m-0 text-center d-flex justify-content-center align-items-center"
+      >
+        <span class="me-2">Edit Fonction </span>
+        <mat-icon matSuffix class="">account_circle</mat-icon>
+      </p>
+    </div>
+    <div class="p-4">
+      <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+        <p class="h6">Libelle</p>
+        <div class="mb-3 row row-cols-2 row-cols-lg-2 g-4 g-lg-5">
+          <mat-form-field appearance="fill" class="col">
+            <mat-label>Libelle</mat-label>
+            <input
+              matInput
+              type="text"
+              id="libelle"
+              placeholder="libelle"
+              formControlName="libelle"
+              name="libelle"
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="d-flex justify-content-between">
+          <button
+            type="submit"
+            class="btn btn-success me-3 w-25 d-flex align-items-center justify-content-center fw-semibold"
+          >
+            <span class="me-2 fs-5">Save</span>
+            <mat-icon matSuffix>save</mat-icon>
+          </button>
+          <a
+            class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold"
+            [routerLink]="['/fonction']">
+            <span class="me-2 fs-5">Annuler</span>
+            <mat-icon matSuffix>close</mat-icon></a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+  

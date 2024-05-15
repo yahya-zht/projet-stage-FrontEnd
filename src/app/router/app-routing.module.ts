@@ -24,6 +24,9 @@ import { CongeComponent } from '../pages/conge/conge.component';
 import { DemandeabsenceComponent } from '../pages/demandeabsence/demandeabsence.component';
 import { DemandeabsenceAdminComponent } from '../pages/demandeabsence-admin/demandeabsence-admin.component';
 import { AbsenceComponent } from '../pages/absence/absence.component';
+import { EditFonctionComponent } from '../pages/fonction/edit/editFonction/edit-fonction.component';
+import { EditEchelleComponent } from '../pages/echelle/edit/edit-echelle/edit-echelle.component';
+import { EditGradeComponent } from '../pages/grade/edit/edit-grade/edit-grade.component';
 
 const routes: Routes = [
   {
@@ -51,10 +54,10 @@ const routes: Routes = [
     path: 'grade',
     children: [
       {
-        path: '',
-        component: GradeComponent,
+        path: '',component: GradeComponent,
       },
       { path: 'create', component: CreateGrade },
+      { path: 'edit/:id', component: EditGradeComponent },
     ],
   },
   {
@@ -62,6 +65,7 @@ const routes: Routes = [
     children: [
       { path: '', component: FonctionComponent },
       { path: 'create', component: CreateFonction },
+      { path: 'edit/:id', component: EditFonctionComponent },
     ],
   },
   {
@@ -75,6 +79,9 @@ const routes: Routes = [
         path: 'create',
         component: CreateEchelle,
       },
+      {
+        path: 'edit/:id', component: EditEchelleComponent ,
+      }
       // { path: '**', component: PageNotFoundComponent },
     ],
   },

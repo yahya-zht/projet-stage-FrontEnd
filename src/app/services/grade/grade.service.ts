@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError, map} from 'rxjs';
 import { Grade } from 'src/app/Models/Grade';
 
 @Injectable({
@@ -39,6 +39,23 @@ export class GradeService {
     let API_URL = `${this.REST_API}/${id}`;
     return this.http
       .delete<Grade>(API_URL, {
+        headers: this.httpHeaders,
+      })
+      .pipe(catchError(this.handleError));
+  }
+  getGradeById(id: number): Observable<Grade> {
+    let API_URL = `${this.REST_API}/${id}`;
+    return this.http.get<Grade>(API_URL).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+  updateGrade(id: number, data: Grade): Observable<Grade> {
+    let API_URL = `${this.REST_API}/${id}`;
+    return this.http
+      .put<Grade>(API_URL, data, {
         headers: this.httpHeaders,
       })
       .pipe(catchError(this.handleError));

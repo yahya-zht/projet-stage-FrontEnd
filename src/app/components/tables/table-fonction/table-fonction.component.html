@@ -8,7 +8,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="w-25">
         Action
       </th>
-      <td mat-cell *matCellDef="let row; let i = index">
+      <td mat-cell *matCellDef="let row; let i = index" class="d-flex">
         <button (click)="delete(row.id, i)" class="btn btn-danger">
           <mat-icon
             class="red"
@@ -19,6 +19,11 @@
           >
           Delete
         </button>
+          <a [routerLink]="['edit/', row.id]" class="btn btn-primary justify-content-center ms-1 align-content-center">
+            Edit
+            <mat-icon class="red ms-1" aria-hidden="false" aria-label="edit" fontIcon="edit">edit</mat-icon>
+          </a>
+
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
