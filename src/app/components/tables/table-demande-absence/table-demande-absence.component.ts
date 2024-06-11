@@ -88,7 +88,7 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
         this.accueil.getAccueilEmployee().subscribe(
           (demandeabsence: any) => {
             this.dataSource.data = demandeabsence.demandeAbsencesCeMois;
-            console.log('Demande Absence dataSource:', this.dataSource.data);
+            // console.log('Demande Absence dataSource:', this.dataSource.data);
           },
           (error) => {
             console.error('Error fetching Demande Absence:', error);
@@ -98,7 +98,7 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
         this.demandeAbsenceService.getDemandeAbsenceForResponsable().subscribe(
           (demandeabsence: any) => {
             this.dataSource.data = demandeabsence.DemandeAbsence;
-            console.log('Demande Absence dataSource:', this.dataSource.data);
+            // console.log('Demande Absence dataSource:', this.dataSource.data);
           },
           (error) => {
             console.error('Error fetching Demande Absence:', error);
@@ -111,7 +111,7 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
       this.demandeAbsenceService.getAllDemandeAbsence().subscribe(
         (demandeabsence: any) => {
           this.dataSource.data = demandeabsence.DemandeAbsence;
-          console.log('Demande Absence dataSource:', this.dataSource.data);
+          // console.log('Demande Absence dataSource:', this.dataSource.data);
         },
         (error) => {
           console.error('Error fetching Demande Absence:', error);
@@ -133,5 +133,9 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
       default:
         return 'black';
     }
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

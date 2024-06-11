@@ -9,6 +9,7 @@ import * as CryptoJS from 'crypto-js';
 export class AuthService {
   private baseUrl = 'http://127.0.0.1:8000/api';
   private readonly ROLE_KEY = 'Lld$sqz';
+  private readonly SECRET_KEY = '$12@.iAT99-<>$@Z';
   constructor(private Token: TokenService, private http: HttpClient) {}
   private loggedIn = new BehaviorSubject<boolean>(this.Token.loggedIn());
   authStatus = this.loggedIn.asObservable();
@@ -23,14 +24,17 @@ export class AuthService {
     console.log('userRole=>', role);
     const encryptedRole = CryptoJS.AES.encrypt(
       role.trim(),
-      'secret_key'
+      this.SECRET_KEY
     ).toString();
     localStorage.setItem(this.ROLE_KEY, encryptedRole);
   }
   getUserRole(): string {
     const encryptedRole = localStorage.getItem(this.ROLE_KEY);
     if (encryptedRole) {
-      const decryptedBytes = CryptoJS.AES.decrypt(encryptedRole, 'secret_key');
+      const decryptedBytes = CryptoJS.AES.decrypt(
+        encryptedRole,
+        this.SECRET_KEY
+      );
       return decryptedBytes.toString(CryptoJS.enc.Utf8);
     }
     return '';

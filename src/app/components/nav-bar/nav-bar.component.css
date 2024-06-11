@@ -1,0 +1,16 @@
+a {
+  color: white;
+}
+a:hover {
+  color: #d1e7d2;
+}
+.dropdown-menu a {
+  color: #0d6efd;
+}
+.dropdown-menu a:hover {
+  background: #e3eeff;
+}
+.dropdown-menu a:focus {
+  color: white;
+  background: #0d6efd;
+}

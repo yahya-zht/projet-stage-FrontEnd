@@ -2,7 +2,7 @@
   <mat-card class="bg-light">
     <div>
       <p class="fs-5">
-        <span class="fw-bolder">Nom Service : </span>{{ NomService
+        <span class="fw-bolder">Libelle Service : </span>{{ NomService
         }}<mat-progress-bar
           class=""
           color="red"
@@ -11,19 +11,20 @@
         ></mat-progress-bar>
       </p>
       <p class="fs-5">
-        <span class="fw-bolder">Responsable Service : </span
-        >{{ NomResponsable ? NomResponsable + " " + PrenomResponsable : "Null"
-        }}<mat-progress-bar
+        <span class="fw-bolder">Etablissements : </span>
+        {{ etablissements ? etablissements : "----" }}
+
+        <mat-progress-bar
           class=""
           color="red"
           mode="indeterminate"
-          *ngIf="NomResponsable === ''"
+          *ngIf="etablissements === ['']"
         ></mat-progress-bar>
       </p>
-      <p class="fs-5">
+      <!-- <p class="fs-5">
         <span class="fw-bolder">Nombre Employes : </span>
         {{ Nbr }}
-      </p>
+      </p> -->
     </div>
   </mat-card>
 </div>

@@ -35,15 +35,15 @@ export class EditComponent implements OnInit {
         console.log(service.Service.etablissement);
         this.updateForm.patchValue({
           nom: service.Service.nom,
-          responsable_id: service.Service.responsable_id,
-          nombre_employes: service.Service.nombre_employes,
+          // responsable_id: service.Service.responsable_id,
+          // nombre_employes: service.Service.nombre_employes,
           etablissements_id: service.Service.etablissement.id,
         });
       });
     this.updateForm = this.formBuilder.group({
       nom: [''],
-      responsable_id: [''],
-      nombre_employes: [''],
+      // responsable_id: [''],
+      // nombre_employes: [''],
       etablissements_id: [],
     });
   }

@@ -1,75 +1,118 @@
-<mat-card class="my-3 bg-light">
-  <div class="d-flex justify-content-between align-items-center">
-    <p class="mb-0 fs-5 fw-bolder">Établissements</p>
-    <a [routerLink]="['create']" class="btn btn-danger" *ngIf="Role === 'Admin'"
-      >Create</a
-    >
-  </div>
+<!-- <mat-card class="my-3 bg-primary text-white">
+  <div class="d-flex justify-content-center align-items-center"></div>
+</mat-card> -->
+<mat-card
+  class="d-flex justify-content-between align-items-center p-0 bg-primary pe-2 my-3"
+>
+  <mat-form-field appearance="standard" class="w-25 ms-2 p-0">
+    <mat-label class="text-white">Recherche libelle/Adresse</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. ium"
+      #input
+      class="text-white"
+    />
+    <mat-icon matSuffix class="text-white">search</mat-icon>
+  </mat-form-field>
+  <p class="mb-0 fs-5 fw-medium me-5 text-white">Établissements</p>
+  <a
+    [routerLink]="['create']"
+    class="btn btn-danger px-5 d-flex align-items-center justify-content-center"
+    *ngIf="Role === 'Admin'"
+  >
+    <span class="me-2 fs-5">Créer</span>
+    <mat-icon matSuffix>add_circle</mat-icon>
+  </a>
 </mat-card>
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="bg-primary text-white"
+      >
+        Libelle
+      </th>
       <td mat-cell *matCellDef="let row">{{ row.nom }}</td>
     </ng-container>
 
     <ng-container matColumnDef="adresse">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresse</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="bg-primary text-white"
+      >
+        Adresse
+      </th>
       <td mat-cell *matCellDef="let row">{{ row.adresse }}</td>
     </ng-container>
     <ng-container matColumnDef="directeur_id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Directeur</th>
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="bg-primary text-white"
+      >
+        Directeur
+      </th>
       <td mat-cell *matCellDef="let row">
         {{
           (row.directeur && row.directeur.nom + " " + row.directeur.prenom) ||
-            "null"
+            "----"
         }}
       </td>
     </ng-container>
     <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-      <td mat-cell *matCellDef="let row; let i = index" class="w-25">
-        <div class="d-flex justify-content-between">
-          <button
-            [routerLink]="['show/', row.id]"
-            class="btn btn-secondary m-1 d-flex align-items-center"
+      <th *matHeaderCellDef class="bg-primary text-white fw-normal text-center">
+        Action
+      </th>
+      <td mat-cell *matCellDef="let row; let i = index" class="p-0">
+        <div class="d-flex justify-content-between px-2">
+          <!-- <button
+          class="btn btn-secondary m-1 d-flex align-items-center"
+          > -->
+          <div
+            class="m-2 d-flex justify-content-center align-content-center pt-1"
           >
             <mat-icon
-              class="me-1"
+              [routerLink]="['show/', row.id]"
+              class="text-secondary p-0 m-0 btn fs-3"
               aria-hidden="false"
               aria-label="edit"
               fontIcon="edit"
               >visibility</mat-icon
             >
-            Show
-          </button>
-          <button
-            *ngIf="Role === 'Admin'"
-            [routerLink]="['edit/', row.id]"
-            class="btn btn-primary m-1 d-flex align-items-center"
+          </div>
+          <div
+            class="m-2 d-flex justify-content-center align-content-center pt-1"
           >
             <mat-icon
-              class="red me-1"
+              *ngIf="Role === 'Admin'"
+              [routerLink]="['edit/', row.id]"
+              class="text-primary p-0 m-0 btn fs-3"
               aria-hidden="false"
               aria-label="edit"
               fontIcon="edit"
               >edit</mat-icon
             >
-            Edit
-          </button>
-          <button
-            *ngIf="Role === 'Admin'"
-            (click)="delete(row.id, i)"
-            class="btn btn-danger m-1 d-flex align-items-center"
+          </div>
+          <div
+            class="m-2 d-flex justify-content-center align-content-center pt-1"
           >
-            Delete<mat-icon
-              class="me-1"
+            <mat-icon
+              *ngIf="Role === 'Admin'"
+              (click)="delete(row.id, i)"
+              class="text-danger p-0 m-0 btn btn-debug"
               aria-hidden="false"
               aria-label="delete"
               fontIcon="delete"
               >delete</mat-icon
             >
-          </button>
+          </div>
         </div>
       </td>
     </ng-container>
@@ -78,6 +121,7 @@
   </table>
 
   <mat-paginator
+    class="bg-primary text-white"
     #paginator
     [length]="dataSource.data.length"
     [pageIndex]="0"

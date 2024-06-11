@@ -20,7 +20,7 @@ export class TableServiceComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Service>;
   dataSource = new MatTableDataSource<Service>();
-  displayedColumns = ['nom', 'responsable', 'nomberemployes', 'Action'];
+  displayedColumns = ['Libelle', 'Action'];
   public Role = '';
   getId: any;
   constructor(
@@ -76,5 +76,9 @@ export class TableServiceComponent implements AfterViewInit {
         this.dataSource._updateChangeSubscription();
       });
     }
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

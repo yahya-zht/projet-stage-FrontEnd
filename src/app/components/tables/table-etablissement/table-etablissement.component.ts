@@ -40,11 +40,15 @@ export class TableEtablissementComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   delete(id: any, i: any) {
-    if (confirm('Etes-vous sûr de vouloir supprimer cette Service?')) {
+    if (confirm('Etes-vous sûr de vouloir supprimer cette Etablissement?')) {
       this.etablissement.deleteEtablissement(id).subscribe(() => {
         this.dataSource.data.splice(i, 1);
         this.dataSource._updateChangeSubscription();
       });
     }
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

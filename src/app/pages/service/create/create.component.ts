@@ -15,7 +15,7 @@ import { ServiceService } from 'src/app/services/service/service.service';
 export class CreateComponent implements OnInit {
   serviceForm: FormGroup;
   Personnes: Personne[] = [];
-  Etablissement: Etablissement[]  = [];
+  Etablissement: Etablissement[] = [];
   error: any;
   constructor(
     public formBiulder: FormBuilder,
@@ -27,8 +27,8 @@ export class CreateComponent implements OnInit {
   ) {
     this.serviceForm = this.formBiulder.group({
       nom: [''],
-      responsable_id: [''],
-      nombre_employes: [''],
+      // responsable_id: [''],
+      // nombre_employes: [''],
       etablissements_id: [''],
     });
   }

@@ -12,7 +12,7 @@
     <div>
       <p class="h2 text-center text-white">
         Application de Gestion des Ressources Humaines pour l'Etablissement de
-        Santé
+        Santé - Congé et Absence
       </p>
     </div>
   </div>
@@ -111,20 +111,16 @@
               </div>
             </div>
             <div class="from-group">
-              <div class="d-flex justify-content-end">
-                <button
+              <div class="d-flex justify-content-between">
+                <a [routerLink]="['/login']" class="btn btn-info float-right">
+                  Se connecter </a
+                ><button
                   type="submit"
                   class="btn btn-primary"
                   [disabled]="!signupForm.valid"
                 >
                   S'inscrire
                 </button>
-                <a
-                  [routerLink]="['/login']"
-                  class="btn btn-info float-right offset-1"
-                >
-                  Se connecter
-                </a>
               </div>
             </div>
           </form>

@@ -41,7 +41,7 @@ export class TableCongeComponent implements AfterViewInit {
       this.congeService.getCongeForResponsable().subscribe(
         (conge: any) => {
           this.dataSource.data = conge.Conges;
-          console.log('Conge dataSource:', this.dataSource.data);
+          // console.log('Conge dataSource:', this.dataSource.data);
         },
         (error) => {
           console.error('Error fetching Conge:', error);
@@ -52,7 +52,7 @@ export class TableCongeComponent implements AfterViewInit {
         this.congeService.getCongeForDirecteur().subscribe(
           (conge: any) => {
             this.dataSource.data = conge.Conges;
-            console.log('Conge dataSource:', this.dataSource.data);
+            // console.log('Conge dataSource:', this.dataSource.data);
           },
           (error) => {
             console.error('Error fetching Conge:', error);
@@ -63,7 +63,7 @@ export class TableCongeComponent implements AfterViewInit {
         this.accueil.getAccueilDirecteur().subscribe(
           (conge: any) => {
             this.dataSource.data = conge.conges_today;
-            console.log('Conge dataSource:', this.dataSource.data);
+            // console.log('Conge dataSource:', this.dataSource.data);
           },
           (error) => {
             console.error('Error fetching Conge:', error);
@@ -75,13 +75,13 @@ export class TableCongeComponent implements AfterViewInit {
         this.congeService.getAllConge().subscribe(
           (conge: any) => {
             this.dataSource.data = conge.Conges;
-            console.log('Conge dataSource:', this.dataSource.data);
+            // console.log('Conge dataSource:', this.dataSource.data);
           },
           (error) => {
             console.error('Error fetching Conge:', error);
           }
         );
-      }else if (window.location.pathname === '/') {
+      } else if (window.location.pathname === '/') {
         this.a = true;
         this.accueil.getAccueilAdmin().subscribe(
           (conge: any) => {
@@ -99,5 +99,9 @@ export class TableCongeComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

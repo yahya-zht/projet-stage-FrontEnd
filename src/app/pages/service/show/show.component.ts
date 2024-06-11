@@ -12,9 +12,7 @@ export class ShowComponent implements OnInit {
   getId: any;
   service: Service | any;
   NomService: string = '';
-  NomResponsable: string = '';
-  PrenomResponsable: string = '';
-  Nbr: string = '';
+  etablissements = [''];
   constructor(
     private activatedRoute: ActivatedRoute,
     private serviceService: ServiceService
@@ -25,8 +23,7 @@ export class ShowComponent implements OnInit {
       .subscribe((service: Service) => {
         console.log('Service ====>>>> ' + service.Service.nom);
         this.NomService = service.Service?.nom;
-        this.NomResponsable = service.Service.responsable?.nom;
-        this.PrenomResponsable = service.Service.responsable?.prenom;
+        this.etablissements = service.Service.etablissement?.nom;
       });
   }
   ngOnInit(): void {}

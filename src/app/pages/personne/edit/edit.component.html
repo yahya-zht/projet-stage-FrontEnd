@@ -1,9 +1,9 @@
 <div class="rounded rounded-3 border border-3 m-4">
   <div class="border-bottom border-3 bg-light">
     <p
-      class="p-3 bg-gray-300 h4 m-0 text-center d-flex justify-content-center align-items-center"
+      class="p-3 bg-primary text-white h4 m-0 text-center d-flex justify-content-center align-items-center"
     >
-      <span class="me-2">Edit Personne</span
+      <span class="me-2">Modifier Personne</span
       ><mat-icon matSuffix class="">account_circle</mat-icon>
     </p>
   </div>
@@ -217,20 +217,20 @@
           <mat-hint align="end">Établissement</mat-hint>
         </mat-form-field>
       </div>
-      <div class="d-flex justify-content-between">
-        <button
-          type="submit"
-          class="btn btn-success me-3 w-25 d-flex align-items-center justify-content-center fw-semibold"
-        >
-          <span class="me-2 fs-5">Update</span>
-          <mat-icon matSuffix>save</mat-icon>
-        </button>
+      <div class="d-flex justify-content-end">
         <a
-          class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold"
+          class="btn btn-danger d-flex align-items-center justify-content-center fw-semibold me-3"
           [routerLink]="['/personne']"
           ><span class="me-2 fs-5">Annuler</span
           ><mat-icon matSuffix>close</mat-icon></a
         >
+        <button
+          type="submit"
+          class="btn btn-primary w-25 d-flex align-items-center justify-content-center fw-semibold"
+        >
+          <span class="me-2 fs-5">Mise à jour</span>
+          <mat-icon matSuffix>save</mat-icon>
+        </button>
       </div>
     </form>
   </div>
