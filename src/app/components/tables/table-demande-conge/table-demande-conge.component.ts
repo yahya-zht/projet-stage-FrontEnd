@@ -20,6 +20,7 @@ export class TableDemandeCongeComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
+    'Ref',
     'Type',
     'DateDemande',
     'DateDebut',
@@ -105,11 +106,20 @@ export class TableDemandeCongeComponent implements AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
   delete(id: any, i: any) {
-    if (confirm('Etes-vous sûr de vouloir supprimer cette échelle')) {
-      this.demandeCongeService.deleteDemandeConge(id).subscribe(() => {
-        this.dataSource.data.splice(i, 1);
-        this.dataSource._updateChangeSubscription();
-      });
+    if (confirm('Etes-vous sûr de vouloir supprimer cette Demande')) {
+      this.demandeCongeService.deleteDemandeConge(id).subscribe(
+        (response: any) => {
+          this.dataSource.data.splice(i, 1);
+          this.dataSource._updateChangeSubscription();
+          // console.log(response.message);
+        },
+        (error: any) => {
+          console.error(
+            'An error occurred while deleting the DemandeConge:',
+            error
+          );
+        }
+      );
     }
   }
   getColor(etat: string): string {

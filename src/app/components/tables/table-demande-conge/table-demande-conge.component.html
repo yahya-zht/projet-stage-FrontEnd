@@ -25,6 +25,17 @@
 </mat-card>
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <ng-container matColumnDef="Ref">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="bg-primary text-white"
+      >
+        Ref
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.Ref }}</td>
+    </ng-container>
     <ng-container matColumnDef="Nom">
       <th
         mat-header-cell
@@ -130,7 +141,7 @@
       <td mat-cell *matCellDef="let row; let i = index">
         <div class="d-flex justify-content-around">
           <div
-            [routerLink]="['pdf/', row.id]"
+            [routerLink]="['/pdf/', row.id]"
             class="m-2 d-flex justify-content-center align-content-center pt-1"
           >
             <mat-icon
@@ -140,6 +151,18 @@
               aria-label="picture_as_pdf"
               fontIcon="picture_as_pdf"
               >picture_as_pdf</mat-icon
+            >
+          </div>
+          <div
+            class="m-2 d-flex justify-content-center align-content-center pt-1"
+          >
+            <mat-icon
+              (click)="delete(row.id, i)"
+              class="text-danger p-0 m-0 btn btn-debug"
+              aria-hidden="false"
+              aria-label="delete"
+              fontIcon="delete"
+              >delete</mat-icon
             >
           </div>
         </div>

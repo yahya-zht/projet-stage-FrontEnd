@@ -10,6 +10,7 @@ import { ServiceService } from 'src/app/services/service/service.service';
 import { Service } from 'src/app/Models/Service';
 import { Etablissement } from 'src/app/Models/Etablissement';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ExportService } from 'src/app/pdf/excel/export-service/export.service';
 
 @Component({
   selector: 'app-table-personnes',
@@ -24,10 +25,12 @@ export class TablePersonnesComponent implements AfterViewInit {
   getId: any;
   public Role = '';
   displayedColumns: string[] = [];
+  data: any[] = [];
   constructor(
     private authService: AuthService,
     private personneService: PersonneService,
     private activatedRoute: ActivatedRoute,
+    private exportService: ExportService,
     private serviceService: ServiceService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -63,22 +66,40 @@ export class TablePersonnesComponent implements AfterViewInit {
     }
     if (this.getId === null) {
       if (this.Role === 'Admin') {
-        console.log('Admin');
         this.personneService.getAllPersonnes().subscribe(
           (personnes: any) => {
             this.dataSource.data = personnes.Personnes;
-            console.log('Personnes dataSource:', this.dataSource.data);
+            this.data = this.dataSource.data.map((personne) => ({
+              CIN: personne.CIN,
+              Nom: personne.nom,
+              Prenom: personne.prenom,
+              Telephone: personne.telephone,
+              Adresse: personne.adresse,
+              Fonction: personne.fonction.libelle,
+              Grade: personne.grade.libelle,
+              Echelle: personne.echelle.libelle,
+            }));
           },
           (error) => {
             console.error('Error fetching personnes:', error);
           }
         );
       } else if (Role === 'Superviseur' || Role === 'Directeur') {
-        console.log('sup or D');
         this.personneService.getEmployes().subscribe(
           (personnes: any) => {
             this.dataSource.data = personnes.Personnes;
-            console.log('Personnes dataSource:', this.dataSource.data);
+            if (Role === 'Directeur') {
+              this.data = this.dataSource.data.map((personne) => ({
+                CIN: personne.CIN,
+                Nom: personne.nom,
+                Prenom: personne.prenom,
+                Telephone: personne.telephone,
+                Adresse: personne.adresse,
+                Fonction: personne.fonction.libelle,
+                Grade: personne.grade.libelle,
+                Echelle: personne.echelle.libelle,
+              }));
+            }
           },
           (error) => {
             console.error('Error fetching personnes:', error);
@@ -111,5 +132,8 @@ export class TablePersonnesComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  exportData() {
+    this.exportService.exportToExcel(this.data, 'Employés');
   }
 }

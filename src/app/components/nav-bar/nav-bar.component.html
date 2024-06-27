@@ -87,8 +87,9 @@
                 class="nav-link"
                 [routerLink]="['/admin/demande/conge']"
                 *ngIf="Role === 'Directeur' || Role === 'Admin'"
-                >Demande Congé</a
-              >
+                >Demande Congé
+                <span *ngIf="Role === 'Admin'"> Sous Directeur </span>
+              </a>
             </li>
             <li class="nav-item">
               <a
@@ -107,7 +108,8 @@
                 class="nav-link"
                 [routerLink]="['/admin/demande/absence']"
                 *ngIf="Role === 'Directeur' || Role === 'Admin'"
-                >Demande Absence</a
+                >Demande Absence
+                <span *ngIf="Role === 'Admin'"> Sous Directeur </span></a
               >
             </li>
           </ul>

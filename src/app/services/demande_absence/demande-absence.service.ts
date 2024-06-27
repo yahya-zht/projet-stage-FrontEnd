@@ -36,7 +36,7 @@ export class DemandeAbsenceService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-  AddDemandeAbsence(data: DemandeAbsence): Observable<DemandeAbsence> {
+  AddDemandeAbsence(data: any): Observable<DemandeAbsence> {
     const headers = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.token}`

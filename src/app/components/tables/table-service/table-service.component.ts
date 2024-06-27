@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Etablissement } from 'src/app/Models/Etablissement';
 import { Service } from 'src/app/Models/Service';
+import { ExportService } from 'src/app/pdf/excel/export-service/export.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/auth/token.service';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
@@ -23,11 +24,13 @@ export class TableServiceComponent implements AfterViewInit {
   displayedColumns = ['Libelle', 'Action'];
   public Role = '';
   getId: any;
+  data: any[] = [];
   constructor(
     private authService: AuthService,
     private service: ServiceService,
     private activatedRoute: ActivatedRoute,
-    private etablissementService: EtablissementService
+    private etablissementService: EtablissementService,
+    private exportService: ExportService
   ) {
     this.getId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log('Id=>' + this.getId);
@@ -39,7 +42,9 @@ export class TableServiceComponent implements AfterViewInit {
         this.service.getServicesForEtablissement().subscribe(
           (services: any) => {
             this.dataSource.data = services.Services;
-            console.log('Services dataSource:', this.dataSource.data);
+            this.data = this.dataSource.data.map((service) => ({
+              Nom: service.nom,
+            }));
           },
           (error) => {
             console.error('Error fetching personnes:', error);
@@ -49,7 +54,9 @@ export class TableServiceComponent implements AfterViewInit {
         this.service.getAllService().subscribe(
           (services: any) => {
             this.dataSource.data = services.Services;
-            console.log('Services dataSource:', this.dataSource.data);
+            this.data = this.dataSource.data.map((service) => ({
+              Libelle: service.nom,
+            }));
           },
           (error) => {
             console.error('Error fetching personnes:', error);
@@ -80,5 +87,8 @@ export class TableServiceComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  exportData() {
+    this.exportService.exportToExcel(this.data, 'Services');
   }
 }

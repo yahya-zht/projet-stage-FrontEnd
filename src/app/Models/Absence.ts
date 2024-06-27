@@ -1,6 +1,11 @@
 import { AbsenceCongeBase } from './AbsenceCongeBase';
 
 export class Absence extends AbsenceCongeBase {
+  date_fin: any;
+  date_debut: any;
+  demande_absence: any;
+  nom: any;
+  prenom: any;
   constructor(AbsenceCongeBase: AbsenceCongeBase) {
     super(
       AbsenceCongeBase.id,

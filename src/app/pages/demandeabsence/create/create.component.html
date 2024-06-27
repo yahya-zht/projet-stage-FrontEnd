@@ -76,6 +76,30 @@
           </div>
           <mat-hint align="end">Type</mat-hint>
         </mat-form-field>
+        <div class="col">
+          <input
+            class="form-control form-control-lg"
+            id="imageUpload"
+            type="file"
+            formControlName="image"
+            (change)="onFileSelected($event)"
+          />
+          <label
+            for="imageUpload"
+            class="form-label d-block text-end text-bg-info"
+            >Justifier l'absence</label
+          >
+          <div *ngIf="error?.image" class="text-danger">
+            {{ error.image }}
+          </div>
+        </div>
+        <!-- <div class="col">
+          <input type="file" class="form-control h-5" id="imageUpload" />
+          <label for="imageUpload" class="form-label m-0"
+            >Justifier l'absence</label
+          >
+          
+        </div> -->
       </div>
       <div class="d-flex justify-content-end">
         <a

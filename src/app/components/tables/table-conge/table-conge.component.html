@@ -19,6 +19,14 @@
     />
     <mat-icon matSuffix class="text-white">search</mat-icon>
   </mat-form-field>
+  <button
+    (click)="exportData()"
+    class="btn btn-success d-flex align-content-center"
+    *ngIf="a !== true && (Role === 'Admin' || Role === 'Directeur')"
+  >
+    <span> Excel </span>
+    <mat-icon>download_2</mat-icon>
+  </button>
 </mat-card>
 
 <div class="mat-elevation-z8">

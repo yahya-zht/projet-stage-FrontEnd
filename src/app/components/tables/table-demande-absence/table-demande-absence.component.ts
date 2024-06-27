@@ -20,12 +20,14 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
+    'Ref',
     'Type',
     'DateDemande',
     'DateDebut',
     'DateFin',
     'Durée',
     'état',
+    'Action',
   ];
   public Role = '';
   a = false;
@@ -119,10 +121,25 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
       );
     }
   }
+
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+  delete(id: any, i: any) {
+    if (confirm('Etes-vous sûr de vouloir supprimer cette Demande')) {
+      this.demandeAbsenceService.deleteDemandeAbsence(id).subscribe(
+        (response: any) => {
+          this.dataSource.data.splice(i, 1);
+          this.dataSource._updateChangeSubscription();
+          // console.log(response.message);
+        },
+        (error: any) => {
+          console.error('An error occurred while deleting the Demande:', error);
+        }
+      );
+    }
   }
   getColor(etat: string): string {
     switch (etat) {
