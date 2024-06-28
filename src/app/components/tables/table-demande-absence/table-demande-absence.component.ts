@@ -6,7 +6,6 @@ import { DemandeAbsence } from 'src/app/Models/DemandeAbsence';
 import { AccueilService } from 'src/app/services/accueil/accueil.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DemandeAbsenceService } from 'src/app/services/demande_absence/demande-absence.service';
-
 @Component({
   selector: 'app-table-demande-absence',
   templateUrl: './table-demande-absence.component.html',
@@ -27,15 +26,18 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
     'DateFin',
     'Durée',
     'état',
+    'image',
     'Action',
   ];
   public Role = '';
   a = false;
+  selectedImage: string | null = null;
   constructor(
     private demandeAbsenceService: DemandeAbsenceService,
     private authService: AuthService,
     private accueil: AccueilService
   ) {}
+
   ngOnInit(): void {
     this.Role = this.authService.getUserRole();
     const Role = this.Role;
@@ -154,5 +156,9 @@ export class TableDemandeAbsenceComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  showImage(imageUrl: string) {
+    this.selectedImage = 'http://127.0.0.1:8000/Storage/' + imageUrl;
+    console.log(this.selectedImage);
   }
 }

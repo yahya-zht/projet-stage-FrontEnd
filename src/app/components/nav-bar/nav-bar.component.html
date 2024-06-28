@@ -163,23 +163,47 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-          >
-            Setting
+            ><mat-icon
+              class="text-white p-0 m-0 btn btn-debug"
+              aria-hidden="false"
+              aria-label="account_circles"
+              fontIcon="account_circles"
+              >account_circles</mat-icon
+            >
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="nav-link" [routerLink]="['/profile']" *ngIf="loggedIn"
-                >Profile</a
+              <a
+                class="nav-link d-flex align-items-center"
+                [routerLink]="['/profile']"
+                *ngIf="loggedIn"
               >
+                <mat-icon
+                  class="text-primary p-0 m-0 me-2 btn btn-debug"
+                  aria-hidden="false"
+                  aria-label="person"
+                  fontIcon="person"
+                  >person</mat-icon
+                >
+                <span>Profile</span>
+              </a>
             </li>
             <li>
               <a
-                class="nav-link"
+                class="nav-link d-flex align-items-center"
                 [routerLink]="['#']"
                 (click)="logout($event)"
                 *ngIf="loggedIn"
-                >déconnexion</a
               >
+                <mat-icon
+                  class="text-primary p-0 m-0 me-2 btn-debug"
+                  aria-hidden="false"
+                  aria-label="logout"
+                  fontIcon="logout"
+                  >logout</mat-icon
+                >
+                <span>Déconnexion</span>
+              </a>
             </li>
           </ul>
         </li>

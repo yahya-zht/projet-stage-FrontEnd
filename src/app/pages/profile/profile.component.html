@@ -88,7 +88,7 @@
         </div>
         <div class="row my-3">
           <p class="col-6">
-            <span class="fw-bold">Role :</span> {{ profile.role
+            <span class="fw-bold">Role :</span> {{ profile.role 
             }}<mat-progress-bar
               class=""
               mode="indeterminate"
@@ -96,7 +96,7 @@
             ></mat-progress-bar>
           </p>
           <p class="col-6">
-            <span class="fw-bold">Chef :</span>
+            <span class="fw-bold">Responsable :</span>
             <span *ngIf="profile.chef === undefined">{{
               profile.chef ? profile.chef : "--"
             }}</span>

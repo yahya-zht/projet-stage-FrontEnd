@@ -1,84 +1,172 @@
 <div>
   <div class="" *ngIf="Role === 'Directeur'">
-    <div class="row row-cols-lg-6 mb-3 text-center fs-5 fw-bold">
+    <div class="row row-cols-lg-4 mb-3 text-center fs-5 fw-bold">
       <div class="col">
-        <mat-card>
-          <p>Nb Employés</p>
-          <span>{{ Accueil.personnes_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1"
+              >groups</span
+            >
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Employés</p>
+            <span>{{ Accueil.personnes_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb Services</p>
-          <span>{{ Accueil.services_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              medical_services
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Services</p>
+            <span>{{ Accueil.services_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM ABD Ce jour-là</p>
-          <span>{{ Accueil.demande_absences_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABD Ce jour-là</p>
+            <span>{{ Accueil.demande_absences_today_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG Ce jour-là</p>
-          <span>{{ Accueil.demande_conges_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG Ce jour-là</p>
+            <span>{{ Accueil.demande_conges_today_count }}</span>
+          </div>
+        </mat-card>
+      </div>
+      <!-- <div class="col">
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABS ce mois</p>
+            <span>{{ Accueil.demande_absences_count_month }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM ABS ce mois</p>
-          <span>{{ Accueil.demande_absences_count_month }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG ce mois</p>
+            <span>{{ Accueil.demande_conges_count_month }}</span>
+          </div>
         </mat-card>
-      </div>
-      <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG ce mois</p>
-          <span>{{ Accueil.demande_conges_count_month }}</span>
-        </mat-card>
-      </div>
+      </div> -->
     </div>
-    <div class="row row-cols-lg-6 mb-3 text-center fs-5 fw-bold">
+    <div class="row row-cols-lg-4 mb-3 text-center fs-5 fw-bold">
       <div class="col">
-        <mat-card>
-          <p>Nb ABS Ce jour-là</p>
-          <span>{{ Accueil.absences_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              enterprise_off
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">ABS Ce jour-là</p>
+            <span>{{ Accueil.absences_today_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb CNG Ce jour-là</p>
-          <span>{{ Accueil.conges_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              luggage
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">CNG Ce jour-là</p>
+            <span>{{ Accueil.conges_today_count }}</span>
+          </div>
+        </mat-card>
+      </div>
+      <!-- <div class="col">
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              enterprise_off
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">ABS ce mois</p>
+            <span>{{ Accueil.absences_current_month_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb CNG ce mois</p>
-          <span>{{ Accueil.conges_current_month_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              luggage
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">CNG ce mois</p>
+            <span>{{ Accueil.conges_current_month_count }}</span>
+          </div>
+        </mat-card>
+      </div> -->
+
+      <div class="col">
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              other_admission
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABS En Attendant</p>
+            <span>{{ Accueil.total_demande_absences_count_att }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb ABS ce mois</p>
-          <span>{{ Accueil.absences_current_month_count }}</span>
-        </mat-card>
-      </div>
-      <div class="col">
-        <mat-card>
-          <p>Nb DEM ABS En Attendant</p>
-          <span>{{ Accueil.total_demande_absences_count_att }}</span>
-        </mat-card>
-      </div>
-      <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG En Attendant</p>
-          <span>{{ Accueil.total_demande_conges_count_att }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              other_admission
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG En Attendant</p>
+            <span>{{ Accueil.total_demande_conges_count_att }}</span>
+          </div>
         </mat-card>
       </div>
     </div>
     <div>
       <div>
         <mat-card>
+          <p class="text-primary fs-5 fw-bold text-center">
+            Le Nombre De Employés Absentes ou en congé cette année
+          </p>
           <app-my-chart></app-my-chart>
         </mat-card>
       </div>
@@ -115,26 +203,50 @@
   <div *ngIf="Role === 'Superviseur' || Role === 'Employé'">
     <div class="row row-cols-lg-3 mb-3 text-center fs-5 fw-bold">
       <div class="col">
-        <mat-card>
-          <p>Solde de Congés Restant</p>
-          <span>{{ Accueil.NbSoldeConges }} Jours</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              universal_currency_alt
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Solde de Congés Restant</p>
+            <span>{{ Accueil.NbSoldeConges }} Jours</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Congés Cette Année</p>
-          <span>{{ Accueil.NbConges }} Jours</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              luggage
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Congés Cette Année</p>
+            <span>{{ Accueil.NbConges }} Jours</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Absences Cette Année</p>
-          <span>{{ Accueil.NbAbsence }} Jours</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              enterprise_off
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Absences Cette Année</p>
+            <span>{{ Accueil.NbAbsence }} Jours</span>
+          </div>
         </mat-card>
       </div>
     </div>
     <div>
       <mat-card>
+        <p class="text-primary fs-5 fw-bold text-center">
+          congés et absences cette année
+        </p>
         <app-my-chart></app-my-chart>
       </mat-card>
     </div>
@@ -152,103 +264,211 @@
   <div class="" *ngIf="Role === 'Admin'">
     <div class="row row-cols-lg-5 mb-3 text-center fs-5 fw-bold">
       <div class="col">
-        <mat-card>
-          <p>Nb D'etablissements</p>
-          <span>{{ Accueil.etablissements_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              apartment
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Etablissements</p>
+            <span>{{ Accueil.etablissements_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb d'employés</p>
-          <span>{{ Accueil.personnes_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              groups
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Employés</p>
+            <span>{{ Accueil.personnes_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb services</p>
-          <span>{{ Accueil.services_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              medical_services
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">Services</p>
+            <span>{{ Accueil.services_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM ABS Ce jour-là</p>
-          <span>{{ Accueil.demande_absences_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABS Ce jour-là</p>
+            <span>{{ Accueil.demande_absences_today_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG Ce jour-là</p>
-          <span>{{ Accueil.demande_conges_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG Ce jour-là</p>
+            <span>{{ Accueil.demande_conges_today_count }}</span>
+          </div>
         </mat-card>
       </div>
     </div>
     <div class="row row-cols-lg-5 mb-3 text-center fs-5 fw-bold">
       <div class="col">
-        <mat-card>
-          <p>Nb DEM ABS ce mois</p>
-          <span>{{ Accueil.demande_absences_count_month }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABS ce mois</p>
+            <span>{{ Accueil.demande_absences_count_month }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG ce mois</p>
-          <span>{{ Accueil.demande_conges_count_month }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG ce mois</p>
+            <span>{{ Accueil.demande_conges_count_month }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM ABD Année</p>
-          <span>{{ Accueil.demandeAbsencesCountCetteAnnee }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABD Année</p>
+            <span>{{ Accueil.demandeAbsencesCountCetteAnnee }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG Année</p>
-          <span>{{ Accueil.demandeCongesCountCetteAnnee }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG Année</p>
+            <span>{{ Accueil.demandeCongesCountCetteAnnee }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb ABD Ce jour-là</p>
-          <span>{{ Accueil.absences_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              enterprise_off
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">ABD Ce jour-là</p>
+            <span>{{ Accueil.absences_today_count }}</span>
+          </div>
         </mat-card>
       </div>
     </div>
     <div class="row row-cols-lg-5 mb-3 text-center fs-5 fw-bold">
       <div class="col">
-        <mat-card>
-          <p>Nb CNG Ce jour-là</p>
-          <span>{{ Accueil.conges_today_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              luggage
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">CNG Ce jour-là</p>
+            <span>{{ Accueil.conges_today_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb CNG ce mois</p>
-          <span>{{ Accueil.conges_current_month_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              luggage
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">CNG ce mois</p>
+            <span>{{ Accueil.conges_current_month_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb ABD ce mois</p>
-          <span>{{ Accueil.absences_current_month_count }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined text-primary fs-1">
+              enterprise_off
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">ABD ce mois</p>
+            <span>{{ Accueil.absences_current_month_count }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM ABS En Attendant</p>
-          <span>{{ Accueil.total_demande_absences_count_att }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM ABS En Attendant</p>
+            <span>{{ Accueil.total_demande_absences_count_att }}</span>
+          </div>
         </mat-card>
       </div>
       <div class="col">
-        <mat-card>
-          <p>Nb DEM CNG En Attendant</p>
-          <span>{{ Accueil.total_demande_conges_count_att }}</span>
+        <mat-card class="d-flex align-items-center">
+          <div class="w-25">
+            <span class="material-symbols-outlined fs-1 text-primary">
+              description
+            </span>
+          </div>
+          <div class="w-75">
+            <p class="text-primary">DEM CNG En Attendant</p>
+            <span>{{ Accueil.total_demande_conges_count_att }}</span>
+          </div>
         </mat-card>
       </div>
     </div>
     <div>
       <div>
         <mat-card>
+          <p class="text-primary fs-5 fw-bold text-center">
+            Le Nombre De Employés Absentes ou en congé cette année
+          </p>
           <app-my-chart></app-my-chart>
         </mat-card>
       </div>

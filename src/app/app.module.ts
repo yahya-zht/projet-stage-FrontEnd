@@ -65,6 +65,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 // import { ChartjsModule } from '@coreui/angular-chartjs';
 import { MyChartComponent } from './components/dashboard/chart/my-chart/my-chart.component';
+// import { NgbdModalContentComponent } from './pdf/ngbd-modal-content/ngbd-modal-content.component';
 @NgModule({
   declarations: [
     AppComponent,

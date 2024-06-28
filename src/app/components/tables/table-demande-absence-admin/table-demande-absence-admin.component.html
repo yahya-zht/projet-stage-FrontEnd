@@ -107,6 +107,27 @@
       </th>
       <td mat-cell *matCellDef="let row">{{ row.dateFin }}</td>
     </ng-container>
+    <ng-container matColumnDef="image">
+      <th *matHeaderCellDef class="bg-primary text-white fw-normal text-center">
+        Show Justifier
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <div class="d-flex justify-content-around">
+          <div
+            class="m-2 d-flex justify-content-center align-content-center pt-1"
+          >
+            <mat-icon
+              (click)="showImage(row.image)"
+              class="text-secondary p-0 m-0 btn btn-debug h"
+              aria-hidden="false"
+              aria-label="delete"
+              fontIcon="delete"
+              >visibility</mat-icon
+            >
+          </div>
+        </div>
+      </td>
+    </ng-container>
     <ng-container matColumnDef="Action">
       <th *matHeaderCellDef class="bg-primary text-white fw-normal text-center">
         Action
@@ -145,4 +166,8 @@
     aria-label="Select page"
   >
   </mat-paginator>
+</div>
+<div *ngIf="selectedImage" class="my-3 pb-2">
+  <h3 class="text-center mb-0">Image Justifier</h3>
+  <img [src]="selectedImage" alt="Justifier" class="justifier-image w-100" />
 </div>

@@ -26,9 +26,11 @@ export class TableDemandeAbsenceAdminComponent implements AfterViewInit {
     'DateDemande',
     'DateDebut',
     'DateFin',
+    'image',
     'Action',
   ];
   a = false;
+  selectedImage: string | null = null;
   constructor(
     private demandeAbsenceAdminService: DemandeAbsenceAdminService,
     private accueil: AccueilService
@@ -77,5 +79,9 @@ export class TableDemandeAbsenceAdminComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  showImage(imageUrl: string) {
+    this.selectedImage = 'http://127.0.0.1:8000/Storage/' + imageUrl;
+    console.log(this.selectedImage);
   }
 }
