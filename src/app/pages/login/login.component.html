@@ -12,7 +12,8 @@
     <div>
       <p class="h2 text-center text-white">
         Application de Gestion des Ressources Humaines pour l'Etablissement de
-        Santé - Congé et Absence
+        la Santé et de la Protection Sociale <br />
+        - Congé et Absence -
       </p>
     </div>
   </div>
@@ -47,11 +48,14 @@
         <div class="card-header bg-bl text-white">Connectez-vous ici</div>
         <div class="card-body">
           <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="alert alert-success" [hidden]="!success">
+              {{ success }}
+            </div>
             <div class="alert alert-danger" [hidden]="!error">
               {{ error }}
             </div>
             <div class="mb-3">
-              <label for="email" class="col-form-label">Email / CIN</label>
+              <label for="email" class="col-form-label">Email</label>
               <div class="">
                 <input
                   type="email"
@@ -88,11 +92,11 @@
               </div>
             </div>
             <p class="text-center mb-0">
-              <small class="float-right">
+              <!-- <small class="float-right">
                 <a [routerLink]="['/request-password-reset']"
                   >Mot de passe oublié ?
                 </a> </small
-              ><br />
+              ><br /> -->
               <small class="float-right">
                 <a [routerLink]="['/signup']">Inscrivez-vous </a>
               </small>

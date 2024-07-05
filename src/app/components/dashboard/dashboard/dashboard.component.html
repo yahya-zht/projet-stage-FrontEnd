@@ -211,7 +211,12 @@
           </div>
           <div class="w-75">
             <p class="text-primary">Solde de Congés Restant</p>
-            <span>{{ Accueil.NbSoldeConges }} Jours</span>
+            <span
+              >{{
+                Accueil.NbSoldeConges ? Accueil.NbSoldeConges : 0
+              }}
+              Jours</span
+            >
           </div>
         </mat-card>
       </div>
@@ -224,7 +229,7 @@
           </div>
           <div class="w-75">
             <p class="text-primary">Congés Cette Année</p>
-            <span>{{ Accueil.NbConges }} Jours</span>
+            <span>{{ Accueil.NbConges ? Accueil.NbConges : 0 }} Jours</span>
           </div>
         </mat-card>
       </div>
@@ -237,7 +242,7 @@
           </div>
           <div class="w-75">
             <p class="text-primary">Absences Cette Année</p>
-            <span>{{ Accueil.NbAbsence }} Jours</span>
+            <span>{{ Accueil.NbAbsence ? Accueil.NbAbsence : 0 }} Jours</span>
           </div>
         </mat-card>
       </div>
@@ -439,8 +444,8 @@
       <div class="col">
         <mat-card class="d-flex align-items-center">
           <div class="w-25">
-            <span class="material-symbols-outlined fs-1 text-primary">
-              description
+            <span class="material-symbols-outlined text-primary fs-1">
+              other_admission
             </span>
           </div>
           <div class="w-75">
@@ -452,8 +457,8 @@
       <div class="col">
         <mat-card class="d-flex align-items-center">
           <div class="w-25">
-            <span class="material-symbols-outlined fs-1 text-primary">
-              description
+            <span class="material-symbols-outlined text-primary fs-1">
+              other_admission
             </span>
           </div>
           <div class="w-75">

@@ -22,6 +22,8 @@ export class ShowComponent implements OnInit {
   Echelle: string = '';
   Chef: string = '';
   Service: string = '';
+  SoldeConge: string = '';
+  NBabsence: string = '';
   Etablissement: string = '';
   Email: string = '';
   constructor(
@@ -32,11 +34,14 @@ export class ShowComponent implements OnInit {
     this.personneService
       .getPersonneById(this.getId)
       .subscribe((personne: Personne) => {
+        console.log('personne');
         this.CIN = personne.Personne.CIN;
         this.Nom = personne.Personne.nom;
         this.Prenom = personne.Personne.prenom;
         this.Telephon = personne.Personne.telephone;
         this.Adresse = personne.Personne.adresse;
+        this.SoldeConge = personne.Personne.solde_congés;
+        this.NBabsence = personne.Personne.NBabsence;
         this.Date_Naissance = personne.Personne.date_naissance;
         this.Role = personne.Personne.role;
         this.Role = personne.Personne.role;

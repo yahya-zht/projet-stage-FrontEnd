@@ -1,7 +1,10 @@
+// import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { PersonneService } from 'src/app/services/personne/personne.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+// import { FormBuilder, FormGroup } from '@angular/forms';
 import { Echelle } from 'src/app/Models/Echelle';
 import { EchelleService } from 'src/app/services/echelle/echelle.service';
 import { Fonction } from 'src/app/Models/Fonction';
@@ -14,11 +17,17 @@ import { Personne } from 'src/app/Models/Personne';
 import { EtablissementService } from 'src/app/services/etablissement/etablissement.service';
 import { Etablissement } from 'src/app/Models/Etablissement';
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css'],
+  selector: 'app-employer',
+  templateUrl: './employer.component.html',
+  styleUrls: ['./employer.component.css'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true },
+    },
+  ],
 })
-export class CreateComponent implements OnInit {
+export class EmployerComponent implements OnInit {
   personneForm: FormGroup;
   Echelle: Echelle[] = [];
   Fonction: Fonction[] = [];
@@ -29,7 +38,7 @@ export class CreateComponent implements OnInit {
   error: any;
   errordb: any;
   constructor(
-    public formBuilder: FormBuilder,
+    private _formBuilder: FormBuilder,
     private router: Router,
     private ngZone: NgZone,
     private personneService: PersonneService,
@@ -39,7 +48,7 @@ export class CreateComponent implements OnInit {
     private serviceService: ServiceService,
     private etablissementService: EtablissementService
   ) {
-    this.personneForm = this.formBuilder.group({
+    this.personneForm = this._formBuilder.group({
       CIN: [''],
       nom: [''],
       prenom: [''],
@@ -54,19 +63,23 @@ export class CreateComponent implements OnInit {
       service_id: [''],
       etablissement_id: [''],
     });
-  }
-  Eta(serviceId: number): any {
-    console.log(serviceId);
-    this.etablissementService.getEtablissementService(serviceId).subscribe(
-      (Etablissements: any) => {
-        this.Etablissements = Etablissements.Etablissements;
-        console.log('Etablissements dataSource:', this.Etablissements);
-      },
-      (error) => {
-        console.error('Error fetching Etablissements:', error);
+    this.firstFormGroup.controls['firstCtrl'].valueChanges.forEach((value) => {
+      console.log(value);
+      console.log('1');
+    });
+    this.secondFormGroup.controls['secondCtrl'].valueChanges.forEach(
+      (value) => {
+        console.log(value);
+        console.log('2');
       }
     );
   }
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
 
   ngOnInit(): void {
     this.echelleService.getAllEchelle().subscribe(
@@ -114,46 +127,13 @@ export class CreateComponent implements OnInit {
         console.error('Error fetching Service:', error);
       }
     );
-    // this.etablissementService.getAllEtablissement().subscribe(
-    //   (Etablissements: any) => {
-    //     this.Etablissements = Etablissements.Etablissements;
-    //     console.log('Etablissements dataSource:', this.Fonction);
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching Etablissements:', error);
-    //   }
-    // );
-  }
-  onSubmit(): any {
-    const selectedDate: Date = this.personneForm.value.date_naissance;
-    if (selectedDate) {
-      const DateNess: string = `${selectedDate.getFullYear()}-${
-        Number(selectedDate.getMonth()) + 1
-      }-${selectedDate.getDate()}`;
-      this.personneForm.value.date_naissance = DateNess;
-    }
-    this.personneService.AddPersonne(this.personneForm.value).subscribe(
-      () => {
-        console.log('Data added successfully');
-        this.ngZone.run(() => {
-          this.router.navigate(['/personne']);
-        });
+    this.etablissementService.getAllEtablissement().subscribe(
+      (Etablissements: any) => {
+        this.Etablissements = Etablissements.Etablissements;
+        console.log('Etablissements dataSource:', this.Fonction);
       },
       (error) => {
-        this.error = error.errors;
-        // console.log('====================================');
-        // console.log(error.message);
-        // console.log('====================================');
-        const errorMessage = error.message;
-        const customErrorMessage = 'Service pas dans l Etablissement';
-        if (errorMessage.includes(customErrorMessage)) {
-          this.errordb = customErrorMessage;
-        } else {
-          this.errordb = 'Erreur ';
-        }
-        console.log('====================================');
-        console.log(this.errordb);
-        console.log('====================================');
+        console.error('Error fetching Etablissements:', error);
       }
     );
   }

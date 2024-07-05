@@ -12,6 +12,7 @@ export class Personne {
   fonction_id: number;
   echelle_id: number;
   service_id: number;
+  solde_conge: number;
   etablissement_id: number;
   grade!: {
     // id: number;
@@ -62,6 +63,7 @@ export class Personne {
     fonction_id: number,
     echelle_id: number,
     service_id: number,
+    solde_conge: number,
     etablissement_id: number,
     chef_id?: number
   ) {
@@ -78,6 +80,7 @@ export class Personne {
     this.fonction_id = fonction_id;
     this.echelle_id = echelle_id;
     this.service_id = service_id;
+    this.solde_conge = solde_conge;
     this.etablissement_id = etablissement_id;
   }
 }

@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.get<string>(`${this.baseUrl}/logout`);
   }
   setUserRole(role: string): void {
-    console.log('userRole=>', role);
+    // console.log('userRole=>', role);
     const encryptedRole = CryptoJS.AES.encrypt(
       role.trim(),
       this.SECRET_KEY

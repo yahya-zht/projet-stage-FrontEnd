@@ -31,15 +31,26 @@ export class EtablissementService {
     return throwError(errorMessage);
   }
   AddEtablissement(data: Etablissement): Observable<Etablissement> {
+    const token: any = this.tokenService.getAccessToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     let API_URL = this.REST_API;
     return this.http
-      .post<Etablissement>(API_URL, data)
+      .post<Etablissement>(API_URL, data, { headers })
       .pipe(catchError(this.handleError));
   }
   getAllEtablissement(): Observable<Etablissement[]> {
     const token: any = this.tokenService.getAccessToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     let API_URL = this.REST_API;
+    return this.http
+      .get<Etablissement[]>(API_URL, { headers })
+      .pipe(catchError(this.handleError));
+  }
+  getEtablissementService(serviceId: number): Observable<Etablissement[]> {
+    const token: any = this.tokenService.getAccessToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    // let API_URL = this.REST_API;
+    let API_URL = `${this.REST_API}/service/${serviceId}`;
     return this.http
       .get<Etablissement[]>(API_URL, { headers })
       .pipe(catchError(this.handleError));

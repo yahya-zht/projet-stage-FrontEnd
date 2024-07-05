@@ -12,7 +12,8 @@
     <div>
       <p class="h2 text-center text-white">
         Application de Gestion des Ressources Humaines pour l'Etablissement de
-        Santé - Congé et Absence
+        la Santé et de la Protection Sociale <br />
+        - Congé et Absence -
       </p>
     </div>
   </div>
@@ -45,7 +46,15 @@
     <div class="w-100 h-100 d-flex justify-content-center align-items-center">
       <div class="card w-100">
         <div class="card-header bg-bl text-white">Inscrivez-vous ici</div>
+
         <div class="card-body">
+          <div
+            class="alert alert-danger text-center"
+            role="alert"
+            *ngIf="erreur"
+          >
+            CIN OU Email existe déjà / Mot de pass Doit être supérieur à 8
+          </div>
           <form action="" #signupForm="ngForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 row">
               <label for="cin" class="col-form-label">CIN</label>

@@ -10,6 +10,7 @@ export class AbsenceCongeBase {
     CIN: string;
     nom: string;
     prenom: string;
+    solde_conge: number;
   };
   constructor(
     id: number,

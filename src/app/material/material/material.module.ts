@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatStepperModule } from '@angular/material/stepper';
 const Material = [
   MatIconModule,
   MatFormFieldModule,
@@ -16,6 +17,7 @@ const Material = [
   MatNativeDateModule,
   MatSelectModule,
   MatProgressBarModule,
+  MatStepperModule,
 ];
 @NgModule({
   declarations: [],

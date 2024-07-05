@@ -10,6 +10,7 @@ export class Demande {
     CIN: string;
     nom: string;
     prenom: string;
+    solde_conge: string;
   };
 
   constructor(

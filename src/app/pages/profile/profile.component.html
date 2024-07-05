@@ -88,12 +88,27 @@
         </div>
         <div class="row my-3">
           <p class="col-6">
-            <span class="fw-bold">Role :</span> {{ profile.role 
-            }}<mat-progress-bar
+            <span class="fw-bold">Role :</span>
+            <ng-container *ngIf="profile.role; else loading">
+              <ng-container [ngSwitch]="profile.role">
+                <span *ngSwitchCase="'Directeur'">Sous Directeur</span>
+                <span *ngSwitchCase="'Superviseur'">Responsable</span>
+                <span *ngSwitchCase="'Employé'">Employé</span>
+                <span *ngSwitchCase="'Admin'">Admin</span>
+                <span *ngSwitchDefault>{{ profile.role }}</span>
+              </ng-container>
+            </ng-container>
+            <ng-template #loading>
+              <mat-progress-bar
+                class=""
+                mode="indeterminate"
+              ></mat-progress-bar>
+            </ng-template>
+            <!-- {{ profile.role}}<mat-progress-bar
               class=""
               mode="indeterminate"
               *ngIf="profile.role === ''"
-            ></mat-progress-bar>
+            ></mat-progress-bar> -->
           </p>
           <p class="col-6">
             <span class="fw-bold">Responsable :</span>

@@ -43,6 +43,27 @@
         </p>
       </div>
       <div class="my-3 row">
+        <p>
+          <span class="fw-bold col">Solde Congé :</span>
+          {{ SoldeConge ? SoldeConge : 0
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="SoldeConge === ''"
+          ></mat-progress-bar>
+        </p>
+      </div>
+      <div class="my-3 row">
+        <p>
+          <span class="fw-bold col">Nb Absence :</span> {{ NBabsence
+          }}<mat-progress-bar
+            class=""
+            mode="indeterminate"
+            *ngIf="NBabsence === ''"
+          ></mat-progress-bar>
+        </p>
+      </div>
+      <div class="my-3 row">
         <p class="">
           <span class="fw-bold col">Adresse :</span> {{ Adresse
           }}<mat-progress-bar
