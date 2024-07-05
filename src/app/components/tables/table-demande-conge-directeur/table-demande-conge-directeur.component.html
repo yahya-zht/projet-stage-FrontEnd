@@ -121,7 +121,7 @@
         Solde Congé
       </th>
       <td mat-cell *matCellDef="let row" class="text-center">
-        {{ row.personne ? row.personne.solde_conge : "0" }}
+        {{ row.solde_conge ? row.solde_conge : 0 }}
       </td>
     </ng-container>
     <ng-container matColumnDef="Action">

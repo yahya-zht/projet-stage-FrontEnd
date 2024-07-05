@@ -41,10 +41,10 @@ export class DashboardComponent implements OnInit {
           console.log(response.Conges.solde_congés);
           this.Accueil.NbAbsence = response.NbAbsence;
           this.Accueil.NbConges = response.Conges[0].SUMDayInYear;
-          this.Accueil.NbSoldeConges = response.Conges[0].solde_congés;
+          this.Accueil.NbSoldeConges = response.Conges[0].solde_conge;
           console.log(response);
           console.log(response.NbAbsence);
-          console.log(response.Conges[0].solde_congés);
+          console.log(response.Conges[0].solde_conge);
         },
         (error) => {
           console.error(error);
